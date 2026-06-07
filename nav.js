@@ -85,6 +85,7 @@ function injectFooter() {
       <div class="footer-inner">
         <div class="footer-top">
           <div>
+            <img src="vktm-mark.svg" style="width:48px;opacity:0.55;display:block;margin-bottom:10px;" alt="VKTM Mark">
             <div class="footer-logo">VKTM</div>
             <div class="footer-tagline">VK1 TMO · LONDON · EST. ${year}</div>
           </div>
