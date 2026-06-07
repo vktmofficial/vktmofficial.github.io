@@ -3,311 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VKTM — VK1 TMO</title>
-  <meta name="description" content="VKTM. London streetwear. No restock. Ever.">
+  <title>VKTM</title>
+  <meta name="description" content="VKTM — London streetwear. Limited drops. No restocks.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body { overflow: hidden; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* PASSWORD PAGE */
-    .pw-page {
-      position: fixed; inset: 0;
-      background: var(--deep-brown);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
+    :root {
+      --black:      #080604;
+      --dark:       #0e0905;
+      --brown:      #2b1408;
+      --brown-mid:  #4a2210;
+      --brown-warm: #7a3d18;
+      --brown-light:#b06030;
+      --beige:      #c0966a;
+      --cream:      #d9b88a;
+      --off-white:  #ece0c6;
+      --white:      #f5ede0;
+      --font-mark:  'Permanent Marker', cursive;
+      --font-hand:  'Caveat', cursive;
     }
 
-    /* Giant faded watermark */
-    .pw-watermark {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    html, body {
+      height: 100%;
+      background: var(--black);
+      color: var(--off-white);
+      font-family: var(--font-hand);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain */
+    .grain {
+      position: fixed;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
       pointer-events: none;
-      overflow: hidden;
+      z-index: 10;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      animation: grain 0.8s steps(2) infinite;
     }
-    .pw-watermark span {
-      font-family: var(--font-gothic);
-      font-size: clamp(120px, 28vw, 280px);
-      color: var(--raw-cream);
-      opacity: 0.04;
-      white-space: nowrap;
-      user-select: none;
-      letter-spacing: -0.02em;
-    }
-
-    /* Corner coordinates */
-    .pw-coord {
-      position: absolute;
-      font-family: var(--font-body);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      color: var(--brown-warm);
-      opacity: 0.5;
-    }
-    .pw-coord.tl { top: 24px; left: 24px; }
-    .pw-coord.tr { top: 24px; right: 24px; text-align: right; }
-    .pw-coord.bl { bottom: 24px; left: 24px; }
-    .pw-coord.br { bottom: 24px; right: 24px; text-align: right; }
-
-    /* Center content */
-    .pw-center {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      width: 100%;
-      max-width: 520px;
-      padding: 24px;
-    }
-    .pw-logo {
-      font-family: var(--font-gothic);
-      font-size: clamp(72px, 14vw, 120px);
-      color: var(--raw-cream);
-      line-height: 1;
-      margin-bottom: 8px;
-      letter-spacing: 0.02em;
-    }
-    .pw-postcode {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      color: var(--brown-warm);
-      margin-bottom: 48px;
+    @keyframes grain {
+      0%   { transform: translate(0,0); }
+      20%  { transform: translate(-3%,-4%); }
+      40%  { transform: translate(4%,2%); }
+      60%  { transform: translate(-2%,5%); }
+      80%  { transform: translate(3%,-2%); }
+      100% { transform: translate(0,0); }
     }
 
-    /* Newsletter */
-    .pw-newsletter-label {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--ash);
-      margin-bottom: 16px;
-    }
-    .pw-newsletter-form {
+    /* Layout */
+    .wrap {
+      min-height: 100vh;
       display: flex;
-      margin-bottom: 10px;
-    }
-    .pw-newsletter-form input {
-      flex: 1;
-      background: rgba(10,10,8,0.6);
-      border: 1px solid var(--brown-mid);
-      border-right: none;
-      color: var(--raw-cream);
-      font-family: var(--font-body);
-      font-size: 13px;
-      padding: 14px 16px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .pw-newsletter-form input:focus { border-color: var(--brown-warm); }
-    .pw-newsletter-form input::placeholder { color: var(--brown-mid); }
-    .pw-newsletter-form button {
-      background: var(--london-rust);
-      color: var(--raw-cream);
-      font-family: var(--font-display);
-      font-size: 13px;
-      letter-spacing: 0.15em;
-      padding: 14px 22px;
-      border: 1px solid var(--london-rust);
-      cursor: pointer;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-    .pw-newsletter-form button:hover { background: var(--rust-bright); }
-    .pw-nl-note {
-      font-size: 10px;
-      color: var(--ash);
-      opacity: 0.5;
-      margin-bottom: 40px;
-    }
-    .pw-nl-success {
-      display: none;
-      font-family: var(--font-display);
-      font-size: 14px;
-      letter-spacing: 0.15em;
-      color: var(--brown-warm);
-      margin-bottom: 32px;
-    }
-
-    /* Staff access */
-    .pw-staff-wrap {
-      margin-top: 32px;
-      position: relative;
-    }
-    .pw-staff-label {
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      color: rgba(120,100,80,0.18);
-      margin-bottom: 6px;
-    }
-    .pw-staff-form {
-      display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
+      padding: 40px 24px;
+      position: relative;
     }
-    .pw-staff-form input {
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(107,58,31,0.15);
-      color: rgba(240,237,232,0.12);
-      font-family: var(--font-body);
-      font-size: 12px;
-      padding: 6px 10px;
-      outline: none;
-      width: 160px;
+
+    /* VKTM wordmark */
+    .pw-logo {
+      font-family: var(--font-mark);
+      font-size: clamp(72px, 18vw, 140px);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
       text-align: center;
-      letter-spacing: 0.15em;
-      caret-color: var(--brown-warm);
+      user-select: none;
     }
-    .pw-staff-form input::placeholder { color: rgba(107,58,31,0.2); }
-    .pw-staff-err {
-      display: none;
-      font-size: 10px;
-      color: var(--london-rust);
-      margin-top: 6px;
+
+    .pw-sub {
+      font-family: var(--font-hand);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--brown-warm);
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    /* Form */
+    .pw-form {
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pw-input {
+      background: var(--brown);
+      border: 1px solid var(--brown-mid);
+      color: var(--off-white);
+      font-family: var(--font-hand);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      padding: 14px 18px;
+      outline: none;
+      text-align: center;
+      transition: border-color 0.2s;
+      border-radius: 2px;
+      width: 100%;
+    }
+    .pw-input::placeholder {
+      color: var(--brown-warm);
+      opacity: 0.5;
       letter-spacing: 0.1em;
     }
-
-    /* Decorative SVGs */
-    .pw-svg-left {
-      position: absolute;
-      left: clamp(8px, 4vw, 60px);
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.18;
-      width: clamp(100px, 13vw, 180px);
-      filter: drop-shadow(0 0 24px rgba(139,90,60,0.15));
-    }
-    .pw-svg-right {
-      position: absolute;
-      right: clamp(8px, 4vw, 60px);
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.14;
-      width: clamp(90px, 11vw, 150px);
-    }
-    /* Mark above logo */
-    .pw-mark {
-      width: clamp(40px, 6vw, 64px);
-      opacity: 0.55;
-      margin: 0 auto 12px;
-      display: block;
-    }
-    .pw-barbed {
-      position: absolute;
-      bottom: 80px;
-      left: 0; right: 0;
-      opacity: 0.12;
-      padding: 0 24px;
+    .pw-input:focus {
+      border-color: var(--brown-light);
     }
 
-    @media (max-width: 600px) {
-      .pw-svg-left, .pw-svg-right { display: none; }
-      .pw-coord.tr, .pw-coord.br { display: none; }
+    .pw-btn {
+      background: var(--brown-warm);
+      color: var(--white);
+      font-family: var(--font-hand);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 14px;
+      border: 1px solid var(--brown-warm);
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+    .pw-btn:hover {
+      background: var(--brown-light);
+      border-color: var(--brown-light);
+    }
+
+    .pw-error {
+      font-family: var(--font-hand);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--brown-light);
+      text-align: center;
+      height: 20px;
+      transition: opacity 0.2s;
+      opacity: 0;
+    }
+    .pw-error.show { opacity: 1; }
+
+    /* Subtle bottom text */
+    .pw-foot {
+      position: absolute;
+      bottom: 28px;
+      font-family: var(--font-hand);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: var(--brown-mid);
     }
   </style>
 </head>
 <body>
-  <div class="grain"></div>
 
-  <main class="pw-page">
-    <!-- Watermark -->
-    <div class="pw-watermark"><span>VKTM</span></div>
+<div class="grain"></div>
 
-    <!-- Corner coords -->
-    <div class="pw-coord tl">51.5074° N</div>
-    <div class="pw-coord tr">0.1278° W</div>
-    <div class="pw-coord bl">VK1 TMO</div>
-    <div class="pw-coord br">London</div>
+<div class="wrap">
+  <div class="pw-logo">VKTM</div>
+  <div class="pw-sub">LONDON · ENTER PASSWORD</div>
 
-    <!-- Mascot left -->
-    <img src="mascot.svg" class="pw-svg-left" alt="">
+  <form class="pw-form" id="pw-form" autocomplete="off">
+    <input
+      class="pw-input"
+      id="pw-input"
+      type="password"
+      placeholder="password"
+      autocomplete="new-password"
+      spellcheck="false"
+    />
+    <button class="pw-btn" type="submit">Enter</button>
+    <div class="pw-error" id="pw-error">wrong password</div>
+  </form>
 
-    <!-- VKTM Mark right -->
-    <img src="vktm-mark.svg" class="pw-svg-right" alt="">
+  <div class="pw-foot">@vktmofficial</div>
+</div>
 
-    <!-- Barbed wire -->
-    <div class="pw-barbed">
-      <svg viewBox="0 0 900 20" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMid meet">
-        <path d="M0,10 Q22,6 45,10 Q68,14 90,10 Q112,6 135,10 Q158,14 180,10 Q202,6 225,10 Q248,14 270,10 Q292,6 315,10 Q338,14 360,10 Q382,6 405,10 Q428,14 450,10 Q472,6 495,10 Q518,14 540,10 Q562,6 585,10 Q608,14 630,10 Q652,6 675,10 Q698,14 720,10 Q742,6 765,10 Q788,14 810,10 Q832,6 855,10 Q878,14 900,10" stroke="#6B3A1F" stroke-width="1.4"/>
-        <g stroke="#6B3A1F" stroke-width="1.4">
-          <line x1="88" y1="3" x2="100" y2="17"/><line x1="88" y1="17" x2="100" y2="3"/>
-          <line x1="178" y1="3" x2="190" y2="17"/><line x1="178" y1="17" x2="190" y2="3"/>
-          <line x1="268" y1="3" x2="280" y2="17"/><line x1="268" y1="17" x2="280" y2="3"/>
-          <line x1="358" y1="3" x2="370" y2="17"/><line x1="358" y1="17" x2="370" y2="3"/>
-          <line x1="448" y1="3" x2="460" y2="17"/><line x1="448" y1="17" x2="460" y2="3"/>
-          <line x1="538" y1="3" x2="550" y2="17"/><line x1="538" y1="17" x2="550" y2="3"/>
-          <line x1="628" y1="3" x2="640" y2="17"/><line x1="628" y1="17" x2="640" y2="3"/>
-          <line x1="718" y1="3" x2="730" y2="17"/><line x1="718" y1="17" x2="730" y2="3"/>
-          <line x1="808" y1="3" x2="820" y2="17"/><line x1="808" y1="17" x2="820" y2="3"/>
-        </g>
-      </svg>
-    </div>
+<script>
+  // If already unlocked, skip straight to home
+  if (localStorage.getItem('vktm_unlocked') === '1') {
+    window.location.replace('home.html');
+  }
 
-    <!-- Main center content -->
-    <div class="pw-center">
-      <img src="vktm-mark.svg" class="pw-mark" alt="VKTM Mark">
-      <div class="pw-logo">VKTM</div>
-      <div class="pw-postcode">VK1 TMO &nbsp;·&nbsp; LONDON</div>
+  document.getElementById('pw-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const val = document.getElementById('pw-input').value.trim();
+    const err = document.getElementById('pw-error');
 
-      <div class="pw-newsletter-label">BE FIRST WHEN DROP 001 LANDS</div>
+    if (val === 'VK1TMO') {
+      localStorage.setItem('vktm_unlocked', '1');
+      window.location.replace('home.html');
+    } else {
+      err.classList.add('show');
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+      setTimeout(() => err.classList.remove('show'), 2400);
+    }
+  });
+</script>
 
-      <form class="pw-newsletter-form" id="pwNewsletterForm">
-        <input type="hidden" name="_subject" value="VKTM Newsletter Signup">
-        <input type="hidden" name="type" value="newsletter">
-        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
-        <button type="submit">JOIN THE LIST</button>
-      </form>
-      <div class="pw-nl-note">No spam. Drop alerts only.</div>
-      <div class="pw-nl-success" id="pwNlSuccess">YOU'RE ON THE LIST. &nbsp;·&nbsp; VK1 TMO</div>
-
-      <!-- Staff access -->
-      <div class="pw-staff-wrap">
-        <div class="pw-staff-label">STAFF ACCESS</div>
-        <form class="pw-staff-form" id="staffForm" autocomplete="off">
-          <input type="password" id="staffPass" placeholder="· · · · · ·" maxlength="20">
-        </form>
-        <div class="pw-staff-err" id="staffErr">INCORRECT</div>
-      </div>
-    </div>
-  </main>
-
-  <script>
-    // Newsletter signup
-    document.getElementById('pwNewsletterForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = '...';
-      try {
-        const res = await fetch('https://formspree.io/f/xqeopeve', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(e.target),
-        });
-        if (res.ok) {
-          e.target.style.display = 'none';
-          document.querySelector('.pw-nl-note').style.display = 'none';
-          document.getElementById('pwNlSuccess').style.display = 'block';
-        } else { btn.textContent = 'RETRY'; }
-      } catch { btn.textContent = 'RETRY'; }
-    });
-
-    // Password check on every keystroke (no submit button visible)
-    document.getElementById('staffPass').addEventListener('input', function() {
-      if (this.value.toUpperCase() === 'VK1TMO') {
-        localStorage.setItem('vktm_unlocked', '1');
-        window.location.href = 'home.html';
-      } else if (this.value.length >= 6) {
-        document.getElementById('staffErr').style.display = 'block';
-        setTimeout(() => {
-          this.value = '';
-          document.getElementById('staffErr').style.display = 'none';
-        }, 800);
-      }
-    });
-  </script>
 </body>
 </html>

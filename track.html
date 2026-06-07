@@ -3,380 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VKTM — Track Your Order</title>
-  <meta name="description" content="Track your VKTM order. VK1 TMO · London.">
+  <title>VKTM — Track Order</title>
+  <meta name="description" content="Track your VKTM order.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .track-hero {
-      background: var(--deep-brown);
-      padding: 80px 24px 64px;
-      border-bottom: 1px solid var(--brown-mid);
-      position: relative;
-      overflow: hidden;
-    }
-    .track-hero-mascot {
-      position: absolute;
-      right: 3%;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 160%;
-      width: auto;
-      opacity: 0.06;
-      pointer-events: none;
-    }
-    .track-hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
-    .track-hero-title {
-      font-family: var(--font-gothic);
-      font-size: clamp(48px, 9vw, 100px);
-      color: var(--raw-cream);
-      line-height: 0.9;
-      margin-bottom: 16px;
-    }
-    .track-hero-sub {
-      font-size: 13px;
-      color: var(--ash);
-      letter-spacing: 0.05em;
-      max-width: 480px;
-      line-height: 1.7;
-    }
-
-    /* FLOW STEPS */
-    .track-flow {
-      background: var(--void-black);
-      padding: 64px 24px;
-      border-bottom: 1px solid var(--brown-mid);
-    }
-    .track-flow-inner {
-      max-width: var(--max-w);
+    .track-wrap {
+      max-width: 540px;
       margin: 0 auto;
+      padding: 80px 24px 100px;
     }
-    .track-flow-title {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--london-rust);
-      margin-bottom: 32px;
+    .track-wrap h1 {
+      font-size: clamp(40px, 9vw, 72px);
+      line-height: 1;
+      margin-bottom: 12px;
     }
-    .track-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
+    .track-intro {
+      font-size: 17px;
+      color: var(--beige);
+      margin-bottom: 48px;
     }
-    .track-step {
-      background: var(--deep-brown);
+    .track-result {
+      display: none;
+      margin-top: 32px;
+      padding: 24px;
+      background: var(--brown-deep);
       border: 1px solid var(--brown-mid);
-      padding: 28px 24px;
-      position: relative;
+      border-radius: 2px;
     }
-    .track-step-num {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--london-rust);
-      margin-bottom: 14px;
-    }
-    .track-step-title {
-      font-family: var(--font-display);
-      font-size: 15px;
-      letter-spacing: 0.08em;
-      color: var(--raw-cream);
+    .track-result h3 {
+      font-size: 20px;
       margin-bottom: 8px;
     }
-    .track-step-desc {
-      font-size: 12px;
-      color: var(--ash);
-      line-height: 1.7;
+    .track-result p {
+      font-size: 16px;
+      color: var(--cream);
     }
-    .track-step-time {
-      margin-top: 12px;
-      font-family: var(--font-display);
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--brown-warm);
-    }
-
-    /* CONTACT FORM */
-    .track-contact {
-      background: var(--deep-brown);
-      padding: 64px 24px 96px;
-    }
-    .track-contact-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1.6fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .track-info-title {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--london-rust);
-      margin-bottom: 20px;
-    }
-    .track-info-body {
-      font-size: 13px;
-      color: var(--ash);
-      line-height: 1.9;
-      margin-bottom: 28px;
-    }
-    .track-info-item {
-      padding: 16px 0;
-      border-bottom: 1px solid var(--brown-mid);
-    }
-    .track-info-item .label {
-      font-family: var(--font-display);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--brown-warm);
-      margin-bottom: 4px;
-    }
-    .track-info-item .value {
-      font-size: 13px;
-      color: var(--raw-cream);
-    }
-    .track-form-title {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--london-rust);
-      margin-bottom: 24px;
-    }
-
-    /* FAQ */
-    .track-faq {
-      background: var(--void-black);
-      padding: 64px 24px 96px;
-    }
-    .track-faq-inner {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .track-faq-title {
-      font-family: var(--font-display);
-      font-size: clamp(24px, 4vw, 40px);
-      letter-spacing: 0.08em;
-      margin-bottom: 40px;
-    }
-
-    @media (max-width: 768px) {
-      .track-steps { grid-template-columns: 1fr 1fr; }
-      .track-contact-inner { grid-template-columns: 1fr; gap: 48px; }
-    }
-    @media (max-width: 480px) {
-      .track-steps { grid-template-columns: 1fr; }
+    .track-result a {
+      color: var(--brown-light);
     }
   </style>
 </head>
 <body>
-  <div class="grain"></div>
-  <div id="site-header"></div>
 
-  <!-- HERO -->
-  <div class="track-hero">
-    <img src="mascot.svg" class="track-hero-mascot" alt="">
-    <div class="track-hero-inner">
-      <span class="section-label reveal">Orders</span>
-      <h1 class="track-hero-title reveal reveal-delay-1">Track Your<br>Order</h1>
-      <p class="track-hero-sub reveal reveal-delay-2">All order updates are sent directly to your email. Use the form below if you need help or haven't received your confirmation.</p>
-    </div>
+<script>
+  if (localStorage.getItem('vktm_unlocked') !== '1') {
+    window.location.replace('index.html');
+  }
+</script>
+
+<script src="nav.js"></script>
+<script>injectHeader('');</script>
+
+<div class="track-wrap">
+  <span class="section-label reveal">Orders</span>
+  <h1 class="reveal reveal-delay-1">Track Order</h1>
+  <p class="track-intro reveal reveal-delay-2">Enter your order number and email. You'll find your order number in your confirmation email from Stripe.</p>
+
+  <div id="track-form-wrap">
+    <form id="track-form">
+      <div class="form-group reveal reveal-delay-2">
+        <label class="form-label" for="t-order">Order Number</label>
+        <input class="form-input" id="t-order" type="text" placeholder="e.g. VK-00123" required>
+      </div>
+      <div class="form-group reveal reveal-delay-3">
+        <label class="form-label" for="t-email">Email Address</label>
+        <input class="form-input" id="t-email" type="email" placeholder="your@email.com" required>
+      </div>
+      <button class="btn btn-primary reveal reveal-delay-4" type="submit" style="width:100%">Track it</button>
+    </form>
   </div>
 
-  <!-- HOW IT WORKS -->
-  <div class="track-flow">
-    <div class="track-flow-inner">
-      <div class="track-flow-title reveal">WHAT HAPPENS AFTER YOU ORDER</div>
-      <div class="track-steps">
-        <div class="track-step reveal">
-          <div class="track-step-num">01</div>
-          <div class="track-step-title">Payment Confirmed</div>
-          <p class="track-step-desc">You receive an instant email receipt from Stripe confirming your payment. Save this — it has your order reference.</p>
-          <div class="track-step-time">INSTANT</div>
-        </div>
-        <div class="track-step reveal reveal-delay-1">
-          <div class="track-step-num">02</div>
-          <div class="track-step-title">Order Processing</div>
-          <p class="track-step-desc">Your order is sent to our print-on-demand partner. Production begins within 24 hours of your purchase.</p>
-          <div class="track-step-time">1–2 BUSINESS DAYS</div>
-        </div>
-        <div class="track-step reveal reveal-delay-2">
-          <div class="track-step-num">03</div>
-          <div class="track-step-title">Shipped</div>
-          <p class="track-step-desc">Once your order ships you'll receive a tracking email directly with your courier tracking number and link.</p>
-          <div class="track-step-time">2–3 BUSINESS DAYS</div>
-        </div>
-        <div class="track-step reveal reveal-delay-3">
-          <div class="track-step-num">04</div>
-          <div class="track-step-title">Delivered</div>
-          <p class="track-step-desc">UK standard delivery 5–10 business days from order. International 7–21 business days. All tracked.</p>
-          <div class="track-step-time">5–21 BUSINESS DAYS</div>
-        </div>
-      </div>
-    </div>
+  <div class="track-result" id="track-result">
+    <h3>Your order</h3>
+    <p>We've sent your tracking details to your email address. Check your inbox — including spam.</p>
+    <p style="margin-top:12px">Issues? Email <a href="mailto:vktmofficial@gmail.com">vktmofficial@gmail.com</a> with your order number.</p>
   </div>
+</div>
 
-  <!-- CONTACT + FORM -->
-  <div class="track-contact">
-    <div class="track-contact-inner">
+<script src="main.js"></script>
+<script>
+  injectFooter();
 
-      <!-- Info -->
-      <div class="reveal">
-        <div class="track-info-title">ORDER SUPPORT</div>
-        <p class="track-info-body">If you haven't received your confirmation email, check your spam folder first. Still nothing? Fill in the form and we'll sort it within 24 hours.</p>
+  document.getElementById('track-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const order = document.getElementById('t-order').value.trim();
+    const email = document.getElementById('t-email').value.trim();
+    try {
+      await fetch('https://formspree.io/f/xqeopeve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'VKTM Order Tracking Request',
+          order_number: order,
+          email
+        }),
+      });
+    } catch (_) {}
+    document.getElementById('track-form-wrap').style.display = 'none';
+    document.getElementById('track-result').style.display = 'block';
+  });
+</script>
 
-        <div class="track-info-item">
-          <div class="label">EMAIL</div>
-          <div class="value"><a href="mailto:vktmofficial@gmail.com" style="color:var(--raw-cream);">vktmofficial@gmail.com</a></div>
-        </div>
-        <div class="track-info-item">
-          <div class="label">RESPONSE TIME</div>
-          <div class="value" style="color:var(--ash);font-size:13px;">Within 24 hours. Order queries are top priority.</div>
-        </div>
-        <div class="track-info-item">
-          <div class="label">HAVE READY</div>
-          <div class="value" style="color:var(--ash);font-size:13px;">Your order email address and Stripe receipt reference.</div>
-        </div>
-
-        <div style="margin-top:32px;padding:20px;border:1px solid var(--brown-mid);background:rgba(10,10,8,0.4);">
-          <div style="font-family:var(--font-display);font-size:10px;letter-spacing:0.2em;color:var(--london-rust);margin-bottom:8px;">NOTE</div>
-          <p style="font-size:12px;color:var(--ash);line-height:1.7;">Due to the print-on-demand nature of our products, all items are made to order. This means your piece is being produced specifically for you — not pulled from a shelf. This is why we can guarantee zero restock and true limited editions.</p>
-        </div>
-      </div>
-
-      <!-- Form -->
-      <div class="reveal reveal-delay-1">
-        <div class="track-form-title">SUBMIT A TRACKING REQUEST</div>
-        <form id="trackForm">
-          <input type="hidden" name="_subject" value="VKTM Order Tracking Request">
-          <input type="hidden" name="type" value="tracking">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Full Name</label>
-              <input class="form-input" type="text" name="name" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Email Address</label>
-              <input class="form-input" type="email" name="email" placeholder="Email used to order" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Stripe Receipt Reference</label>
-            <input class="form-input" type="text" name="reference" placeholder="e.g. pi_3ABC123..." required>
-            <div style="font-size:11px;color:var(--ash);margin-top:6px;opacity:0.7;">Found in your Stripe payment confirmation email.</div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Issue</label>
-            <select class="form-select" name="issue" required>
-              <option value="">SELECT YOUR ISSUE</option>
-              <option>No confirmation email received</option>
-              <option>No shipping/tracking email received</option>
-              <option>Order not arrived within expected timeframe</option>
-              <option>Wrong item received</option>
-              <option>Damaged item received</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Additional Details</label>
-            <textarea class="form-textarea" name="details" placeholder="Any extra info that helps us find your order..." style="min-height:100px;"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;">SUBMIT REQUEST</button>
-        </form>
-        <div class="form-success" id="trackSuccess" style="margin-top:24px;">
-          <div class="form-success-icon">VKTM</div>
-          <h3>REQUEST RECEIVED.</h3>
-          <p>We'll get back to you within 24 hours with your tracking info.<br>VK1 TMO · LONDON.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="track-faq">
-    <div class="track-faq-inner">
-      <h2 class="track-faq-title reveal">Common Questions.</h2>
-
-      <div class="accordion-item reveal">
-        <div class="accordion-header">
-          <span>I paid but didn't get a confirmation email.</span>
-          <span class="accordion-arrow">▾</span>
-        </div>
-        <div class="accordion-body">
-          <p style="font-size:13px;color:var(--ash);line-height:1.8;">Check your spam or junk folder first — Stripe emails sometimes end up there. If it's not there, use the form above with your email address and we'll confirm your payment and resend the receipt manually.</p>
-        </div>
-      </div>
-
-      <div class="accordion-item reveal reveal-delay-1">
-        <div class="accordion-header">
-          <span>When will my order ship?</span>
-          <span class="accordion-arrow">▾</span>
-        </div>
-        <div class="accordion-body">
-          <p style="font-size:13px;color:var(--ash);line-height:1.8;">Orders are processed within 1–2 business days. Production takes a further 2–3 business days. Once shipped you'll get an automatic tracking email. Total UK delivery time is typically 5–10 business days from your order date.</p>
-        </div>
-      </div>
-
-      <div class="accordion-item reveal reveal-delay-2">
-        <div class="accordion-header">
-          <span>Can I change or cancel my order?</span>
-          <span class="accordion-arrow">▾</span>
-        </div>
-        <div class="accordion-body">
-          <p style="font-size:13px;color:var(--ash);line-height:1.8;">Orders can be cancelled within 12 hours of purchase before production begins. Email vktmofficial@gmail.com immediately with your order reference. After 12 hours, production will have started and the order cannot be cancelled.</p>
-        </div>
-      </div>
-
-      <div class="accordion-item reveal reveal-delay-3">
-        <div class="accordion-header">
-          <span>My item arrived damaged or incorrect.</span>
-          <span class="accordion-arrow">▾</span>
-        </div>
-        <div class="accordion-body">
-          <p style="font-size:13px;color:var(--ash);line-height:1.8;">We're sorry about that. Email vktmofficial@gmail.com within 14 days of receiving your order with a photo of the issue and your order reference. We'll arrange a replacement or full refund in line with our <a href="legal.html#returns" style="color:var(--brown-warm);">Returns Policy</a>.</p>
-        </div>
-      </div>
-
-      <div class="accordion-item reveal">
-        <div class="accordion-header">
-          <span>Do you offer exchanges?</span>
-          <span class="accordion-arrow">▾</span>
-        </div>
-        <div class="accordion-body">
-          <p style="font-size:13px;color:var(--ash);line-height:1.8;">Due to the limited-edition, no-restock nature of VKTM drops, size exchanges are only possible if stock is available. We cannot guarantee it. Make sure you check the sizing guide carefully before ordering.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div id="site-footer"></div>
-
-  <script src="nav.js"></script>
-  <script src="main.js"></script>
-  <script>
-    injectHeader('');
-    injectFooter();
-
-    document.getElementById('trackForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button[type="submit"]');
-      btn.textContent = 'SENDING...';
-      btn.disabled = true;
-      try {
-        const res = await fetch('https://formspree.io/f/xqeopeve', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(e.target),
-        });
-        if (res.ok) {
-          e.target.style.display = 'none';
-          document.getElementById('trackSuccess').style.display = 'block';
-        } else { btn.textContent = 'TRY AGAIN'; btn.disabled = false; }
-      } catch { btn.textContent = 'TRY AGAIN'; btn.disabled = false; }
-    });
-  </script>
 </body>
 </html>

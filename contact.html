@@ -4,235 +4,99 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM — Contact</title>
-  <meta name="description" content="Contact VKTM. VK1 TMO · London.">
+  <meta name="description" content="Get in touch with VKTM.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .contact-hero {
-      background: var(--deep-brown);
-      padding: 80px 24px 64px;
-      border-bottom: 1px solid var(--brown-mid);
-    }
-    .contact-hero-inner { max-width: var(--max-w); margin: 0 auto; }
-    .contact-hero-title {
-      font-family: var(--font-gothic);
-      font-size: clamp(52px, 10vw, 110px);
-      color: var(--raw-cream);
-      line-height: 0.9;
-    }
-
-    .contact-content {
-      background: var(--void-black);
-      padding: 80px 24px 96px;
-    }
-    .contact-inner {
-      max-width: var(--max-w);
+    .contact-wrap {
+      max-width: 600px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 80px;
-      align-items: start;
+      padding: 80px 24px 100px;
     }
-
-    /* Info side */
-    .contact-info-title {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--london-rust);
-      margin-bottom: 24px;
+    .contact-wrap h1 {
+      font-size: clamp(48px, 10vw, 80px);
+      line-height: 1;
+      margin-bottom: 12px;
     }
-    .contact-info-item {
-      margin-bottom: 28px;
-    }
-    .contact-info-item .label {
-      font-family: var(--font-display);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--brown-warm);
-      margin-bottom: 6px;
-    }
-    .contact-info-item .value {
-      font-size: 14px;
-      color: var(--raw-cream);
-      letter-spacing: 0.04em;
-    }
-    .contact-info-item .value a {
-      color: var(--raw-cream);
-      transition: color 0.2s;
-    }
-    .contact-info-item .value a:hover { color: var(--brown-warm); }
-    .contact-socials {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 8px;
-    }
-    .contact-social-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--font-display);
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      color: var(--ash);
-      transition: color 0.2s;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--brown-mid);
-    }
-    .contact-social-link:hover { color: var(--raw-cream); }
-    .contact-social-link::before {
-      content: '→';
-      color: var(--london-rust);
-      font-family: var(--font-body);
-    }
-    .contact-coords {
-      margin-top: 40px;
-      padding: 20px;
-      border: 1px solid var(--brown-mid);
-      background: var(--deep-brown);
-    }
-    .contact-coords .coord-label {
-      font-family: var(--font-display);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--london-rust);
-      margin-bottom: 8px;
-    }
-    .contact-coords .coord-val {
-      font-family: var(--font-body);
-      font-size: 13px;
-      color: var(--brown-warm);
-      letter-spacing: 0.08em;
-      line-height: 1.8;
-    }
-
-    /* Form side */
-    .contact-form-title {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--london-rust);
-      margin-bottom: 28px;
-    }
-
-    @media (max-width: 768px) {
-      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .contact-intro {
+      font-size: 17px;
+      color: var(--beige);
+      margin-bottom: 48px;
     }
   </style>
 </head>
 <body>
-  <div class="grain"></div>
-  <div id="site-header"></div>
 
-  <div class="contact-hero">
-    <div class="contact-hero-inner">
-      <span class="section-label reveal">Get In Touch</span>
-      <h1 class="contact-hero-title reveal reveal-delay-1">Contact</h1>
-    </div>
-  </div>
+<script>
+  if (localStorage.getItem('vktm_unlocked') !== '1') {
+    window.location.replace('index.html');
+  }
+</script>
 
-  <div class="contact-content">
-    <div class="contact-inner">
+<script src="nav.js"></script>
+<script>injectHeader('contact.html');</script>
 
-      <!-- Info -->
-      <div class="reveal">
-        <div class="contact-info-title">REACH OUT</div>
+<div class="contact-wrap">
+  <span class="section-label reveal">Get in touch</span>
+  <h1 class="reveal reveal-delay-1">Contact</h1>
+  <p class="contact-intro reveal reveal-delay-2">Questions, wholesale, press. Use the form or email direct.</p>
 
-        <div class="contact-info-item">
-          <div class="label">EMAIL</div>
-          <div class="value"><a href="mailto:vktmofficial@gmail.com">vktmofficial@gmail.com</a></div>
+  <div id="contact-form-wrap">
+    <form id="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="c-name">Name</label>
+          <input class="form-input" id="c-name" name="name" type="text" placeholder="Your name" required>
         </div>
-
-        <div class="contact-info-item">
-          <div class="label">RESPONSE TIME</div>
-          <div class="value" style="color:var(--ash);font-size:13px;">We respond within 24–48 hours. Order queries are prioritised.</div>
-        </div>
-
-        <div class="contact-info-item">
-          <div class="label">FOLLOW</div>
-          <div class="contact-socials">
-            <a class="contact-social-link" href="https://instagram.com/vktmofficial" target="_blank" rel="noopener">@vktmofficial — Instagram</a>
-            <a class="contact-social-link" href="https://tiktok.com/@vktmofficial" target="_blank" rel="noopener">@vktmofficial — TikTok</a>
-            <a class="contact-social-link" href="https://youtube.com/@vktmofficial" target="_blank" rel="noopener">@vktmofficial — YouTube</a>
-          </div>
-        </div>
-
-        <div class="contact-coords">
-          <div class="coord-label">LOCATION</div>
-          <div class="coord-val">VK1 TMO<br>London, England<br>51.5074° N · 0.1278° W</div>
+        <div class="form-group">
+          <label class="form-label" for="c-email">Email</label>
+          <input class="form-input" id="c-email" name="email" type="email" placeholder="your@email.com" required>
         </div>
       </div>
-
-      <!-- Form -->
-      <div class="reveal reveal-delay-1">
-        <div class="contact-form-title">SEND A MESSAGE</div>
-        <form id="contactForm">
-          <input type="hidden" name="_subject" value="VKTM Contact Message">
-          <input type="hidden" name="type" value="contact">
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Name</label>
-              <input class="form-input" type="text" name="name" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Email</label>
-              <input class="form-input" type="email" name="email" placeholder="your@email.com" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Subject</label>
-            <select class="form-select" name="subject" required>
-              <option value="">SELECT A TOPIC</option>
-              <option>Order Query</option>
-              <option>Shipping &amp; Delivery</option>
-              <option>Returns &amp; Refunds</option>
-              <option>Drop Information</option>
-              <option>Press &amp; Media</option>
-              <option>Collaboration</option>
-              <option>General</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Message</label>
-            <textarea class="form-textarea" name="message" placeholder="Your message..." required style="min-height:140px;"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;">SEND MESSAGE</button>
-        </form>
-        <div class="form-success" id="contactSuccess" style="margin-top:24px;">
-          <div class="form-success-icon">VKTM</div>
-          <h3>MESSAGE RECEIVED.</h3>
-          <p>We'll get back to you within 24–48 hours.<br>VK1 TMO · LONDON.</p>
-        </div>
+      <div class="form-group">
+        <label class="form-label" for="c-subject">Subject</label>
+        <input class="form-input" id="c-subject" name="subject" type="text" placeholder="What's this about?">
       </div>
-    </div>
+      <div class="form-group">
+        <label class="form-label" for="c-message">Message</label>
+        <textarea class="form-textarea" id="c-message" name="message" placeholder="Say it." required></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" style="width:100%">Send it</button>
+    </form>
   </div>
 
-  <div id="site-footer"></div>
+  <div class="form-success" id="contact-success">
+    <h3>Sent.</h3>
+    <p>We'll get back to you. Usually within a couple of days.</p>
+  </div>
+</div>
 
-  <script src="nav.js"></script>
-  <script src="main.js"></script>
-  <script>
-    injectHeader('contact');
-    injectFooter();
+<script src="main.js"></script>
+<script>
+  injectFooter();
 
-    document.getElementById('contactForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button[type="submit"]');
-      btn.textContent = 'SENDING...';
-      btn.disabled = true;
-      try {
-        const res = await fetch('https://formspree.io/f/xqeopeve', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(e.target),
-        });
-        if (res.ok) {
-          e.target.style.display = 'none';
-          document.getElementById('contactSuccess').style.display = 'block';
-        } else { btn.textContent = 'TRY AGAIN'; btn.disabled = false; }
-      } catch { btn.textContent = 'TRY AGAIN'; btn.disabled = false; }
-    });
-  </script>
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = {
+      name: document.getElementById('c-name').value,
+      email: document.getElementById('c-email').value,
+      subject: document.getElementById('c-subject').value,
+      message: document.getElementById('c-message').value,
+    };
+    try {
+      await fetch('https://formspree.io/f/xqeopeve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data),
+      });
+    } catch (_) {}
+    document.getElementById('contact-form-wrap').style.display = 'none';
+    document.getElementById('contact-success').style.display = 'block';
+  });
+</script>
+
 </body>
 </html>

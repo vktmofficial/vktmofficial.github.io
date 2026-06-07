@@ -6,168 +6,74 @@
   <title>VKTM — Order Confirmed</title>
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    body { background: var(--void-black); }
-    .success-page {
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-    .success-bg-mark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: clamp(200px, 40vw, 420px);
-      opacity: 0.04;
-      pointer-events: none;
-    }
-    .success-bg-mascot {
-      position: absolute;
-      right: -2%;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 90%;
-      width: auto;
-      opacity: 0.05;
-      pointer-events: none;
-    }
-    .success-inner {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 560px;
-    }
-    .success-mark {
-      width: clamp(48px, 8vw, 72px);
-      margin: 0 auto 24px;
-      opacity: 0.7;
-      display: block;
-    }
-    .success-label {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      color: var(--london-rust);
-      margin-bottom: 16px;
-    }
-    .success-title {
-      font-family: var(--font-gothic);
-      font-size: clamp(52px, 10vw, 100px);
-      color: var(--raw-cream);
-      line-height: 0.9;
-      margin-bottom: 24px;
-    }
-    .success-sub {
-      font-size: 14px;
-      color: var(--ash);
-      line-height: 1.8;
-      margin-bottom: 40px;
-    }
-    .success-sub strong { color: var(--raw-cream); font-weight: 400; }
-
-    /* Steps */
-    .success-steps {
+    .success-wrap {
+      min-height: 80vh;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .success-mark {
+      font-family: var(--font-mark);
+      font-size: 64px;
+      color: var(--brown-light);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .success-wrap h1 {
+      font-size: clamp(40px, 8vw, 72px);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .success-wrap p {
+      font-size: 18px;
+      color: var(--cream);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .success-note {
+      font-size: 14px;
+      color: var(--brown-warm);
+      letter-spacing: 0.08em;
+      margin-top: 8px;
       margin-bottom: 40px;
-      text-align: left;
     }
-    .success-step {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 16px 20px;
-      background: var(--deep-brown);
-      border: 1px solid var(--brown-mid);
-    }
-    .success-step-num {
-      font-family: var(--font-display);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--london-rust);
-      flex-shrink: 0;
-      padding-top: 2px;
-      width: 28px;
-    }
-    .success-step-text {
-      font-size: 13px;
-      color: var(--ash);
-      line-height: 1.6;
-    }
-    .success-step-text strong { color: var(--raw-cream); font-weight: 400; }
-
-    .success-ctas {
+    .success-actions {
       display: flex;
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
     }
-    .success-postcode {
-      margin-top: 40px;
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--brown-mid);
-    }
   </style>
 </head>
 <body>
-  <div class="grain"></div>
 
-  <div class="success-page">
-    <img src="vktm-mark.svg" class="success-bg-mark" alt="">
-    <img src="mascot.svg" class="success-bg-mascot" alt="">
+<script src="nav.js"></script>
+<script>injectHeader('');</script>
 
-    <div class="success-inner">
-      <img src="vktm-mark.svg" class="success-mark" alt="VKTM">
-      <div class="success-label">ORDER CONFIRMED</div>
-      <h1 class="success-title">You're In.</h1>
-      <p class="success-sub">
-        Your order has been received and payment confirmed.<br>
-        <strong>Check your email for your Stripe receipt</strong> — it has your order reference. Keep it safe.
-      </p>
-
-      <div class="success-steps">
-        <div class="success-step">
-          <div class="success-step-num">01</div>
-          <div class="success-step-text"><strong>Stripe receipt</strong> — landing in your inbox right now. Check spam if you don't see it.</div>
-        </div>
-        <div class="success-step">
-          <div class="success-step-num">02</div>
-          <div class="success-step-text"><strong>Production starts</strong> within 24 hours. Your piece is being made specifically for you.</div>
-        </div>
-        <div class="success-step">
-          <div class="success-step-num">03</div>
-          <div class="success-step-text"><strong>Shipping email</strong> with tracking number sent once your order dispatches. UK 5–10 business days.</div>
-        </div>
-        <div class="success-step">
-          <div class="success-step-num">04</div>
-          <div class="success-step-text">Need help? Hit <strong>vktmofficial@gmail.com</strong> or use the <a href="track.html" style="color:var(--brown-warm);">Track Order</a> page.</div>
-        </div>
-      </div>
-
-      <div class="success-ctas">
-        <a href="shop.html" class="btn btn-primary">BACK TO SHOP</a>
-        <a href="track.html" class="btn btn-outline">TRACK ORDER</a>
-      </div>
-
-      <div class="success-postcode">VK1 TMO · LONDON · NO RESTOCK EVER</div>
-    </div>
+<div class="success-wrap">
+  <div class="success-mark reveal">✓</div>
+  <h1 class="reveal reveal-delay-1">Order confirmed.</h1>
+  <p class="reveal reveal-delay-2">You're in. Confirmation email is on its way.</p>
+  <p class="reveal reveal-delay-2">Your order will be fulfilled and tracked via the email you used at checkout.</p>
+  <p class="success-note reveal reveal-delay-3">No restock. You got there.</p>
+  <div class="success-actions reveal reveal-delay-4">
+    <a href="track.html" class="btn btn-ghost">Track order</a>
+    <a href="home.html" class="btn btn-primary">Back to VKTM</a>
   </div>
+</div>
 
-  <script src="nav.js"></script>
-  <script src="main.js"></script>
-  <script>
-    // Don't inject full header on success page — keep it clean
-    // Just inject footer
-    injectFooter();
-  </script>
+<script src="main.js"></script>
+<script>injectFooter();</script>
+
 </body>
 </html>

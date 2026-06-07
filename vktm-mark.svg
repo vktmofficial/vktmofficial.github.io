@@ -1,129 +1,38 @@
-<svg viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg" style="background:#0A0A08;">
-  <!--
-    VKTM CROSS MARK — Primary Brand Mark
-    V · K · T · M at each arm of the cross
-    Crowned skull at centre intersection
-    VK1 TMO arc text below
-    ============================================
-  -->
+<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <!-- VKTM Mark v2 — hand-drawn cross with letters -->
+  <!-- Background -->
+  <rect width="240" height="240" fill="#0e0905"/>
 
-  <defs>
-    <path id="arc-bottom" d="M 68,238 A 90,90 0 0,0 232,238"/>
-    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </defs>
+  <!-- Cross arms — rough, hand-drawn feel via slightly offset strokes -->
+  <!-- Vertical bar -->
+  <rect x="108" y="20" width="24" height="200" rx="2" fill="#2b1408"/>
+  <!-- Horizontal bar -->
+  <rect x="20" y="108" width="200" height="24" rx="2" fill="#2b1408"/>
 
-  <!-- ===== CROSS BODY ===== -->
-  <!-- Outer cross shape — slightly distressed via filter -->
-  <path d="M125,44 L175,44 L175,125 L256,125 L256,175 L175,175 L175,256 L125,256 L125,175 L44,175 L44,125 L125,125 Z"
-        fill="#1A1108" stroke="#8B5E3C" stroke-width="2.2" stroke-linejoin="round" filter="url(#rough)"/>
+  <!-- Cross outline / texture layer -->
+  <rect x="108" y="20" width="24" height="200" rx="2"
+        fill="none" stroke="#4a2210" stroke-width="1"/>
+  <rect x="20" y="108" width="200" height="24" rx="2"
+        fill="none" stroke="#4a2210" stroke-width="1"/>
 
-  <!-- Inner border lines on cross arms — distressed texture detail -->
-  <line x1="133" y1="44"  x2="133" y2="125" stroke="#6B3A1F" stroke-width="0.7" opacity="0.5"/>
-  <line x1="167" y1="44"  x2="167" y2="125" stroke="#6B3A1F" stroke-width="0.7" opacity="0.5"/>
-  <line x1="133" y1="175" x2="133" y2="256" stroke="#6B3A1F" stroke-width="0.7" opacity="0.5"/>
-  <line x1="167" y1="175" x2="167" y2="256" stroke="#6B3A1F" stroke-width="0.7" opacity="0.5"/>
-  <line x1="44"  y1="133" x2="125" y2="133" stroke="#6B3A1F" stroke-width="0.7" opacity="0.5"/>
-  <line x1="44"  y1="167" x2="125" y2="167" stroke="#6B3A1F" stroke-width="0.7" opacity="0.5"/>
-  <line x1="175" y1="133" x2="256" y2="133" stroke="#6B3A1F" stroke-width="0.7" opacity="0.5"/>
-  <line x1="175" y1="167" x2="256" y2="167" stroke="#6B3A1F" stroke-width="0.7" opacity="0.5"/>
+  <!-- Letters in corners — Permanent Marker style approximated with bold paths -->
+  <!-- V — top left -->
+  <text x="48" y="96" font-family="'Permanent Marker', cursive"
+        font-size="42" fill="#d9b88a" text-anchor="middle"
+        dominant-baseline="middle">V</text>
+  <!-- K — top right -->
+  <text x="192" y="96" font-family="'Permanent Marker', cursive"
+        font-size="42" fill="#d9b88a" text-anchor="middle"
+        dominant-baseline="middle">K</text>
+  <!-- T — bottom left -->
+  <text x="48" y="192" font-family="'Permanent Marker', cursive"
+        font-size="42" fill="#d9b88a" text-anchor="middle"
+        dominant-baseline="middle">T</text>
+  <!-- M — bottom right -->
+  <text x="192" y="192" font-family="'Permanent Marker', cursive"
+        font-size="42" fill="#d9b88a" text-anchor="middle"
+        dominant-baseline="middle">M</text>
 
-  <!-- Scratch marks across cross — hand-distressed feel -->
-  <line x1="144" y1="52" x2="156" y2="58" stroke="#6B3A1F" stroke-width="0.5" opacity="0.3"/>
-  <line x1="248" y1="140" x2="242" y2="152" stroke="#6B3A1F" stroke-width="0.5" opacity="0.3"/>
-  <line x1="144" y1="248" x2="156" y2="244" stroke="#6B3A1F" stroke-width="0.5" opacity="0.3"/>
-  <line x1="52" y1="140" x2="58" y2="152" stroke="#6B3A1F" stroke-width="0.5" opacity="0.3"/>
-
-  <!-- ===== CENTRE — CROWNED SKULL ===== -->
-  <!-- Skull -->
-  <ellipse cx="150" cy="152" rx="24" ry="26" fill="#0A0A08" stroke="#F0EDE8" stroke-width="1.6"/>
-  <!-- Eye sockets (hollow, hand-drawn shape) -->
-  <path d="M140,146 C138,142 134,142 132,146 C130,150 132,156 136,156 C140,156 142,152 140,146 Z"
-        fill="#0A0A08" stroke="#F0EDE8" stroke-width="1.2"/>
-  <path d="M168,146 C166,142 162,142 160,146 C158,150 160,156 164,156 C168,156 170,152 168,146 Z"
-        fill="#0A0A08" stroke="#F0EDE8" stroke-width="1.2"/>
-  <!-- Nasal cavity -->
-  <path d="M147,161 C148,164 152,164 153,161" fill="none" stroke="#F0EDE8" stroke-width="1.1"/>
-  <!-- Teeth row -->
-  <path d="M134,170 L138,177 L142,170 L146,177 L150,170 L154,177 L158,170 L162,177 L166,170"
-        fill="none" stroke="#F0EDE8" stroke-width="1.4" stroke-linejoin="round"/>
-
-  <!-- Crown (sits on top of skull) -->
-  <!-- Crown base band -->
-  <rect x="126" y="128" width="48" height="12" rx="1" fill="#8B1A0E" stroke="#C4250F" stroke-width="1"/>
-  <!-- 5 Crown points -->
-  <polygon points="126,128 128,110 134,118 138,104 144,116 150,100 156,116 162,104 166,118 172,110 174,128"
-           fill="#8B1A0E" stroke="#C4250F" stroke-width="1.2" stroke-linejoin="round"/>
-  <!-- Crown gem dots at tips -->
-  <circle cx="150" cy="100" r="3"   fill="#F0EDE8"/>
-  <circle cx="138" cy="105" r="2"   fill="#F0EDE8" opacity="0.8"/>
-  <circle cx="162" cy="105" r="2"   fill="#F0EDE8" opacity="0.8"/>
-  <circle cx="129" cy="113" r="1.5" fill="#8B5E3C" opacity="0.9"/>
-  <circle cx="171" cy="113" r="1.5" fill="#8B5E3C" opacity="0.9"/>
-  <!-- VK1 engraved on crown band -->
-  <text x="150" y="138" font-family="monospace" font-size="6.5" fill="#F0EDE8" text-anchor="middle"
-        letter-spacing="3" opacity="0.7">VK1</text>
-
-  <!-- ===== LETTERS AT ARM TIPS ===== -->
-  <!-- Each letter is hand-styled with slight imperfection -->
-
-  <!-- V — top -->
-  <text x="150" y="36" font-family="Bebas Neue, Impact, sans-serif" font-size="32" fill="#F0EDE8"
-        text-anchor="middle" letter-spacing="1">V</text>
-  <!-- Underline detail under V -->
-  <line x1="138" y1="38" x2="162" y2="38" stroke="#8B1A0E" stroke-width="1.5"/>
-
-  <!-- M — bottom -->
-  <text x="150" y="278" font-family="Bebas Neue, Impact, sans-serif" font-size="32" fill="#F0EDE8"
-        text-anchor="middle" letter-spacing="1">M</text>
-  <!-- Overline detail above M -->
-  <line x1="138" y1="252" x2="162" y2="252" stroke="#8B1A0E" stroke-width="1.5"/>
-
-  <!-- K — left -->
-  <text x="34" y="161" font-family="Bebas Neue, Impact, sans-serif" font-size="32" fill="#F0EDE8"
-        text-anchor="middle" dominant-baseline="middle" letter-spacing="1">K</text>
-  <!-- Right-side detail on K -->
-  <line x1="44" y1="148" x2="44" y2="172" stroke="#8B1A0E" stroke-width="1.5"/>
-
-  <!-- T — right -->
-  <text x="266" y="161" font-family="Bebas Neue, Impact, sans-serif" font-size="32" fill="#F0EDE8"
-        text-anchor="middle" dominant-baseline="middle" letter-spacing="1">T</text>
-  <!-- Left-side detail on T -->
-  <line x1="256" y1="148" x2="256" y2="172" stroke="#8B1A0E" stroke-width="1.5"/>
-
-  <!-- ===== CORNER STARS ===== -->
-  <!-- Between each arm of the cross — the brand's signature stars -->
-  <g fill="#8B1A0E" opacity="0.75">
-    <!-- Top-left quadrant -->
-    <path d="M94,96 L96,90 L98,96 L104,94 L98,98 L100,104 L96,100 L92,104 L94,98 L88,94 Z"
-          transform="rotate(0 96,97)"/>
-    <!-- Top-right quadrant -->
-    <path d="M202,96 L204,90 L206,96 L212,94 L206,98 L208,104 L204,100 L200,104 L202,98 L196,94 Z"/>
-    <!-- Bottom-left quadrant -->
-    <path d="M94,196 L96,190 L98,196 L104,194 L98,198 L100,204 L96,200 L92,204 L94,198 L88,194 Z"/>
-    <!-- Bottom-right quadrant -->
-    <path d="M202,196 L204,190 L206,196 L212,194 L206,198 L208,204 L204,200 L200,204 L202,198 L196,194 Z"/>
-  </g>
-
-  <!-- Small dot clusters in corners (additional texture) -->
-  <circle cx="82" cy="82"   r="1.5" fill="#6B3A1F" opacity="0.5"/>
-  <circle cx="88" cy="78"   r="1"   fill="#6B3A1F" opacity="0.4"/>
-  <circle cx="218" cy="82"  r="1.5" fill="#6B3A1F" opacity="0.5"/>
-  <circle cx="212" cy="78"  r="1"   fill="#6B3A1F" opacity="0.4"/>
-  <circle cx="82" cy="218"  r="1.5" fill="#6B3A1F" opacity="0.5"/>
-  <circle cx="88" cy="222"  r="1"   fill="#6B3A1F" opacity="0.4"/>
-  <circle cx="218" cy="218" r="1.5" fill="#6B3A1F" opacity="0.5"/>
-  <circle cx="212" cy="222" r="1"   fill="#6B3A1F" opacity="0.4"/>
-
-  <!-- ===== VK1 TMO · LONDON — Arc text below ===== -->
-  <text font-family="DM Mono, Courier New, monospace" font-size="10.5" fill="#8B5E3C" letter-spacing="4">
-    <textPath href="#arc-bottom" startOffset="50%" text-anchor="middle">VK1 TMO · LONDON</textPath>
-  </text>
-
-  <!-- NO RESTOCK micro text at very bottom -->
-  <text x="150" y="315" font-family="DM Mono, monospace" font-size="7" fill="#6B3A1F"
-        text-anchor="middle" letter-spacing="5" opacity="0.6">NO RESTOCK · EVER</text>
-
+  <!-- Center square accent -->
+  <rect x="112" y="112" width="16" height="16" rx="1" fill="#b06030"/>
 </svg>

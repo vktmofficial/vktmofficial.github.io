@@ -4,354 +4,377 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM — Home</title>
-  <meta name="description" content="VKTM. The ends built this. London streetwear. No restock. Ever.">
+  <meta name="description" content="VKTM — London streetwear. Limited drops. No restocks.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     /* ---- HERO ---- */
     .hero {
-      min-height: 100svh;
-      background: var(--void-black);
+      min-height: calc(100vh - var(--nav-h) - 34px);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 0;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px;
       position: relative;
       overflow: hidden;
     }
-    .hero-bg-creature {
+
+    /* subtle background cross mark */
+    .hero-bg-mark {
       position: absolute;
-      right: -2%;
+      width: 600px;
+      height: 600px;
+      opacity: 0.04;
+      pointer-events: none;
       top: 50%;
-      transform: translateY(-50%);
-      width: clamp(280px, 42vw, 580px);
-      opacity: 0.08;
-      pointer-events: none;
-      filter: drop-shadow(0 0 40px rgba(139,90,60,0.08));
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
-    .hero-bg-globe {
-      position: absolute;
-      left: 3%;
-      bottom: 12%;
-      width: clamp(80px, 10vw, 140px);
-      opacity: 0.1;
-      pointer-events: none;
-    }
-    /* Mark stamp in codes section */
-    .codes-mark-stamp {
-      display: flex;
-      justify-content: center;
-      margin-top: 56px;
-    }
-    .codes-mark-stamp img {
-      width: clamp(60px, 8vw, 100px);
-      opacity: 0.2;
-    }
-    .hero-star {
-      position: absolute;
-      font-family: var(--font-body);
-      color: var(--brown-warm);
-      opacity: 0.3;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-    }
-    .hero-coord {
-      position: absolute;
-      top: 28px;
-      right: 28px;
-      font-size: 10px;
-      color: var(--brown-warm);
-      opacity: 0.4;
-      letter-spacing: 0.15em;
-      line-height: 1.8;
-      text-align: right;
-    }
-    .hero-drop-badge {
-      position: absolute;
-      top: 28px;
-      left: 28px;
-      background: var(--london-rust);
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--raw-cream);
-      padding: 6px 14px;
-      transform: rotate(-1.5deg);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 clamp(16px, 5vw, 80px) clamp(60px, 8vw, 100px);
-      max-width: 900px;
-    }
+
     .hero-eyebrow {
-      font-family: var(--font-body);
-      font-size: 11px;
+      font-family: var(--font-hand);
+      font-size: 13px;
+      font-weight: 700;
       letter-spacing: 0.3em;
-      color: var(--london-rust);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--london-rust);
-    }
-    .hero-title {
-      font-family: var(--font-gothic);
-      font-size: clamp(72px, 13vw, 160px);
-      color: var(--raw-cream);
-      line-height: 0.9;
-      letter-spacing: -0.01em;
-      margin-bottom: 8px;
-    }
-    .hero-title-sub {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 5vw, 64px);
       color: var(--brown-warm);
-      letter-spacing: 0.1em;
-      line-height: 1;
-      margin-bottom: 32px;
+      margin-bottom: 20px;
     }
-    .hero-ctas {
+
+    .hero-title {
+      font-family: var(--font-mark);
+      font-size: clamp(72px, 16vw, 160px);
+      color: var(--white);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+    }
+
+    .hero-line {
+      width: 40px;
+      height: 1px;
+      background: var(--brown-warm);
+      margin: 0 auto 28px;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-hand);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--beige);
+      max-width: 380px;
+      line-height: 1.5;
+      margin-bottom: 44px;
+    }
+
+    .hero-cta {
       display: flex;
-      gap: 12px;
+      gap: 16px;
+      justify-content: center;
       flex-wrap: wrap;
     }
-    .hero-divider {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      line-height: 0;
-    }
-    .hero-divider svg { width: 100%; display: block; }
 
-    /* ---- BRAND CODES ---- */
-    .codes-section {
-      background: var(--deep-brown);
-      padding: 96px 24px;
-    }
-    .codes-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
-      max-width: var(--max-w);
-      margin: 64px auto 0;
-    }
-    .code-item {
-      padding: 40px;
-      border: 1px solid var(--brown-mid);
-      position: relative;
-      overflow: hidden;
-    }
-    .code-item::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 0;
-      background: var(--london-rust);
-      transition: height 0.4s;
-    }
-    .code-item:hover::before { height: 100%; }
-    .code-num {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      color: var(--london-rust);
-      margin-bottom: 16px;
-    }
-    .code-title {
-      font-family: var(--font-display);
-      font-size: clamp(22px, 2.5vw, 30px);
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
-      color: var(--raw-cream);
-    }
-    .code-desc {
-      font-size: 13px;
-      color: var(--ash);
-      line-height: 1.8;
-      max-width: 360px;
-    }
-
-    /* ---- NEWSLETTER SECTION ---- */
-    .newsletter-section {
-      background: var(--void-black);
-      padding: 96px 24px;
+    /* ---- DROP BANNER ---- */
+    .drop-banner {
+      background: var(--brown);
+      border-top: 1px solid var(--brown-mid);
+      border-bottom: 1px solid var(--brown-mid);
+      padding: 56px 24px;
       text-align: center;
     }
-    .newsletter-section .section-inner {
-      max-width: 560px;
-    }
-    .newsletter-section .section-title {
-      margin-bottom: 12px;
-    }
-    .newsletter-sub {
-      font-size: 13px;
-      color: var(--ash);
-      margin-bottom: 32px;
-      line-height: 1.7;
-    }
-    .newsletter-section .newsletter-form {
+    .drop-banner-inner {
+      max-width: 640px;
       margin: 0 auto;
     }
-
-    /* ---- FEATURE STRIP (editorial quote) ---- */
-    .feature-strip {
-      background: var(--london-rust);
-      padding: 48px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .feature-strip-text {
-      font-family: var(--font-gothic);
-      font-size: clamp(28px, 5vw, 56px);
-      color: var(--raw-cream);
-      position: relative;
-      z-index: 1;
-      opacity: 0.95;
-    }
-    .feature-strip-sub {
-      font-family: var(--font-display);
+    .drop-banner-num {
+      font-family: var(--font-hand);
       font-size: 12px;
-      letter-spacing: 0.25em;
-      color: rgba(240,237,232,0.55);
-      margin-top: 8px;
-      position: relative;
-      z-index: 1;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: var(--brown-light);
+      margin-bottom: 12px;
+    }
+    .drop-banner-title {
+      font-family: var(--font-mark);
+      font-size: clamp(36px, 8vw, 72px);
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .drop-banner-sub {
+      font-family: var(--font-hand);
+      font-size: 16px;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+      margin-bottom: 32px;
     }
 
-    @media (max-width: 768px) {
-      .hero-coord { display: none; }
-      .codes-grid { grid-template-columns: 1fr; }
-      .code-item { padding: 28px 20px; }
-      .hero-content { padding-bottom: 72px; }
+    /* ---- PIECES GRID ---- */
+    .pieces-section {
+      padding: 80px 24px;
+    }
+    .pieces-header {
+      max-width: var(--max-w);
+      margin: 0 auto 48px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .pieces-header-left h2 {
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1;
+    }
+    .pieces-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    @media (max-width: 900px) {
+      .pieces-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .pieces-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ---- ABOUT STRIP ---- */
+    .about-strip {
+      padding: 100px 24px;
+      background: var(--brown-deep);
+      border-top: 1px solid var(--brown-mid);
+      border-bottom: 1px solid var(--brown-mid);
+    }
+    .about-strip-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-strip h2 {
+      font-size: clamp(32px, 6vw, 56px);
+      margin-bottom: 24px;
+    }
+    .about-strip p {
+      font-size: 19px;
+      line-height: 1.7;
+      color: var(--cream);
+      margin-bottom: 36px;
+    }
+
+    /* ---- NEWSLETTER ---- */
+    .newsletter-section {
+      padding: 100px 24px;
+    }
+    .newsletter-inner {
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .newsletter-inner h2 {
+      font-size: clamp(28px, 5vw, 44px);
+      margin-bottom: 12px;
+    }
+    .newsletter-inner p {
+      font-size: 16px;
+      color: var(--beige);
+      margin-bottom: 28px;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .newsletter-form input {
+      flex: 1;
+      background: var(--brown-deep);
+      border: 1px solid var(--brown-mid);
+      border-right: none;
+      color: var(--off-white);
+      font-family: var(--font-hand);
+      font-size: 16px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 2px 0 0 2px;
+    }
+    .newsletter-form input::placeholder { color: var(--brown-warm); opacity: 0.5; }
+    .newsletter-form input:focus { border-color: var(--brown-light); }
+    .newsletter-form button {
+      background: var(--brown-warm);
+      color: var(--white);
+      font-family: var(--font-hand);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 13px 20px;
+      border: 1px solid var(--brown-warm);
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 0 2px 2px 0;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover {
+      background: var(--brown-light);
+      border-color: var(--brown-light);
+    }
+    .newsletter-note {
+      font-family: var(--font-hand);
+      font-size: 12px;
+      color: var(--brown-warm);
+      letter-spacing: 0.06em;
+      margin-top: 12px;
+    }
+    .newsletter-ok {
+      display: none;
+      font-family: var(--font-hand);
+      font-size: 16px;
+      color: var(--cream);
     }
   </style>
 </head>
 <body>
-  <div class="grain"></div>
-  <div id="site-header"></div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <!-- Mascot background figure -->
-    <img src="mascot.svg" class="hero-bg-creature" alt="">
+<script>
+  if (localStorage.getItem('vktm_unlocked') !== '1') {
+    window.location.replace('index.html');
+  }
+</script>
 
-    <!-- VKTM Mark bottom left -->
-    <img src="vktm-mark.svg" class="hero-bg-globe" alt="">
+<script src="nav.js"></script>
+<script>injectHeader('home.html');</script>
 
-    <div class="hero-drop-badge">DROP 001 — COMING SOON</div>
-    <div class="hero-coord">51.5074° N<br>0.1278° W<br>VK1 TMO</div>
+<!-- HERO -->
+<section class="hero">
+  <!-- bg cross mark -->
+  <svg class="hero-bg-mark" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="108" y="0" width="24" height="240" fill="#c0966a"/>
+    <rect x="0" y="108" width="240" height="24" fill="#c0966a"/>
+  </svg>
 
-    <div class="hero-content">
-      <div class="hero-eyebrow reveal">London Streetwear · Est. <span id="heroYear"></span></div>
-      <h1 class="hero-title reveal reveal-delay-1">VKTM</h1>
-      <div class="hero-title-sub reveal reveal-delay-2">The Ends Built This.</div>
-      <div class="hero-ctas reveal reveal-delay-3">
-        <a href="shop.html" class="btn btn-primary">ENTER THE SHOP</a>
-        <a href="vault.html" class="btn btn-outline">THE VAULT</a>
-      </div>
+  <div class="hero-eyebrow reveal">VK1TMO · LONDON</div>
+  <h1 class="hero-title reveal reveal-delay-1">VKTM</h1>
+  <div class="hero-line reveal reveal-delay-2"></div>
+  <p class="hero-tagline reveal reveal-delay-3">Built from nothing. No restock. No second chances.</p>
+  <div class="hero-cta reveal reveal-delay-4">
+    <a href="shop.html" class="btn btn-primary">Shop Drop 001</a>
+    <a href="vault.html" class="btn btn-ghost">The Vault</a>
+  </div>
+</section>
+
+<!-- DROP BANNER -->
+<div class="drop-banner">
+  <div class="drop-banner-inner">
+    <div class="drop-banner-num reveal">DROP 001 · SUMMER 2026</div>
+    <h2 class="drop-banner-title reveal reveal-delay-1">ORIGIN</h2>
+    <p class="drop-banner-sub reveal reveal-delay-2">6 pieces. One word hidden across all of them. Find it.</p>
+    <a href="vault.html" class="btn btn-outline reveal reveal-delay-3">Read the story</a>
+  </div>
+</div>
+
+<!-- PIECES PREVIEW -->
+<section class="pieces-section">
+  <div class="pieces-header">
+    <div class="pieces-header-left">
+      <span class="section-label">Drop 001</span>
+      <h2 class="reveal">The Pieces</h2>
     </div>
-
-    <!-- Torn edge into brown -->
-    <div class="hero-divider">
-      <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0 L40,20 L80,8 L130,28 L175,12 L220,30 L265,6 L310,22 L355,10 L400,26 L445,4 L490,20 L535,14 L580,30 L625,8 L670,24 L715,6 L760,28 L805,12 L850,22 L895,4 L940,20 L985,16 L1030,30 L1075,8 L1120,24 L1165,10 L1210,28 L1255,6 L1300,22 L1345,14 L1390,26 L1440,4 L1440,40 L0,40 Z" fill="#1A1108"/>
-      </svg>
-    </div>
-  </section>
-
-  <!-- BRAND CODES -->
-
-  <section class="codes-section">
-    <div class="section-inner" style="max-width:var(--max-w);margin:0 auto;">
-      <span class="section-label reveal">The Codes</span>
-      <h2 class="section-title reveal reveal-delay-1">What VKTM<br>Stands For.</h2>
-    </div>
-    <div class="codes-grid">
-      <div class="code-item reveal">
-        <div class="code-num">01</div>
-        <div class="code-title">No Restock. Ever.</div>
-        <p class="code-desc">Every drop runs once. Once it's gone, it's gone permanently. No second chances. No exceptions. That's the code.</p>
-      </div>
-      <div class="code-item reveal reveal-delay-1">
-        <div class="code-num">02</div>
-        <div class="code-title">London First.</div>
-        <p class="code-desc">Built in the ends. VK1 TMO. A specific place with a specific energy that never changes, no matter where the clothes end up.</p>
-      </div>
-      <div class="code-item reveal reveal-delay-2">
-        <div class="code-num">03</div>
-        <div class="code-title">You Either Know.</div>
-        <p class="code-desc">For those paying attention before anyone else was. No explanation needed. If you have to ask, you already know the answer.</p>
-      </div>
-      <div class="code-item reveal reveal-delay-3">
-        <div class="code-num">04</div>
-        <div class="code-title">The Work Speaks.</div>
-        <p class="code-desc">No paid ads. No celebrities. No unearned hype. Product and community are the only marketing. Always.</p>
-      </div>
-      <!-- Mark stamp below codes -->
-      <div class="codes-mark-stamp reveal">
-        <img src="vktm-mark.svg" alt="VKTM">
-      </div>
-    </div>
-  </section>
-
-  <!-- TORN EDGE back to black -->
-  <div class="torn-edge">
-    <svg viewBox="0 0 1440 36" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,36 L35,16 L78,28 L125,8 L170,24 L215,4 L258,20 L305,10 L350,28 L395,6 L440,22 L485,14 L530,30 L575,4 L620,18 L665,8 L710,26 L755,10 L800,24 L845,4 L890,20 L935,12 L980,28 L1025,6 L1070,22 L1115,10 L1160,26 L1205,8 L1250,24 L1295,4 L1340,18 L1385,10 L1440,20 L1440,0 L0,0 Z" fill="#1A1108"/>
-    </svg>
+    <a href="shop.html" class="btn btn-ghost reveal">View all</a>
   </div>
 
-  <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <span>VKTM</span><span class="sep">·</span><span>VK1 TMO</span><span class="sep">·</span>
-      <span>No Restock. Ever.</span><span class="sep">·</span><span>London First.</span><span class="sep">·</span>
-      <span>You Either Know.</span><span class="sep">·</span><span>Drop 001 Coming.</span><span class="sep">·</span>
-      <span>VKTM</span><span class="sep">·</span><span>VK1 TMO</span><span class="sep">·</span>
-      <span>No Restock. Ever.</span><span class="sep">·</span><span>London First.</span><span class="sep">·</span>
-      <span>You Either Know.</span><span class="sep">·</span><span>Drop 001 Coming.</span><span class="sep">·</span>
+  <div class="pieces-grid">
+    <!-- BORN HERE -->
+    <div class="product-card coming reveal">
+      <div class="coming-badge">COMING SOON</div>
+      <div class="product-card-img">
+        <img src="vktm-mark.svg" alt="">
+      </div>
+      <div class="product-card-body">
+        <span class="product-card-tag">001 · TEES</span>
+        <div class="product-card-name">BORN HERE</div>
+        <div class="product-card-price">£40</div>
+      </div>
+    </div>
+    <!-- THE ENDZ -->
+    <div class="product-card coming reveal reveal-delay-1">
+      <div class="coming-badge">COMING SOON</div>
+      <div class="product-card-img">
+        <img src="vktm-mark.svg" alt="">
+      </div>
+      <div class="product-card-body">
+        <span class="product-card-tag">002 · TEES</span>
+        <div class="product-card-name">THE ENDZ</div>
+        <div class="product-card-price">£35</div>
+      </div>
+    </div>
+    <!-- COLD FRONT -->
+    <div class="product-card coming reveal reveal-delay-2">
+      <div class="coming-badge">COMING SOON</div>
+      <div class="product-card-img">
+        <img src="vktm-mark.svg" alt="">
+      </div>
+      <div class="product-card-body">
+        <span class="product-card-tag">003 · TEES</span>
+        <div class="product-card-name">COLD FRONT</div>
+        <div class="product-card-price">£35</div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- FEATURE STRIP -->
-  <div class="feature-strip">
-    <div class="feature-strip-text">The Ends Have Always Had Their Own Standard.</div>
-    <div class="feature-strip-sub">VK1 TMO · LONDON · VKTM</div>
+<!-- ABOUT STRIP -->
+<section class="about-strip">
+  <div class="about-strip-inner">
+    <div class="section-label reveal">The Brand</div>
+    <h2 class="reveal reveal-delay-1">London born.<br>Built from nothing.</h2>
+    <p class="reveal reveal-delay-2">VKTM isn't a label. It's a record. Every piece is a timestamp — where we were, what we carried, what we made with nothing. No hype. No restock. Just the work.</p>
+    <a href="about.html" class="btn btn-outline reveal reveal-delay-3">About VKTM</a>
   </div>
+</section>
 
-  <!-- NEWSLETTER -->
-  <section class="newsletter-section">
-    <div class="section-inner">
-      <span class="section-label reveal">Drop Alerts</span>
-      <h2 class="section-title reveal reveal-delay-1">Be First.<br>No Restock.</h2>
-      <p class="newsletter-sub reveal reveal-delay-2">Drop 001 lands soon. Get the alert before anyone else.<br>No spam. No noise. Just drops.</p>
-      <form class="newsletter-form reveal reveal-delay-3" id="footerNewsletter">
-        <input type="hidden" name="_subject" value="VKTM Newsletter Signup">
-        <input type="hidden" name="type" value="newsletter">
-        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
-        <button type="submit">JOIN</button>
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <div class="section-label reveal">Stay in</div>
+    <h2 class="reveal reveal-delay-1">Don't miss the drop</h2>
+    <p class="reveal reveal-delay-2">No spam. Just drop notifications — when it's ready.</p>
+    <div id="nl-form-wrap" class="reveal reveal-delay-3">
+      <form class="newsletter-form" id="nl-form">
+        <input type="email" placeholder="your@email.com" id="nl-email" required>
+        <button type="submit">Notify me</button>
       </form>
+      <p class="newsletter-note">One email when the drop goes live. That's it.</p>
     </div>
-  </section>
+    <p class="newsletter-ok" id="nl-ok">You're in. We'll hit you when it drops.</p>
+  </div>
+</section>
 
-  <div id="site-footer"></div>
+<script src="main.js"></script>
+<script>
+  injectFooter();
 
-  <script src="nav.js"></script>
-  <script src="main.js"></script>
-  <script>
-    injectHeader('home');
-    injectFooter();
-    document.getElementById('heroYear').textContent = new Date().getFullYear();
-  </script>
+  // Newsletter
+  document.getElementById('nl-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email = document.getElementById('nl-email').value.trim();
+    try {
+      await fetch('https://formspree.io/f/xqeopeve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email, _subject: 'VKTM Newsletter Signup' })
+      });
+    } catch (_) {}
+    document.getElementById('nl-form-wrap').style.display = 'none';
+    document.getElementById('nl-ok').style.display = 'block';
+  });
+</script>
+
 </body>
 </html>

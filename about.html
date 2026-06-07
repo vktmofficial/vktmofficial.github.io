@@ -4,309 +4,144 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM — About</title>
-  <meta name="description" content="VKTM. The ends built this. London. VK1 TMO.">
+  <meta name="description" content="VKTM — London streetwear. Built from nothing.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ABOUT HERO */
     .about-hero {
-      min-height: 60vh;
-      background: var(--void-black);
-      display: flex;
-      align-items: flex-end;
-      padding: 80px 24px 64px;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-hero-bg {
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 45%;
-      background: linear-gradient(to right, transparent, rgba(26,17,8,0.3));
-      pointer-events: none;
-    }
-    .about-hero-creature {
-      position: absolute;
-      right: 4%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: clamp(180px, 28vw, 340px);
-      opacity: 0.1;
-      pointer-events: none;
-      filter: drop-shadow(0 0 32px rgba(139,90,60,0.1));
-    }
-    .story-sidebar-mark {
-      margin-top: 28px;
-      width: clamp(48px, 6vw, 72px);
-      opacity: 0.2;
-      display: block;
-    }
-    .about-hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
-    .about-hero-label {
-      font-family: var(--font-display);
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      color: var(--london-rust);
-      margin-bottom: 16px;
-    }
-    .about-hero-title {
-      font-family: var(--font-gothic);
-      font-size: clamp(52px, 10vw, 110px);
-      color: var(--raw-cream);
-      line-height: 0.9;
-      margin-bottom: 24px;
-    }
-    .about-hero-tagline {
-      font-family: var(--font-display);
-      font-size: clamp(18px, 2.5vw, 26px);
-      letter-spacing: 0.12em;
-      color: var(--brown-warm);
-      max-width: 580px;
-    }
-
-    /* STORY SECTION */
-    .story-section {
-      background: var(--deep-brown);
-      padding: 96px 24px;
-    }
-    .story-inner {
-      max-width: var(--max-w);
+      padding: 100px 24px 80px;
+      max-width: 720px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 64px;
-      align-items: start;
+      text-align: center;
+      border-bottom: 1px solid var(--brown-mid);
     }
-    .story-sidebar-title {
-      font-family: var(--font-gothic);
-      font-size: 56px;
-      color: var(--raw-cream);
-      line-height: 0.9;
-      margin-bottom: 24px;
-    }
-    .story-sidebar-coord {
-      font-size: 11px;
-      color: var(--brown-warm);
-      letter-spacing: 0.15em;
-      line-height: 2;
-    }
-    .story-sidebar-barbed {
-      margin-top: 32px;
-      opacity: 0.3;
-    }
-    .story-body p {
-      font-size: 15px;
-      color: var(--raw-cream);
-      line-height: 2;
-      margin-bottom: 24px;
-      opacity: 0.85;
-    }
-    .story-body p strong {
-      color: var(--raw-cream);
-      opacity: 1;
-      font-weight: 500;
-    }
-    .story-pull-quote {
-      border-left: 3px solid var(--london-rust);
-      padding: 16px 24px;
-      margin: 32px 0;
-      background: rgba(10,10,8,0.4);
-    }
-    .story-pull-quote p {
-      font-family: var(--font-display);
-      font-size: clamp(18px, 2vw, 22px);
-      letter-spacing: 0.06em;
-      color: var(--raw-cream);
-      line-height: 1.5;
-      margin: 0;
-      opacity: 1;
-    }
-
-    /* CODES SECTION */
-    .about-codes {
-      background: var(--void-black);
-      padding: 96px 24px;
-    }
-    .about-codes-inner { max-width: var(--max-w); margin: 0 auto; }
-    .about-codes-title {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 6vw, 72px);
-      letter-spacing: 0.06em;
-      margin-bottom: 64px;
-    }
-    .codes-list { display: flex; flex-direction: column; gap: 2px; }
-    .code-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 32px;
-      padding: 32px;
-      border: 1px solid var(--brown-mid);
-      background: var(--deep-brown);
-      transition: border-color 0.2s;
-    }
-    .code-row:hover { border-color: var(--london-rust); }
-    .code-row-num {
-      font-family: var(--font-display);
-      font-size: 40px;
-      letter-spacing: 0.05em;
-      color: var(--london-rust);
-      opacity: 0.4;
+    .about-hero h1 {
+      font-size: clamp(52px, 10vw, 96px);
       line-height: 1;
-      flex-shrink: 0;
-      width: 52px;
+      margin-bottom: 28px;
     }
-    .code-row-content .title {
-      font-family: var(--font-display);
-      font-size: clamp(20px, 2.5vw, 28px);
-      letter-spacing: 0.08em;
-      margin-bottom: 10px;
-    }
-    .code-row-content .desc {
-      font-size: 13px;
-      color: var(--ash);
-      line-height: 1.8;
-      max-width: 560px;
+    .about-hero p {
+      font-size: 20px;
+      color: var(--cream);
+      line-height: 1.7;
     }
 
-    /* POSTCODE SECTION */
-    .postcode-section {
-      background: var(--london-rust);
+    .about-body {
+      max-width: 680px;
+      margin: 0 auto;
       padding: 80px 24px;
+    }
+    .about-body p {
+      font-size: 19px;
+      line-height: 1.8;
+      color: var(--cream);
+      margin-bottom: 28px;
+    }
+
+    .about-rule {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      max-width: var(--max-w);
+      margin: 0 auto 0;
+      border-top: 1px solid var(--brown-mid);
+      border-bottom: 1px solid var(--brown-mid);
+    }
+    .about-rule-item {
+      padding: 48px 32px;
+      background: var(--brown-deep);
       text-align: center;
     }
-    .postcode-section .big-code {
-      font-family: var(--font-gothic);
-      font-size: clamp(48px, 10vw, 110px);
-      color: var(--raw-cream);
-      margin-bottom: 8px;
-      opacity: 0.9;
+    .about-rule-item h3 {
+      font-family: var(--font-mark);
+      font-size: 28px;
+      color: var(--white);
+      margin-bottom: 10px;
     }
-    .postcode-section .sub {
-      font-family: var(--font-display);
-      font-size: 13px;
-      letter-spacing: 0.3em;
-      color: rgba(240,237,232,0.55);
+    .about-rule-item p {
+      font-size: 15px;
+      color: var(--beige);
+      line-height: 1.5;
     }
-    .postcode-section .coord {
-      font-size: 11px;
-      color: rgba(240,237,232,0.4);
-      margin-top: 16px;
-      letter-spacing: 0.15em;
+    @media (max-width: 700px) {
+      .about-rule { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 768px) {
-      .story-inner { grid-template-columns: 1fr; gap: 32px; }
-      .code-row { flex-direction: column; gap: 12px; padding: 24px 20px; }
-      .code-row-num { width: auto; }
+    .about-handles {
+      padding: 80px 24px;
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto;
     }
+    .about-handles h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .about-handles p {
+      font-size: 17px;
+      color: var(--beige);
+      margin-bottom: 6px;
+    }
+    .about-handles a {
+      color: var(--brown-light);
+      transition: color 0.2s;
+    }
+    .about-handles a:hover { color: var(--cream); }
   </style>
 </head>
 <body>
-  <div class="grain"></div>
-  <div id="site-header"></div>
 
-  <!-- HERO -->
-  <section class="about-hero">
-    <div class="about-hero-bg"></div>
-    <img src="mascot.svg" class="about-hero-creature" alt="">
-    <div class="about-hero-inner">
-      <div class="about-hero-label reveal">The Brand</div>
-      <h1 class="about-hero-title reveal reveal-delay-1">About<br>VKTM</h1>
-      <div class="about-hero-tagline reveal reveal-delay-2">The clothes are for people who move in silence and dress like proof.</div>
-    </div>
-  </section>
+<script>
+  if (localStorage.getItem('vktm_unlocked') !== '1') {
+    window.location.replace('index.html');
+  }
+</script>
 
-  <!-- STORY -->
-  <section class="story-section">
-    <div class="story-inner">
-      <div class="reveal">
-        <div class="story-sidebar-title">The Story</div>
-        <div class="story-sidebar-coord">51.5074° N<br>0.1278° W<br>VK1 TMO<br>London</div>
-        <img src="vktm-mark.svg" class="story-sidebar-mark" alt="VKTM">
-        <div class="story-sidebar-barbed">
-          <svg viewBox="0 0 120 16" xmlns="http://www.w3.org/2000/svg" fill="none">
-            <path d="M0,8 Q15,4 30,8 Q45,12 60,8 Q75,4 90,8 Q105,12 120,8" stroke="#6B3A1F" stroke-width="1.2"/>
-            <g stroke="#6B3A1F" stroke-width="1.2">
-              <line x1="28" y1="2" x2="36" y2="14"/><line x1="28" y1="14" x2="36" y2="2"/>
-              <line x1="58" y1="2" x2="66" y2="14"/><line x1="58" y1="14" x2="66" y2="2"/>
-              <line x1="88" y1="2" x2="96" y2="14"/><line x1="88" y1="14" x2="96" y2="2"/>
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div class="story-body reveal reveal-delay-1">
-        <p>VKTM came from London. Not the London on postcards. The London that built itself without permission, that developed its own codes while the rest of the city looked the other way.</p>
-        <div class="story-pull-quote">
-          <p>"The ends have always had their own culture, their own language, their own standard of what's cold and what isn't."</p>
-        </div>
-        <p>VKTM is that standard made physical. A brand that doesn't explain itself. That speaks in short statements because that's all it needs. Cold, confident, and earned.</p>
-        <p>The postcode <strong>VK1 TMO</strong> is ours. Not on any map. Not registered anywhere. But if you know, you know where it is and what it means. That's the point.</p>
-        <p>Every piece in every drop runs once. There are no restocks. No second runs. No anniversary editions. When a drop closes, it closes forever — archived in the Vault, never returning. That's not a business decision. That's the code.</p>
-        <p>The brand is faceless by design. No face. No front man. No persona. The work speaks for itself and the community is the identity. Built from the ends, for anyone who understands what that means.</p>
-      </div>
-    </div>
-  </section>
+<script src="nav.js"></script>
+<script>injectHeader('about.html');</script>
 
-  <!-- TORN EDGE -->
-  <div class="torn-edge">
-    <svg viewBox="0 0 1440 32" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,32 L35,14 L78,26 L125,6 L170,22 L215,4 L258,18 L305,8 L350,26 L395,6 L440,20 L485,12 L530,28 L575,4 L620,18 L665,8 L710,24 L755,8 L800,22 L845,4 L890,18 L935,10 L980,26 L1025,6 L1070,20 L1115,8 L1160,24 L1205,6 L1250,22 L1295,4 L1340,16 L1385,8 L1440,18 L1440,0 L0,0 Z" fill="#1A1108"/>
-    </svg>
+<!-- Hero -->
+<div class="about-hero">
+  <span class="section-label reveal">VK1 TMO · London</span>
+  <h1 class="reveal reveal-delay-1">Built from<br>nothing</h1>
+  <p class="reveal reveal-delay-2">VKTM is a London streetwear brand. No investors. No backing. No second chances. Just the work.</p>
+</div>
+
+<!-- Body copy -->
+<div class="about-body">
+  <p class="reveal">We started with nothing. No studio, no team, no budget — just a name and a reason to make something that felt real. Every piece we drop is a record of where we've been and what we carried to get there.</p>
+  <p class="reveal reveal-delay-1">The clothes aren't decorative. They're proof. Proof you were paying attention, proof you got there early, proof that the work doesn't stop when no one's watching.</p>
+  <p class="reveal reveal-delay-2">No restock. Ever. If you miss it, you miss it. That's not a strategy — that's respect for the people who showed up when it mattered.</p>
+</div>
+
+<!-- Three rules -->
+<div class="about-rule">
+  <div class="about-rule-item reveal">
+    <h3>No Restock</h3>
+    <p>Every piece has a number. When it's gone, it's in the vault.</p>
   </div>
-
-  <!-- THE CODES -->
-  <section class="about-codes">
-    <div class="about-codes-inner">
-      <h2 class="about-codes-title reveal">The Codes.</h2>
-      <div class="codes-list">
-        <div class="code-row reveal">
-          <div class="code-row-num">01</div>
-          <div class="code-row-content">
-            <div class="title">No Restock. Ever.</div>
-            <p class="desc">Every drop runs once. Gone permanently. No exceptions. No second chances. That's not a scarcity play — it's the founding principle. If you sleep, you miss it. Forever.</p>
-          </div>
-        </div>
-        <div class="code-row reveal reveal-delay-1">
-          <div class="code-row-num">02</div>
-          <div class="code-row-content">
-            <div class="title">London First.</div>
-            <p class="desc">Built in the ends. VK1 TMO. A specific place with a specific energy that never changes, no matter where the clothes end up in the world. London doesn't need to prove itself to anyone.</p>
-          </div>
-        </div>
-        <div class="code-row reveal reveal-delay-2">
-          <div class="code-row-num">03</div>
-          <div class="code-row-content">
-            <div class="title">You Either Know.</div>
-            <p class="desc">For those paying attention before anyone else was. No explanation needed. No marketing speak. No targeting. If you found VKTM, you were supposed to find it.</p>
-          </div>
-        </div>
-        <div class="code-row reveal reveal-delay-3">
-          <div class="code-row-num">04</div>
-          <div class="code-row-content">
-            <div class="title">The Work Speaks.</div>
-            <p class="desc">No paid ads. No celebrities. No unearned hype. No PR. Product and community are the only marketing VKTM will ever use. Always. If the product isn't strong enough to carry itself, we don't release it.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- POSTCODE FEATURE -->
-  <div class="postcode-section">
-    <div class="big-code reveal">VK1 TMO</div>
-    <div class="sub reveal reveal-delay-1">THE POSTCODE · THE BRAND · THE CODE</div>
-    <div class="coord reveal reveal-delay-2">51.5074° N · 0.1278° W · LONDON</div>
+  <div class="about-rule-item reveal reveal-delay-1">
+    <h3>London</h3>
+    <p>Born here. Built here. For people who know what that means.</p>
   </div>
+  <div class="about-rule-item reveal reveal-delay-2">
+    <h3>The Work</h3>
+    <p>No hype. No shortcuts. Just drops that mean something.</p>
+  </div>
+</div>
 
-  <div id="site-footer"></div>
+<!-- Handles -->
+<div class="about-handles">
+  <h2 class="reveal">Find us</h2>
+  <p class="reveal reveal-delay-1">Instagram: <a href="https://instagram.com/vktmofficial" target="_blank" rel="noopener">@vktmofficial</a></p>
+  <p class="reveal reveal-delay-2">Email: <a href="mailto:vktmofficial@gmail.com">vktmofficial@gmail.com</a></p>
+</div>
 
-  <script src="nav.js"></script>
-  <script src="main.js"></script>
-  <script>
-    injectHeader('about');
-    injectFooter();
-  </script>
+<script src="main.js"></script>
+<script>injectFooter();</script>
+
 </body>
 </html>
