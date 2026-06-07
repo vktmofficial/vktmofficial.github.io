@@ -158,6 +158,26 @@
       padding: 6px 16px;
     }
 
+    /* Live product buy button */
+    .product-card-buy {
+      display: none;
+      width: 100%;
+      background: var(--london-rust);
+      color: var(--raw-cream);
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      padding: 14px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-align: center;
+      text-decoration: none;
+    }
+    .product-card-buy:hover { background: var(--rust-bright); }
+    .product-card:not(.coming) .product-card-buy { display: block; }
+    .product-card:not(.coming) .product-card-price { color: var(--london-rust); }
+
     /* Placeholder product card override */
     .product-card.coming {
       opacity: 0.85;
@@ -316,7 +336,7 @@
       <div class="product-grid" id="productGrid">
 
         <!-- CLASSICS — Hood -->
-        <div class="product-card coming reveal" data-cat="classics" data-name="PIECE 001 — HOOD" data-price="£65" data-drop="001">
+        <div class="product-card coming reveal" data-cat="classics" data-name="PIECE 001 — HOOD" data-price="£65" data-drop="001" data-stripe="">
           <div class="product-card-placeholder">
             <div class="ph-num">01</div>
             <div class="ph-icon">
@@ -328,13 +348,14 @@
           <div class="product-card-info">
             <div class="product-card-cat">CLASSICS</div>
             <div class="product-card-name">PIECE 001</div>
-            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-price">£65 — COMING SOON</div>
             <div class="product-card-drop">NO RESTOCK · EVER</div>
           </div>
+          <a class="product-card-buy" href="#" data-stripe-link>BUY NOW — £65</a>
         </div>
 
         <!-- CLASSICS — Tee -->
-        <div class="product-card coming reveal reveal-delay-1" data-cat="classics" data-name="PIECE 002 — TEE" data-price="£28" data-drop="001">
+        <div class="product-card coming reveal reveal-delay-1" data-cat="classics" data-name="PIECE 002 — TEE" data-price="£28" data-drop="001" data-stripe="">
           <div class="product-card-placeholder">
             <div class="ph-num">02</div>
             <div class="ph-icon">
@@ -346,13 +367,14 @@
           <div class="product-card-info">
             <div class="product-card-cat">CLASSICS</div>
             <div class="product-card-name">PIECE 002</div>
-            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-price">£28 — COMING SOON</div>
             <div class="product-card-drop">NO RESTOCK · EVER</div>
           </div>
+          <a class="product-card-buy" href="#" data-stripe-link>BUY NOW — £28</a>
         </div>
 
-        <!-- TEES — Long Sleeve (moved from TOPS to TEES) -->
-        <div class="product-card coming reveal reveal-delay-2" data-cat="tees" data-name="PIECE 003 — LONG SLEEVE" data-price="£38" data-drop="001">
+        <!-- TEES — Long Sleeve -->
+        <div class="product-card coming reveal reveal-delay-2" data-cat="tees" data-name="PIECE 003 — LONG SLEEVE" data-price="£38" data-drop="001" data-stripe="">
           <div class="product-card-placeholder">
             <div class="ph-num">03</div>
             <div class="ph-icon">
@@ -364,13 +386,14 @@
           <div class="product-card-info">
             <div class="product-card-cat">TEES</div>
             <div class="product-card-name">PIECE 003</div>
-            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-price">£38 — COMING SOON</div>
             <div class="product-card-drop">NO RESTOCK · EVER</div>
           </div>
+          <a class="product-card-buy" href="#" data-stripe-link>BUY NOW — £38</a>
         </div>
 
         <!-- TEES — Graphic Tee -->
-        <div class="product-card coming reveal reveal-delay-3" data-cat="tees" data-name="PIECE 004 — GRAPHIC TEE" data-price="£30" data-drop="001">
+        <div class="product-card coming reveal reveal-delay-3" data-cat="tees" data-name="PIECE 004 — GRAPHIC TEE" data-price="£30" data-drop="001" data-stripe="">
           <div class="product-card-placeholder">
             <div class="ph-num">04</div>
             <div class="ph-icon">
@@ -382,13 +405,14 @@
           <div class="product-card-info">
             <div class="product-card-cat">TEES</div>
             <div class="product-card-name">PIECE 004</div>
-            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-price">£30 — COMING SOON</div>
             <div class="product-card-drop">NO RESTOCK · EVER</div>
           </div>
+          <a class="product-card-buy" href="#" data-stripe-link>BUY NOW — £30</a>
         </div>
 
         <!-- TEES — Block Tee -->
-        <div class="product-card coming reveal" data-cat="tees" data-name="PIECE 005 — BLOCK TEE" data-price="£30" data-drop="001">
+        <div class="product-card coming reveal" data-cat="tees" data-name="PIECE 005 — BLOCK TEE" data-price="£30" data-drop="001" data-stripe="">
           <div class="product-card-placeholder">
             <div class="ph-num">05</div>
             <div class="ph-icon">
@@ -400,13 +424,14 @@
           <div class="product-card-info">
             <div class="product-card-cat">TEES</div>
             <div class="product-card-name">PIECE 005</div>
-            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-price">£30 — COMING SOON</div>
             <div class="product-card-drop">NO RESTOCK · EVER</div>
           </div>
+          <a class="product-card-buy" href="#" data-stripe-link>BUY NOW — £30</a>
         </div>
 
         <!-- HATS — Cap -->
-        <div class="product-card coming reveal reveal-delay-1" data-cat="hats" data-name="PIECE 006 — CAP" data-price="£30" data-drop="001">
+        <div class="product-card coming reveal reveal-delay-1" data-cat="hats" data-name="PIECE 006 — CAP" data-price="£30" data-drop="001" data-stripe="">
           <div class="product-card-placeholder">
             <div class="ph-num">06</div>
             <div class="ph-icon">
@@ -418,9 +443,10 @@
           <div class="product-card-info">
             <div class="product-card-cat">HATS</div>
             <div class="product-card-name">PIECE 006</div>
-            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-price">£30 — COMING SOON</div>
             <div class="product-card-drop">NO RESTOCK · EVER</div>
           </div>
+          <a class="product-card-buy" href="#" data-stripe-link>BUY NOW — £30</a>
         </div>
 
       </div><!-- /product-grid -->

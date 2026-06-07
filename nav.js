@@ -98,6 +98,15 @@ function injectFooter() {
               <a href="about.html">About</a>
               <a href="contact.html">Contact</a>
             </div>
+            <div style="margin-top:24px">
+              <div class="footer-col-title">ORDERS</div>
+              <div class="footer-col-links">
+                <a href="track.html">Track Your Order</a>
+                <a href="track.html">Order Support</a>
+                <a href="legal.html#returns">Returns &amp; Refunds</a>
+                <a href="legal.html#shipping">Shipping Policy</a>
+              </div>
+            </div>
           </div>
           <div>
             <div class="footer-col-title">FOLLOW</div>
