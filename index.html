@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VKTM — VK1 TMO</title>
+  <meta name="description" content="VKTM. London streetwear. No restock. Ever.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { overflow: hidden; }
+
+    /* PASSWORD PAGE */
+    .pw-page {
+      position: fixed; inset: 0;
+      background: var(--deep-brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    /* Giant faded watermark */
+    .pw-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .pw-watermark span {
+      font-family: var(--font-gothic);
+      font-size: clamp(120px, 28vw, 280px);
+      color: var(--raw-cream);
+      opacity: 0.04;
+      white-space: nowrap;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+
+    /* Corner coordinates */
+    .pw-coord {
+      position: absolute;
+      font-family: var(--font-body);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--brown-warm);
+      opacity: 0.5;
+    }
+    .pw-coord.tl { top: 24px; left: 24px; }
+    .pw-coord.tr { top: 24px; right: 24px; text-align: right; }
+    .pw-coord.bl { bottom: 24px; left: 24px; }
+    .pw-coord.br { bottom: 24px; right: 24px; text-align: right; }
+
+    /* Center content */
+    .pw-center {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+      max-width: 520px;
+      padding: 24px;
+    }
+    .pw-logo {
+      font-family: var(--font-gothic);
+      font-size: clamp(72px, 14vw, 120px);
+      color: var(--raw-cream);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .pw-postcode {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--brown-warm);
+      margin-bottom: 48px;
+    }
+
+    /* Newsletter */
+    .pw-newsletter-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--ash);
+      margin-bottom: 16px;
+    }
+    .pw-newsletter-form {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    .pw-newsletter-form input {
+      flex: 1;
+      background: rgba(10,10,8,0.6);
+      border: 1px solid var(--brown-mid);
+      border-right: none;
+      color: var(--raw-cream);
+      font-family: var(--font-body);
+      font-size: 13px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .pw-newsletter-form input:focus { border-color: var(--brown-warm); }
+    .pw-newsletter-form input::placeholder { color: var(--brown-mid); }
+    .pw-newsletter-form button {
+      background: var(--london-rust);
+      color: var(--raw-cream);
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      padding: 14px 22px;
+      border: 1px solid var(--london-rust);
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .pw-newsletter-form button:hover { background: var(--rust-bright); }
+    .pw-nl-note {
+      font-size: 10px;
+      color: var(--ash);
+      opacity: 0.5;
+      margin-bottom: 40px;
+    }
+    .pw-nl-success {
+      display: none;
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      color: var(--brown-warm);
+      margin-bottom: 32px;
+    }
+
+    /* Staff access */
+    .pw-staff-wrap {
+      margin-top: 32px;
+      position: relative;
+    }
+    .pw-staff-label {
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: rgba(120,100,80,0.18);
+      margin-bottom: 6px;
+    }
+    .pw-staff-form {
+      display: flex;
+      justify-content: center;
+    }
+    .pw-staff-form input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(107,58,31,0.15);
+      color: rgba(240,237,232,0.12);
+      font-family: var(--font-body);
+      font-size: 12px;
+      padding: 6px 10px;
+      outline: none;
+      width: 160px;
+      text-align: center;
+      letter-spacing: 0.15em;
+      caret-color: var(--brown-warm);
+    }
+    .pw-staff-form input::placeholder { color: rgba(107,58,31,0.2); }
+    .pw-staff-err {
+      display: none;
+      font-size: 10px;
+      color: var(--london-rust);
+      margin-top: 6px;
+      letter-spacing: 0.1em;
+    }
+
+    /* Decorative SVGs */
+    .pw-svg-left {
+      position: absolute;
+      left: clamp(8px, 4vw, 60px);
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.12;
+      width: clamp(80px, 10vw, 140px);
+    }
+    .pw-svg-right {
+      position: absolute;
+      right: clamp(8px, 4vw, 60px);
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.12;
+      width: clamp(70px, 8vw, 110px);
+    }
+    .pw-barbed {
+      position: absolute;
+      bottom: 80px;
+      left: 0; right: 0;
+      opacity: 0.12;
+      padding: 0 24px;
+    }
+
+    @media (max-width: 600px) {
+      .pw-svg-left, .pw-svg-right { display: none; }
+      .pw-coord.tr, .pw-coord.br { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+
+  <main class="pw-page">
+    <!-- Watermark -->
+    <div class="pw-watermark"><span>VKTM</span></div>
+
+    <!-- Corner coords -->
+    <div class="pw-coord tl">51.5074° N</div>
+    <div class="pw-coord tr">0.1278° W</div>
+    <div class="pw-coord bl">VK1 TMO</div>
+    <div class="pw-coord br">London</div>
+
+    <!-- Creature SVG left -->
+    <svg class="pw-svg-left" viewBox="0 0 180 380" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#8B5E3C" stroke-width="1.8" stroke-linecap="round">
+      <ellipse cx="90" cy="55" rx="28" ry="32"/>
+      <path d="M76,48 C74,44 70,44 68,48 C66,52 68,58 72,58 C76,58 78,54 76,48"/>
+      <path d="M104,48 C102,44 98,44 96,48 C94,52 96,58 100,58 C104,58 106,54 104,48"/>
+      <path d="M87,62 C88,65 92,65 93,62"/>
+      <path d="M70,78 L75,85 L80,78 L85,85 L90,78 L95,85 L100,78 L105,85 L110,78"/>
+      <line x1="90" y1="87" x2="90" y2="105"/>
+      <path d="M90,105 C88,115 92,125 90,135 C88,145 92,155 90,165 C88,175 92,185 90,195"/>
+      <path d="M88,118 C78,115 68,122 70,128" stroke-width="1.2"/>
+      <path d="M88,132 C76,129 64,137 67,144" stroke-width="1.2"/>
+      <path d="M88,146 C79,146 68,154 70,161" stroke-width="1.2"/>
+      <path d="M92,118 C102,115 112,122 110,128" stroke-width="1.2"/>
+      <path d="M92,132 C104,129 116,137 113,144" stroke-width="1.2"/>
+      <path d="M92,146 C101,146 112,154 110,161" stroke-width="1.2"/>
+      <path d="M72,195 C72,210 80,218 90,218 C100,218 108,210 108,195"/>
+      <path d="M75,108 C60,112 42,125 30,148"/>
+      <path d="M105,108 C120,112 138,125 150,148"/>
+      <path d="M30,148 C18,162 15,178 20,195"/>
+      <path d="M150,148 C162,162 165,178 160,195"/>
+      <path d="M20,195 C15,205 10,212 8,220M20,195 C18,207 16,216 16,226M20,195 C22,207 22,216 24,226M20,195 C26,206 28,214 32,221"/>
+      <path d="M160,195 C165,205 170,212 172,220M160,195 C162,207 164,216 164,226M160,195 C158,207 158,216 156,226M160,195 C154,206 152,214 148,221"/>
+      <path d="M80,218 C72,242 68,272 65,300"/>
+      <path d="M100,218 C108,242 112,272 115,300"/>
+      <path d="M65,300 C60,322 58,347 55,368"/>
+      <path d="M115,300 C120,322 122,347 125,368"/>
+      <path d="M55,368 L38,375 M55,368 L46,378"/>
+      <path d="M125,368 L142,375 M125,368 L134,378"/>
+    </svg>
+
+    <!-- Globe SVG right -->
+    <svg class="pw-svg-right" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#8B5E3C" stroke-linecap="round">
+      <circle cx="60" cy="60" r="50" stroke-width="1.8"/>
+      <ellipse cx="60" cy="60" rx="50" ry="16" stroke-width="0.9"/>
+      <ellipse cx="60" cy="42" rx="38" ry="11" stroke-width="0.7"/>
+      <ellipse cx="60" cy="78" rx="38" ry="11" stroke-width="0.7"/>
+      <line x1="60" y1="10" x2="60" y2="110" stroke-width="0.9"/>
+      <line x1="10" y1="60" x2="110" y2="60" stroke-width="0.7"/>
+      <path d="M55,30 C58,28 62,29 64,32 C67,36 65,42 60,44 C55,46 51,42 52,37 Z" stroke-width="1.2"/>
+    </svg>
+
+    <!-- Barbed wire -->
+    <div class="pw-barbed">
+      <svg viewBox="0 0 900 20" xmlns="http://www.w3.org/2000/svg" fill="none" preserveAspectRatio="xMidYMid meet">
+        <path d="M0,10 Q22,6 45,10 Q68,14 90,10 Q112,6 135,10 Q158,14 180,10 Q202,6 225,10 Q248,14 270,10 Q292,6 315,10 Q338,14 360,10 Q382,6 405,10 Q428,14 450,10 Q472,6 495,10 Q518,14 540,10 Q562,6 585,10 Q608,14 630,10 Q652,6 675,10 Q698,14 720,10 Q742,6 765,10 Q788,14 810,10 Q832,6 855,10 Q878,14 900,10" stroke="#6B3A1F" stroke-width="1.4"/>
+        <g stroke="#6B3A1F" stroke-width="1.4">
+          <line x1="88" y1="3" x2="100" y2="17"/><line x1="88" y1="17" x2="100" y2="3"/>
+          <line x1="178" y1="3" x2="190" y2="17"/><line x1="178" y1="17" x2="190" y2="3"/>
+          <line x1="268" y1="3" x2="280" y2="17"/><line x1="268" y1="17" x2="280" y2="3"/>
+          <line x1="358" y1="3" x2="370" y2="17"/><line x1="358" y1="17" x2="370" y2="3"/>
+          <line x1="448" y1="3" x2="460" y2="17"/><line x1="448" y1="17" x2="460" y2="3"/>
+          <line x1="538" y1="3" x2="550" y2="17"/><line x1="538" y1="17" x2="550" y2="3"/>
+          <line x1="628" y1="3" x2="640" y2="17"/><line x1="628" y1="17" x2="640" y2="3"/>
+          <line x1="718" y1="3" x2="730" y2="17"/><line x1="718" y1="17" x2="730" y2="3"/>
+          <line x1="808" y1="3" x2="820" y2="17"/><line x1="808" y1="17" x2="820" y2="3"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Main center content -->
+    <div class="pw-center">
+      <div class="pw-logo">VKTM</div>
+      <div class="pw-postcode">VK1 TMO &nbsp;·&nbsp; LONDON</div>
+
+      <div class="pw-newsletter-label">BE FIRST WHEN DROP 001 LANDS</div>
+
+      <form class="pw-newsletter-form" id="pwNewsletterForm">
+        <input type="hidden" name="_subject" value="VKTM Newsletter Signup">
+        <input type="hidden" name="type" value="newsletter">
+        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <button type="submit">JOIN THE LIST</button>
+      </form>
+      <div class="pw-nl-note">No spam. Drop alerts only.</div>
+      <div class="pw-nl-success" id="pwNlSuccess">YOU'RE ON THE LIST. &nbsp;·&nbsp; VK1 TMO</div>
+
+      <!-- Staff access -->
+      <div class="pw-staff-wrap">
+        <div class="pw-staff-label">STAFF ACCESS</div>
+        <form class="pw-staff-form" id="staffForm" autocomplete="off">
+          <input type="password" id="staffPass" placeholder="· · · · · ·" maxlength="20">
+        </form>
+        <div class="pw-staff-err" id="staffErr">INCORRECT</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Newsletter signup
+    document.getElementById('pwNewsletterForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = '...';
+      try {
+        const res = await fetch('https://formspree.io/f/xqeopeve', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(e.target),
+        });
+        if (res.ok) {
+          e.target.style.display = 'none';
+          document.querySelector('.pw-nl-note').style.display = 'none';
+          document.getElementById('pwNlSuccess').style.display = 'block';
+        } else { btn.textContent = 'RETRY'; }
+      } catch { btn.textContent = 'RETRY'; }
+    });
+
+    // Password check on every keystroke (no submit button visible)
+    document.getElementById('staffPass').addEventListener('input', function() {
+      if (this.value.toUpperCase() === 'VK1TMO') {
+        localStorage.setItem('vktm_unlocked', '1');
+        window.location.href = 'home.html';
+      } else if (this.value.length >= 6) {
+        document.getElementById('staffErr').style.display = 'block';
+        setTimeout(() => {
+          this.value = '';
+          document.getElementById('staffErr').style.display = 'none';
+        }, 800);
+      }
+    });
+  </script>
+</body>
+</html>

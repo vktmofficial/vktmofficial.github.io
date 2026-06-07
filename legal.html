@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VKTM — Legal</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .legal-hero {
+      background: var(--deep-brown);
+      padding: 64px 24px 48px;
+      border-bottom: 1px solid var(--brown-mid);
+    }
+    .legal-hero-inner { max-width: var(--max-w); margin: 0 auto; }
+    .legal-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 64px);
+      letter-spacing: 0.06em;
+      color: var(--raw-cream);
+    }
+
+    /* LEGAL TABS */
+    .legal-tabs-wrap {
+      background: var(--void-black);
+      border-bottom: 1px solid var(--brown-mid);
+      position: sticky;
+      top: calc(var(--ticker-h) + var(--nav-h));
+      z-index: 50;
+    }
+    .legal-tabs {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .legal-tabs::-webkit-scrollbar { display: none; }
+    .legal-tab {
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: var(--ash);
+      padding: 14px 18px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .legal-tab:hover { color: var(--raw-cream); }
+    .legal-tab.active { color: var(--raw-cream); border-bottom-color: var(--london-rust); }
+
+    /* LEGAL CONTENT */
+    .legal-content {
+      background: var(--void-black);
+      padding: 64px 24px 96px;
+    }
+    .legal-panel {
+      display: none;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .legal-panel.active { display: block; }
+    .legal-panel h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 40px);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .legal-updated {
+      font-size: 11px;
+      color: var(--ash);
+      letter-spacing: 0.12em;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--brown-mid);
+    }
+    .legal-panel h3 {
+      font-family: var(--font-display);
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      color: var(--brown-warm);
+      margin: 36px 0 12px;
+    }
+    .legal-panel p, .legal-panel li {
+      font-size: 13px;
+      color: var(--ash);
+      line-height: 1.9;
+      margin-bottom: 12px;
+    }
+    .legal-panel ul { padding-left: 20px; }
+    .legal-panel ul li { list-style: disc; margin-bottom: 6px; }
+    .legal-panel strong { color: var(--raw-cream); font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div id="site-header"></div>
+
+  <div class="legal-hero">
+    <div class="legal-hero-inner">
+      <h1 class="legal-hero-title">Legal</h1>
+    </div>
+  </div>
+
+  <div class="legal-tabs-wrap">
+    <div class="legal-tabs">
+      <button class="legal-tab active" data-panel="privacy">PRIVACY POLICY</button>
+      <button class="legal-tab" data-panel="terms">TERMS OF SERVICE</button>
+      <button class="legal-tab" data-panel="returns">RETURNS &amp; REFUNDS</button>
+      <button class="legal-tab" data-panel="shipping">SHIPPING POLICY</button>
+      <button class="legal-tab" data-panel="cookies">COOKIE POLICY</button>
+    </div>
+  </div>
+
+  <div class="legal-content">
+
+    <!-- PRIVACY POLICY -->
+    <div class="legal-panel active" id="panel-privacy">
+      <h2>Privacy Policy</h2>
+      <p class="legal-updated">Last updated: <span class="auto-date"></span></p>
+      <p>VKTM ("we", "us", "our") is committed to protecting your personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. This Privacy Policy explains how we collect, use, and protect your information.</p>
+      <h3>INFORMATION WE COLLECT</h3>
+      <p>We collect information you provide directly, including: full name, email address, phone number, delivery address, and order details when you place an order or sign up for our newsletter.</p>
+      <h3>HOW WE USE YOUR DATA</h3>
+      <ul>
+        <li>To process and fulfil your orders</li>
+        <li>To send order confirmation and delivery updates</li>
+        <li>To send drop alerts if you have opted in</li>
+        <li>To comply with legal obligations</li>
+      </ul>
+      <h3>LEGAL BASIS FOR PROCESSING</h3>
+      <p>We process your data under the following legal bases: <strong>Contract</strong> (to fulfil your order), <strong>Consent</strong> (for newsletter and marketing), and <strong>Legal Obligation</strong> (to comply with UK law).</p>
+      <h3>DATA SHARING</h3>
+      <p>We share your order data with <strong>Printify</strong> (our print-on-demand fulfilment partner) solely to fulfil your order. We do not sell your personal data to third parties. We use <strong>Formspree</strong> to receive form submissions securely.</p>
+      <h3>DATA RETENTION</h3>
+      <p>We retain order data for 7 years to comply with HMRC record-keeping requirements. Newsletter subscriptions are retained until you unsubscribe.</p>
+      <h3>YOUR RIGHTS</h3>
+      <p>Under UK GDPR, you have the right to: access your data, rectify inaccurate data, erase your data, restrict processing, data portability, and to object to processing. To exercise any right, contact us at vktmofficial@gmail.com.</p>
+      <h3>COMPLAINTS</h3>
+      <p>You have the right to lodge a complaint with the Information Commissioner's Office (ICO) at <strong>ico.org.uk</strong> or by calling 0303 123 1113.</p>
+    </div>
+
+    <!-- TERMS OF SERVICE -->
+    <div class="legal-panel" id="panel-terms">
+      <h2>Terms of Service</h2>
+      <p class="legal-updated">Last updated: <span class="auto-date"></span></p>
+      <p>By accessing this website and placing an order with VKTM, you agree to these Terms of Service. Please read them carefully.</p>
+      <h3>ORDER PROCESS</h3>
+      <p>All orders are placed via our order form. Submission of an order constitutes an offer to purchase. We will confirm acceptance by email. VKTM reserves the right to refuse any order at our discretion.</p>
+      <h3>PRICING</h3>
+      <p>All prices are shown in GBP (£) and are inclusive of applicable VAT where required. We reserve the right to change prices at any time, but changes will not affect confirmed orders.</p>
+      <h3>PRODUCT AVAILABILITY</h3>
+      <p>All products are subject to availability. <strong>There are no restocks. Ever.</strong> Once a drop sells out, the items are permanently unavailable. Drop items are fulfilled via print-on-demand and will be produced once your order is confirmed.</p>
+      <h3>INTELLECTUAL PROPERTY</h3>
+      <p>All designs, graphics, brand name, logo, and content on this website are the intellectual property of VKTM. Unauthorised reproduction, distribution, or use is strictly prohibited.</p>
+      <h3>LIMITATION OF LIABILITY</h3>
+      <p>VKTM's liability shall be limited to the value of the goods purchased. We are not liable for indirect, consequential, or incidental losses.</p>
+      <h3>GOVERNING LAW</h3>
+      <p>These Terms are governed by and construed in accordance with the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+    </div>
+
+    <!-- RETURNS & REFUNDS -->
+    <div class="legal-panel" id="panel-returns">
+      <h2>Returns &amp; Refunds</h2>
+      <p class="legal-updated">Last updated: <span class="auto-date"></span></p>
+      <p>Your consumer rights are protected under the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013 and the Consumer Rights Act 2015.</p>
+      <h3>14-DAY CANCELLATION RIGHT</h3>
+      <p>As our products are produced on demand (print-on-demand), your right to cancel under the Consumer Contracts Regulations 2013 may be limited. However, we will always honour returns for faulty or misdescribed items.</p>
+      <h3>FAULTY OR INCORRECT ITEMS</h3>
+      <p>If you receive a faulty, damaged, or incorrect item, you are entitled to a full refund or replacement. Contact us within 14 days of receiving your order at vktmofficial@gmail.com with your order details and a photo of the issue.</p>
+      <h3>HOW TO RETURN</h3>
+      <ul>
+        <li>Email vktmofficial@gmail.com with your order number and reason for return</li>
+        <li>We will confirm your return and provide instructions</li>
+        <li>Items must be unworn and in their original condition</li>
+      </ul>
+      <h3>REFUND TIMELINE</h3>
+      <p>Once your return is received and inspected, we will process your refund within <strong>14 days</strong>. Refunds are issued to the original payment method or via bank transfer.</p>
+      <h3>EXCHANGES</h3>
+      <p>Due to the limited-edition, no-restock nature of all VKTM drops, size exchanges are subject to availability. We cannot guarantee exchange items will be available.</p>
+    </div>
+
+    <!-- SHIPPING POLICY -->
+    <div class="legal-panel" id="panel-shipping">
+      <h2>Shipping Policy</h2>
+      <p class="legal-updated">Last updated: <span class="auto-date"></span></p>
+      <h3>PROCESSING TIME</h3>
+      <p>Orders are processed within <strong>2–3 business days</strong>. As all items are print-on-demand, production begins after order confirmation. Total delivery time includes both production and shipping.</p>
+      <h3>UK DELIVERY</h3>
+      <p>Standard UK tracked delivery: <strong>5–10 business days</strong> from order confirmation. Express options may be available at checkout for an additional charge.</p>
+      <h3>INTERNATIONAL SHIPPING</h3>
+      <p>We ship worldwide. International delivery times vary by destination, typically <strong>7–21 business days</strong>. Tracking information will be provided by email once your order ships.</p>
+      <h3>CUSTOMS AND IMPORT DUTIES</h3>
+      <p>For orders outside of the United Kingdom, customs duties and import taxes may be charged by your local authorities. These charges are the responsibility of the recipient and are not included in the product price or shipping cost.</p>
+      <h3>DELIVERY ADDRESS</h3>
+      <p>Please ensure your delivery address is complete and accurate at the time of ordering. VKTM is not responsible for items delivered to an incorrect address provided by the customer.</p>
+      <h3>LOST OR UNDELIVERED PARCELS</h3>
+      <p>If your parcel has not arrived within the estimated timeframe, contact us at vktmofficial@gmail.com. We will investigate with the courier and work to resolve the issue as quickly as possible.</p>
+    </div>
+
+    <!-- COOKIE POLICY -->
+    <div class="legal-panel" id="panel-cookies">
+      <h2>Cookie Policy</h2>
+      <p class="legal-updated">Last updated: <span class="auto-date"></span></p>
+      <p>This website uses only <strong>essential cookies</strong> necessary for basic functionality. We do not use advertising cookies, tracking cookies, or third-party analytics.</p>
+      <h3>WHAT WE STORE</h3>
+      <p>We use browser localStorage to remember that you have entered the site password. This is stored locally on your device and is not transmitted to any server.</p>
+      <h3>WHAT WE DO NOT DO</h3>
+      <ul>
+        <li>We do not use Google Analytics or any third-party analytics</li>
+        <li>We do not place advertising or retargeting cookies</li>
+        <li>We do not share cookie data with third parties</li>
+        <li>We do not track your browsing behaviour across other websites</li>
+      </ul>
+      <h3>MANAGING COOKIES</h3>
+      <p>You can clear localStorage and cookies at any time through your browser settings. This will log you out of any password-protected areas of the site.</p>
+      <h3>CONTACT</h3>
+      <p>For any questions about our use of cookies, contact us at vktmofficial@gmail.com.</p>
+    </div>
+
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="nav.js"></script>
+  <script src="main.js"></script>
+  <script>
+    injectHeader('');
+    injectFooter();
+
+    // Set today's date on all .auto-date elements
+    const d = new Date();
+    const dateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    document.querySelectorAll('.auto-date').forEach(el => el.textContent = dateStr);
+
+    // Legal tab switching
+    document.querySelectorAll('.legal-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.legal-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.legal-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+        // Scroll to top of content
+        document.querySelector('.legal-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Handle direct URL hash e.g. legal.html#terms
+    if (window.location.hash) {
+      const id = window.location.hash.replace('#', '');
+      const tab = document.querySelector(`.legal-tab[data-panel="${id}"]`);
+      if (tab) tab.click();
+    }
+  </script>
+</body>
+</html>

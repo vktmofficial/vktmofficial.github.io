@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VKTM — Shop</title>
+  <meta name="description" content="VKTM Shop. Drop 001 coming soon. No restock. Ever.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .shop-hero {
+      padding: 64px 24px 40px;
+      background: var(--deep-brown);
+      border-bottom: 1px solid var(--brown-mid);
+    }
+    .shop-hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .shop-hero-title {
+      font-family: var(--font-gothic);
+      font-size: clamp(48px, 8vw, 96px);
+      color: var(--raw-cream);
+      line-height: 0.9;
+    }
+    .shop-hero-meta {
+      text-align: right;
+    }
+    .shop-hero-meta .drop-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--london-rust);
+      margin-bottom: 4px;
+    }
+    .shop-hero-meta .drop-status {
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      color: var(--brown-warm);
+    }
+
+    /* ---- CATEGORY TABS ---- */
+    .shop-tabs-wrap {
+      background: var(--void-black);
+      border-bottom: 1px solid var(--brown-mid);
+      position: sticky;
+      top: calc(var(--ticker-h) + var(--nav-h));
+      z-index: 50;
+    }
+    .shop-tabs {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .shop-tabs::-webkit-scrollbar { display: none; }
+    .shop-tab {
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--ash);
+      padding: 16px 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .shop-tab:hover { color: var(--raw-cream); }
+    .shop-tab.active {
+      color: var(--raw-cream);
+      border-bottom-color: var(--london-rust);
+    }
+
+    /* ---- SHOP CONTENT ---- */
+    .shop-content {
+      background: var(--void-black);
+      padding: 48px 24px 96px;
+      min-height: 60vh;
+    }
+    .shop-content-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* Drop 001 coming soon header */
+    .drop-banner {
+      border: 1px solid var(--brown-mid);
+      padding: 32px;
+      margin-bottom: 40px;
+      background: var(--deep-brown);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .drop-banner::before {
+      content: 'DROP 001';
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-gothic);
+      font-size: 96px;
+      color: var(--raw-cream);
+      opacity: 0.03;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .drop-banner-left .drop-num {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--london-rust);
+      margin-bottom: 6px;
+    }
+    .drop-banner-left .drop-name {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 40px);
+      letter-spacing: 0.08em;
+      color: var(--raw-cream);
+    }
+    .drop-banner-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    .drop-cs-badge {
+      background: transparent;
+      border: 1px solid var(--brown-warm);
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--brown-warm);
+      padding: 6px 16px;
+    }
+
+    /* Placeholder product card override */
+    .product-card.coming {
+      opacity: 0.85;
+    }
+    .product-card-placeholder {
+      aspect-ratio: 3/4;
+      background: var(--deep-brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card-placeholder .ph-num {
+      font-family: var(--font-gothic);
+      font-size: clamp(48px, 7vw, 72px);
+      color: var(--raw-cream);
+      opacity: 0.06;
+    }
+    .product-card-placeholder .ph-icon {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.12;
+    }
+    .product-card-placeholder .ph-icon svg {
+      width: 55%;
+    }
+    .ph-coming-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,8,0.0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      color: var(--brown-warm);
+      opacity: 0;
+      transition: all 0.3s;
+      background: rgba(10,10,8,0.55);
+    }
+    .product-card:hover .ph-coming-overlay { opacity: 1; }
+
+    /* Empty category */
+    .empty-cat {
+      text-align: center;
+      padding: 96px 24px;
+    }
+    .empty-cat-icon {
+      font-family: var(--font-gothic);
+      font-size: 48px;
+      color: var(--brown-mid);
+      margin-bottom: 16px;
+    }
+    .empty-cat h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.1em;
+      color: var(--ash);
+      margin-bottom: 8px;
+    }
+    .empty-cat p {
+      font-size: 12px;
+      color: var(--brown-mid);
+      letter-spacing: 0.05em;
+    }
+
+    /* ---- NOTIFY MODAL ---- */
+    .modal-product-summary {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--void-black);
+      border: 1px solid var(--brown-mid);
+      margin-bottom: 24px;
+    }
+    .modal-product-img {
+      width: 56px;
+      height: 56px;
+      background: var(--deep-brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .modal-product-img svg { opacity: 0.3; width: 70%; }
+    .modal-product-meta .name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      letter-spacing: 0.08em;
+    }
+    .modal-product-meta .cat {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--brown-warm);
+    }
+
+    @media (max-width: 768px) {
+      .shop-hero-inner { flex-direction: column; align-items: flex-start; }
+      .shop-hero-meta { text-align: left; }
+      .drop-banner { flex-direction: column; align-items: flex-start; }
+      .drop-banner-right { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div id="site-header"></div>
+
+  <!-- SHOP HERO -->
+  <div class="shop-hero">
+    <div class="shop-hero-inner">
+      <h1 class="shop-hero-title reveal">The Shop</h1>
+      <div class="shop-hero-meta reveal">
+        <div class="drop-label">CURRENT DROP</div>
+        <div class="drop-status">DROP 001 — COMING SOON</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY TABS -->
+  <div class="shop-tabs-wrap">
+    <div class="shop-tabs">
+      <button class="shop-tab active" data-cat="all">ALL DROPS</button>
+      <button class="shop-tab" data-cat="classics">CLASSICS</button>
+      <button class="shop-tab" data-cat="tops">TOPS</button>
+      <button class="shop-tab" data-cat="tees">TEES</button>
+      <button class="shop-tab" data-cat="bottoms">BOTTOMS</button>
+      <button class="shop-tab" data-cat="hats">HATS</button>
+    </div>
+  </div>
+
+  <!-- SHOP CONTENT -->
+  <div class="shop-content">
+    <div class="shop-content-inner">
+
+      <!-- Drop 001 banner -->
+      <div class="drop-banner reveal">
+        <div class="drop-banner-left">
+          <div class="drop-num">DROP 001</div>
+          <div class="drop-name">FIRST WAVE — COMING SOON</div>
+        </div>
+        <div class="drop-banner-right">
+          <div class="drop-cs-badge">NOTIFY ME</div>
+          <div style="font-size:11px;color:var(--ash);letter-spacing:0.1em;">No restock. Ever.</div>
+        </div>
+      </div>
+
+      <!-- PRODUCT GRID -->
+      <div class="product-grid" id="productGrid">
+
+        <!-- CLASSICS — Hood -->
+        <div class="product-card coming reveal" data-cat="classics" data-name="PIECE 001 — HOOD" data-price="£65" data-drop="001">
+          <div class="product-card-placeholder">
+            <div class="ph-num">01</div>
+            <div class="ph-icon">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#8B5E3C" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20,85 L20,40 C20,22 35,15 50,15 C65,15 80,22 80,40 L80,85"/>
+                <path d="M20,40 C10,40 5,45 5,52 L5,62 C5,68 10,70 14,68 L20,65"/>
+                <path d="M80,40 C90,40 95,45 95,52 L95,62 C95,68 90,70 86,68 L80,65"/>
+                <path d="M35,15 C35,8 40,5 50,5 C60,5 65,8 65,15"/>
+                <line x1="20" y1="85" x2="80" y2="85"/>
+              </svg>
+            </div>
+            <div class="ph-coming-overlay">GET NOTIFIED</div>
+          </div>
+          <div class="product-card-badge">DROP 001</div>
+          <div class="product-card-info">
+            <div class="product-card-cat">CLASSICS</div>
+            <div class="product-card-name">PIECE 001</div>
+            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-drop">NO RESTOCK · EVER</div>
+          </div>
+        </div>
+
+        <!-- CLASSICS — Tee -->
+        <div class="product-card coming reveal reveal-delay-1" data-cat="classics" data-name="PIECE 002 — TEE" data-price="£28" data-drop="001">
+          <div class="product-card-placeholder">
+            <div class="ph-num">02</div>
+            <div class="ph-icon">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#8B5E3C" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30,15 L10,30 L20,50 L35,42 L35,85 L65,85 L65,42 L80,50 L90,30 L70,15"/>
+                <path d="M30,15 C35,10 45,8 50,8 C55,8 65,10 70,15"/>
+              </svg>
+            </div>
+            <div class="ph-coming-overlay">GET NOTIFIED</div>
+          </div>
+          <div class="product-card-badge">DROP 001</div>
+          <div class="product-card-info">
+            <div class="product-card-cat">CLASSICS</div>
+            <div class="product-card-name">PIECE 002</div>
+            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-drop">NO RESTOCK · EVER</div>
+          </div>
+        </div>
+
+        <!-- TOPS — Long Sleeve -->
+        <div class="product-card coming reveal reveal-delay-2" data-cat="tops" data-name="PIECE 003 — LONG SLEEVE" data-price="£38" data-drop="001">
+          <div class="product-card-placeholder">
+            <div class="ph-num">03</div>
+            <div class="ph-icon">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#8B5E3C" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30,15 L5,35 L5,65 L25,65 L25,42 L35,42 L35,85 L65,85 L65,42 L75,42 L75,65 L95,65 L95,35 L70,15"/>
+                <path d="M30,15 C35,10 45,8 50,8 C55,8 65,10 70,15"/>
+              </svg>
+            </div>
+            <div class="ph-coming-overlay">GET NOTIFIED</div>
+          </div>
+          <div class="product-card-badge">DROP 001</div>
+          <div class="product-card-info">
+            <div class="product-card-cat">TOPS</div>
+            <div class="product-card-name">PIECE 003</div>
+            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-drop">NO RESTOCK · EVER</div>
+          </div>
+        </div>
+
+        <!-- TEES — Graphic Tee -->
+        <div class="product-card coming reveal reveal-delay-3" data-cat="tees" data-name="PIECE 004 — GRAPHIC TEE" data-price="£30" data-drop="001">
+          <div class="product-card-placeholder">
+            <div class="ph-num">04</div>
+            <div class="ph-icon">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#8B5E3C" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30,15 L10,30 L20,50 L35,42 L35,85 L65,85 L65,42 L80,50 L90,30 L70,15"/>
+                <path d="M30,15 C35,10 45,8 50,8 C55,8 65,10 70,15"/>
+                <circle cx="50" cy="55" r="14" stroke-width="1"/>
+                <path d="M44,55 C44,48 56,48 56,55 C56,62 44,62 44,55" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="ph-coming-overlay">GET NOTIFIED</div>
+          </div>
+          <div class="product-card-badge">DROP 001</div>
+          <div class="product-card-info">
+            <div class="product-card-cat">TEES</div>
+            <div class="product-card-name">PIECE 004</div>
+            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-drop">NO RESTOCK · EVER</div>
+          </div>
+        </div>
+
+        <!-- TEES — Block Tee -->
+        <div class="product-card coming reveal" data-cat="tees" data-name="PIECE 005 — BLOCK TEE" data-price="£30" data-drop="001">
+          <div class="product-card-placeholder">
+            <div class="ph-num">05</div>
+            <div class="ph-icon">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#8B5E3C" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30,15 L10,30 L20,50 L35,42 L35,85 L65,85 L65,42 L80,50 L90,30 L70,15"/>
+                <path d="M30,15 C35,10 45,8 50,8 C55,8 65,10 70,15"/>
+                <rect x="38" y="46" width="24" height="30" rx="1" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="ph-coming-overlay">GET NOTIFIED</div>
+          </div>
+          <div class="product-card-badge">DROP 001</div>
+          <div class="product-card-info">
+            <div class="product-card-cat">TEES</div>
+            <div class="product-card-name">PIECE 005</div>
+            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-drop">NO RESTOCK · EVER</div>
+          </div>
+        </div>
+
+        <!-- HATS — Cap -->
+        <div class="product-card coming reveal reveal-delay-1" data-cat="hats" data-name="PIECE 006 — CAP" data-price="£30" data-drop="001">
+          <div class="product-card-placeholder">
+            <div class="ph-num">06</div>
+            <div class="ph-icon">
+              <svg viewBox="0 0 100 80" fill="none" stroke="#8B5E3C" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15,50 C15,30 30,15 50,15 C70,15 85,30 85,50"/>
+                <path d="M5,55 C5,50 10,48 15,50 L85,50 C90,48 95,50 95,55 C95,60 90,62 85,60 L15,60 C10,62 5,60 5,55 Z"/>
+                <path d="M15,50 L5,58"/>
+                <line x1="50" y1="15" x2="50" y2="50" stroke-width="0.8"/>
+              </svg>
+            </div>
+            <div class="ph-coming-overlay">GET NOTIFIED</div>
+          </div>
+          <div class="product-card-badge">DROP 001</div>
+          <div class="product-card-info">
+            <div class="product-card-cat">HATS</div>
+            <div class="product-card-name">PIECE 006</div>
+            <div class="product-card-price">COMING SOON</div>
+            <div class="product-card-drop">NO RESTOCK · EVER</div>
+          </div>
+        </div>
+
+      </div><!-- /product-grid -->
+
+      <!-- BOTTOMS — empty state -->
+      <div id="bottomsEmpty" class="empty-cat" style="display:none;">
+        <div class="empty-cat-icon">VKTM</div>
+        <h3>BOTTOMS — COMING IN A FUTURE DROP</h3>
+        <p>VK1 TMO · LONDON · NO RESTOCK EVER</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NOTIFY MODAL -->
+  <div class="modal-overlay" id="notifyModal">
+    <div class="modal-box">
+      <button class="modal-close">✕</button>
+      <h2 class="modal-title">GET NOTIFIED</h2>
+      <p class="modal-sub">Drop 001 is coming soon. Leave your email and you'll be first to know when it drops. No spam. No noise.</p>
+      <form id="notifyForm">
+        <input type="hidden" name="_subject" value="VKTM Drop 001 Notify Me">
+        <input type="hidden" name="type" value="notify">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" type="text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">NOTIFY ME</button>
+      </form>
+      <div class="form-success">
+        <div class="form-success-icon">VKTM</div>
+        <h3>YOU'RE ON THE LIST.</h3>
+        <p>We'll hit you first when Drop 001 drops.<br>No restock. Ever. VK1 TMO.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER MODAL (ready for live products) -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal-box" style="max-width:640px;">
+      <button class="modal-close">✕</button>
+      <div class="modal-product-summary">
+        <div class="modal-product-img">
+          <svg viewBox="0 0 40 40" fill="none" stroke="#8B5E3C" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="8" width="24" height="24" rx="1"/>
+          </svg>
+        </div>
+        <div class="modal-product-meta">
+          <div class="cat" id="orderProductCat"></div>
+          <div class="name" id="orderProductName"></div>
+          <div style="font-size:13px;color:var(--london-rust);margin-top:2px;" id="orderProductPrice"></div>
+        </div>
+      </div>
+      <form id="orderForm">
+        <input type="hidden" name="_subject" value="VKTM New Order">
+        <input type="hidden" name="type" value="order">
+        <input type="hidden" name="product" id="orderProductInput">
+        <input type="hidden" name="price">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input class="form-input" type="text" name="name" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input class="form-input" type="tel" name="phone" placeholder="+44...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Size</label>
+            <select class="form-select" name="size" required>
+              <option value="">SELECT SIZE</option>
+              <option>XS</option><option>S</option><option>M</option>
+              <option>L</option><option>XL</option><option>XXL</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Delivery Address</label>
+          <input class="form-input" type="text" name="address" placeholder="Street address" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">City</label>
+            <input class="form-input" type="text" name="city" placeholder="City" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Postcode</label>
+            <input class="form-input" type="text" name="postcode" placeholder="Postcode" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Country</label>
+            <input class="form-input" type="text" name="country" placeholder="Country" value="United Kingdom">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Quantity</label>
+            <select class="form-select" name="quantity">
+              <option>1</option><option>2</option><option>3</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">PLACE ORDER</button>
+        <p style="font-size:10px;color:var(--ash);margin-top:12px;text-align:center;line-height:1.6;">
+          You'll receive an email confirmation. Orders are fulfilled via Printify print-on-demand.<br>
+          Delivery: 5–10 business days UK. See <a href="legal.html" style="color:var(--brown-warm);">Shipping Policy</a> for full details.
+        </p>
+      </form>
+      <div class="form-success">
+        <div class="form-success-icon">VKTM</div>
+        <h3>ORDER RECEIVED.</h3>
+        <p>You'll get a confirmation email shortly.<br>Your order will be processed and dispatched within 2–3 business days.<br><br>VK1 TMO · LONDON · NO RESTOCK EVER.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="nav.js"></script>
+  <script src="main.js"></script>
+  <script>
+    injectHeader('shop');
+    injectFooter();
+
+    // Wire up "notify me" buttons on all coming-soon cards
+    document.querySelectorAll('.product-card.coming').forEach(card => {
+      card.addEventListener('click', () => {
+        document.getElementById('notifyModal').classList.add('open');
+      });
+    });
+
+    // Override tab filtering to also show/hide empty state
+    const tabs = document.querySelectorAll('.shop-tab');
+    const cards = document.querySelectorAll('.product-card');
+    const bottomsEmpty = document.getElementById('bottomsEmpty');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const cat = tab.dataset.cat;
+        let visible = 0;
+        cards.forEach(card => {
+          const show = cat === 'all' || card.dataset.cat === cat;
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        if (bottomsEmpty) {
+          bottomsEmpty.style.display = (cat === 'bottoms' && visible === 0) ? 'block' : 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

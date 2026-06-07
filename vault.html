@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VKTM — Drops &amp; Vault</title>
+  <meta name="description" content="VKTM drop archive. Every drop. No restock. Ever.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .vault-hero {
+      background: var(--deep-brown);
+      padding: 80px 24px 64px;
+      border-bottom: 1px solid var(--brown-mid);
+      position: relative;
+      overflow: hidden;
+    }
+    .vault-hero-bg {
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-gothic);
+      font-size: clamp(100px, 18vw, 200px);
+      color: var(--raw-cream);
+      opacity: 0.03;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .vault-hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
+    .vault-hero-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--london-rust);
+      margin-bottom: 16px;
+    }
+    .vault-hero-title {
+      font-family: var(--font-gothic);
+      font-size: clamp(48px, 9vw, 100px);
+      color: var(--raw-cream);
+      line-height: 0.9;
+      margin-bottom: 16px;
+    }
+    .vault-hero-sub {
+      font-size: 13px;
+      color: var(--ash);
+      letter-spacing: 0.05em;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    /* ---- VAULT CONTENT ---- */
+    .vault-content {
+      background: var(--void-black);
+      padding: 64px 24px 96px;
+    }
+    .vault-inner { max-width: var(--max-w); margin: 0 auto; }
+
+    /* ---- ACCORDION ---- */
+    .vault-rule {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--ash);
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--brown-mid);
+    }
+
+    /* Drop 001 body */
+    .drop-body-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    .drop-campaign-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .drop-campaign-img {
+      aspect-ratio: 4/5;
+      background: var(--deep-brown);
+      border: 1px solid var(--brown-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .drop-campaign-img .coming-label {
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--brown-mid);
+    }
+
+    /* Piece list table */
+    .piece-list {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .piece-list thead tr {
+      border-bottom: 1px solid var(--brown-mid);
+    }
+    .piece-list th {
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--brown-warm);
+      padding: 10px 0;
+      text-align: left;
+      font-weight: normal;
+    }
+    .piece-list td {
+      font-size: 13px;
+      color: var(--ash);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(107,58,31,0.2);
+      vertical-align: top;
+    }
+    .piece-list td.name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      color: var(--raw-cream);
+    }
+    .piece-list td.price {
+      color: var(--london-rust);
+      font-size: 13px;
+    }
+    .piece-list td.status {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+    }
+    .status-cs { color: var(--brown-warm); }
+    .piece-list .origin-letter {
+      display: inline-block;
+      font-family: var(--font-gothic);
+      font-size: 18px;
+      color: var(--london-rust);
+      margin-left: 8px;
+      opacity: 0.4;
+    }
+
+    /* Drop 001 narrative */
+    .drop-narrative {
+      background: var(--deep-brown);
+      border: 1px solid var(--brown-mid);
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .drop-narrative-title {
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--london-rust);
+      margin-bottom: 10px;
+    }
+    .drop-narrative p {
+      font-size: 12px;
+      color: var(--ash);
+      line-height: 1.8;
+    }
+
+    /* Drop 002 — locked -->
+    .locked-body {
+      text-align: center;
+      padding: 48px;
+      color: var(--ash);
+    }
+    .locked-body .lock-icon {
+      font-family: var(--font-gothic);
+      font-size: 36px;
+      color: var(--brown-mid);
+      margin-bottom: 12px;
+    }
+    .locked-body h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .locked-body p { font-size: 12px; letter-spacing: 0.05em; }
+
+    @media (max-width: 768px) {
+      .drop-body-grid { grid-template-columns: 1fr; }
+      .drop-campaign-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div id="site-header"></div>
+
+  <!-- VAULT HERO -->
+  <div class="vault-hero">
+    <div class="vault-hero-bg">VAULT</div>
+    <div class="vault-hero-inner">
+      <div class="vault-hero-label reveal">DROPS ARCHIVE</div>
+      <h1 class="vault-hero-title reveal reveal-delay-1">Drops<br>&amp; Vault</h1>
+      <p class="vault-hero-sub reveal reveal-delay-2">Every VKTM drop lives here forever. No restock. No second chances. Once a drop closes, it's archived here permanently.</p>
+    </div>
+  </div>
+
+  <!-- VAULT CONTENT -->
+  <div class="vault-content">
+    <div class="vault-inner">
+      <div class="vault-rule reveal">ALL DROPS — ARCHIVED PERMANENTLY · NO RESTOCK · EVER</div>
+
+      <!-- DROP 001 -->
+      <div class="accordion-item open reveal">
+        <div class="accordion-header">
+          <div class="accordion-header-left">
+            <span class="accordion-drop-num">DROP 001</span>
+            <span class="accordion-drop-name">FIRST WAVE</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span class="accordion-status coming">COMING SOON</span>
+            <span class="accordion-arrow">▾</span>
+          </div>
+        </div>
+        <div class="accordion-body">
+          <!-- Campaign images -->
+          <div class="drop-body-grid">
+            <div>
+              <div style="font-family:var(--font-display);font-size:11px;letter-spacing:0.2em;color:var(--brown-warm);margin-bottom:12px;">CAMPAIGN IMAGERY</div>
+              <div class="drop-campaign-grid">
+                <div class="drop-campaign-img"><span class="coming-label">COMING SOON</span></div>
+                <div class="drop-campaign-img"><span class="coming-label">COMING SOON</span></div>
+                <div class="drop-campaign-img"><span class="coming-label">COMING SOON</span></div>
+                <div class="drop-campaign-img"><span class="coming-label">COMING SOON</span></div>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:11px;letter-spacing:0.2em;color:var(--brown-warm);margin-bottom:12px;">THE PIECES</div>
+              <table class="piece-list">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>PIECE</th>
+                    <th>CATEGORY</th>
+                    <th>PRICE</th>
+                    <th>STATUS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>001</td>
+                    <td class="name">PIECE 001 <span class="origin-letter">—</span></td>
+                    <td>CLASSICS</td>
+                    <td class="price">£65</td>
+                    <td class="status status-cs">COMING SOON</td>
+                  </tr>
+                  <tr>
+                    <td>002</td>
+                    <td class="name">PIECE 002 <span class="origin-letter">—</span></td>
+                    <td>CLASSICS</td>
+                    <td class="price">£28</td>
+                    <td class="status status-cs">COMING SOON</td>
+                  </tr>
+                  <tr>
+                    <td>003</td>
+                    <td class="name">PIECE 003 <span class="origin-letter">—</span></td>
+                    <td>TOPS</td>
+                    <td class="price">£38</td>
+                    <td class="status status-cs">COMING SOON</td>
+                  </tr>
+                  <tr>
+                    <td>004</td>
+                    <td class="name">PIECE 004 <span class="origin-letter">—</span></td>
+                    <td>TEES</td>
+                    <td class="price">£30</td>
+                    <td class="status status-cs">COMING SOON</td>
+                  </tr>
+                  <tr>
+                    <td>005</td>
+                    <td class="name">PIECE 005 <span class="origin-letter">—</span></td>
+                    <td>TEES</td>
+                    <td class="price">£30</td>
+                    <td class="status status-cs">COMING SOON</td>
+                  </tr>
+                  <tr>
+                    <td>006</td>
+                    <td class="name">PIECE 006 <span class="origin-letter">—</span></td>
+                    <td>HATS</td>
+                    <td class="price">£30</td>
+                    <td class="status status-cs">COMING SOON</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="drop-narrative">
+                <div class="drop-narrative-title">THE HIDDEN NARRATIVE</div>
+                <p>The word <strong style="color:var(--raw-cream);">ORIGIN</strong> is split and hidden across all six pieces in Drop 001. Collect all six and you'll be able to decode it. The customers who find it become part of something the rest of the world doesn't know about yet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DROP 002 — LOCKED -->
+      <div class="accordion-item reveal reveal-delay-1">
+        <div class="accordion-header">
+          <div class="accordion-header-left">
+            <span class="accordion-drop-num">DROP 002</span>
+            <span class="accordion-drop-name" style="color:var(--ash);">UNKNOWN</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span class="accordion-status locked">LOCKED</span>
+            <span class="accordion-arrow">▾</span>
+          </div>
+        </div>
+        <div class="accordion-body">
+          <div class="locked-body">
+            <div class="lock-icon">VKTM</div>
+            <h3>DROP 002 — NOT YET REVEALED</h3>
+            <p>Complete Drop 001 to unlock what comes next.<br>VK1 TMO · LONDON · NO RESTOCK EVER.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="nav.js"></script>
+  <script src="main.js"></script>
+  <script>
+    injectHeader('vault');
+    injectFooter();
+  </script>
+</body>
+</html>
