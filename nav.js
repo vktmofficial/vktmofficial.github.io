@@ -1,126 +1,108 @@
 /* ============================================================
-   VKTM — NAV & FOOTER INJECTION v2
-   VK1 TMO · LONDON
+   VKTM — NAV + FOOTER v3
    ============================================================ */
 
-function injectHeader(activePage) {
-  const tickerItems = [
-    'DROP 001 — COMING SOON',
+function injectHeader(active) {
+  const msgs = [
+    'DROP 001 — COMING SUMMER 2026',
     'NO RESTOCK — EVER',
     'LONDON',
     'VK1 TMO',
-    'LIMITED',
     'ORIGIN',
-    'DROP 001 — COMING SOON',
+    'LIMITED RUN',
+    'DROP 001 — COMING SUMMER 2026',
     'NO RESTOCK — EVER',
     'LONDON',
     'VK1 TMO',
-    'LIMITED',
     'ORIGIN',
+    'LIMITED RUN',
   ];
 
-  const tickerHTML = tickerItems.map(t => `<span>${t}</span>`).join('');
-
   const links = [
-    { href: 'home.html',  label: 'Home' },
-    { href: 'shop.html',  label: 'Shop' },
-    { href: 'vault.html', label: 'Vault' },
-    { href: 'about.html', label: 'About' },
+    { href: 'home.html',    label: 'Home'    },
+    { href: 'shop.html',    label: 'Shop'    },
+    { href: 'vault.html',   label: 'Vault'   },
+    { href: 'about.html',   label: 'About'   },
     { href: 'contact.html', label: 'Contact' },
   ];
 
-  const linkHTML = links.map(l => {
-    const active = activePage === l.href ? ' class="active"' : '';
-    return `<a href="${l.href}"${active}>${l.label}</a>`;
-  }).join('');
+  const linkItems = links.map(l =>
+    `<a href="${l.href}"${active === l.href ? ' class="active"' : ''}>${l.label}</a>`
+  ).join('');
 
-  const mobileLinkHTML = links.map(l => {
-    const active = activePage === l.href ? ' class="active"' : '';
-    return `<a href="${l.href}"${active}>${l.label}</a>`;
-  }).join('');
+  const mobItems = links.map(l =>
+    `<a href="${l.href}"${active === l.href ? ' class="active"' : ''}>${l.label}</a>`
+  ).join('');
 
-  const header = document.createElement('div');
-  header.innerHTML = `
-    <div class="grain"></div>
+  const tickerSpans = msgs.map(m => `<span>${m}</span>`).join('');
 
-    <div class="ticker-wrap">
-      <div class="ticker-track">${tickerHTML}</div>
+  const el = document.createElement('div');
+  el.innerHTML = `
+    <div class="ticker">
+      <div class="ticker-track">${tickerSpans}</div>
     </div>
-
-    <nav class="site-nav">
+    <nav class="nav">
       <div class="nav-inner">
         <a href="home.html" class="nav-logo">VKTM</a>
-        <div class="nav-links">${linkHTML}</div>
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <div class="nav-links">${linkItems}</div>
+        <button class="nav-ham" id="nav-ham" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
       </div>
     </nav>
-
-    <div class="nav-mobile-menu" id="nav-mobile-menu">
-      ${mobileLinkHTML}
-    </div>
+    <div class="nav-mob" id="nav-mob">${mobItems}</div>
   `;
 
-  document.body.prepend(...header.childNodes);
+  document.body.prepend(...el.childNodes);
 
-  // Hamburger toggle
-  const hamburger = document.getElementById('nav-hamburger');
-  const mobileMenu = document.getElementById('nav-mobile-menu');
+  const ham = document.getElementById('nav-ham');
+  const mob = document.getElementById('nav-mob');
 
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      const open = mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
+  ham.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    ham.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  mob.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mob.classList.remove('open');
+      ham.classList.remove('open');
+      document.body.style.overflow = '';
     });
-
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        hamburger.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  }
+  });
 }
 
 function injectFooter() {
-  const footer = document.createElement('footer');
-  footer.className = 'site-footer';
-  footer.innerHTML = `
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div>
-          <div class="footer-logo">VKTM</div>
-          <div class="footer-tagline">London · Built from nothing</div>
-        </div>
-        <div>
-          <div class="footer-col-title">Navigate</div>
-          <div class="footer-col-links">
-            <a href="home.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="vault.html">Vault</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Orders</div>
-          <div class="footer-col-links">
-            <a href="track.html">Track Order</a>
-            <a href="legal.html#returns">Returns</a>
-            <a href="legal.html#shipping">Shipping</a>
-            <a href="legal.html">Legal</a>
-            <a href="mailto:vktmofficial@gmail.com">Contact Us</a>
-          </div>
-        </div>
+  const f = document.createElement('footer');
+  f.className = 'footer';
+  f.innerHTML = `
+    <div class="footer-top">
+      <div>
+        <div class="f-brand">VKTM</div>
+        <div class="f-tagline">London · Built from nothing</div>
       </div>
-      <div class="footer-bottom">
-        <span class="footer-copy">© 2025 VKTM. All rights reserved.</span>
-        <span class="footer-coords">@vktmofficial · vktmofficial@gmail.com</span>
+      <div class="f-col">
+        <h5>Navigate</h5>
+        <a href="home.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="vault.html">Vault</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="f-col">
+        <h5>Orders</h5>
+        <a href="track.html">Track Order</a>
+        <a href="legal.html#returns">Returns</a>
+        <a href="legal.html#shipping">Shipping</a>
+        <a href="legal.html">Legal</a>
+        <a href="mailto:vktmofficial@gmail.com">Email Us</a>
       </div>
     </div>
+    <div class="footer-bottom">
+      <span>© 2025 VKTM. All rights reserved.</span>
+      <span>@vktmofficial · vktmofficial@gmail.com</span>
+    </div>
   `;
-  document.body.appendChild(footer);
+  document.body.appendChild(f);
 }

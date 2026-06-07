@@ -4,213 +4,187 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM</title>
-  <meta name="description" content="VKTM — London streetwear. Limited drops. No restocks.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --black:      #080604;
-      --dark:       #0e0905;
-      --brown:      #2b1408;
-      --brown-mid:  #4a2210;
-      --brown-warm: #7a3d18;
-      --brown-light:#b06030;
-      --beige:      #c0966a;
-      --cream:      #d9b88a;
-      --off-white:  #ece0c6;
-      --white:      #f5ede0;
-      --font-mark:  'Permanent Marker', cursive;
-      --font-hand:  'Caveat', cursive;
+      --bg:   #060402;
+      --bg-2: #130a05;
+      --t-1:  #ede2ce;
+      --t-2:  #a07a52;
+      --t-3:  #5a3820;
+      --line: rgba(255,255,255,0.055);
     }
-
     html, body {
       height: 100%;
-      background: var(--black);
-      color: var(--off-white);
-      font-family: var(--font-hand);
+      background: var(--bg);
+      color: var(--t-1);
+      font-family: 'Barlow Condensed', sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Grain */
-    .grain {
+    /* grain */
+    body::after {
+      content: '';
       position: fixed;
-      inset: -50%;
-      width: 200%;
-      height: 200%;
+      inset: 0;
       pointer-events: none;
-      z-index: 10;
-      opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      animation: grain 0.8s steps(2) infinite;
-    }
-    @keyframes grain {
-      0%   { transform: translate(0,0); }
-      20%  { transform: translate(-3%,-4%); }
-      40%  { transform: translate(4%,2%); }
-      60%  { transform: translate(-2%,5%); }
-      80%  { transform: translate(3%,-2%); }
-      100% { transform: translate(0,0); }
+      z-index: 999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+      background-size: 256px;
     }
 
-    /* Layout */
-    .wrap {
+    .gate {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 40px 24px;
+      text-align: center;
       position: relative;
     }
 
-    /* VKTM wordmark */
-    .pw-logo {
-      font-family: var(--font-mark);
-      font-size: clamp(72px, 18vw, 140px);
-      color: var(--white);
-      line-height: 1;
-      letter-spacing: 0.02em;
-      margin-bottom: 12px;
-      text-align: center;
-      user-select: none;
+    .gate-wordmark {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(80px, 20vw, 180px);
+      letter-spacing: 0.06em;
+      color: var(--t-1);
+      line-height: 0.9;
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s ease both;
     }
 
-    .pw-sub {
-      font-family: var(--font-hand);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      color: var(--brown-warm);
-      text-align: center;
-      margin-bottom: 56px;
+    .gate-question {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(14px, 3vw, 20px);
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--t-2);
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s 0.12s ease both;
     }
 
-    /* Form */
-    .pw-form {
-      width: 100%;
-      max-width: 320px;
+    .gate-form {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-    }
-
-    .pw-input {
-      background: var(--brown);
-      border: 1px solid var(--brown-mid);
-      color: var(--off-white);
-      font-family: var(--font-hand);
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      padding: 14px 18px;
-      outline: none;
-      text-align: center;
-      transition: border-color 0.2s;
-      border-radius: 2px;
+      gap: 10px;
       width: 100%;
-    }
-    .pw-input::placeholder {
-      color: var(--brown-warm);
-      opacity: 0.5;
-      letter-spacing: 0.1em;
-    }
-    .pw-input:focus {
-      border-color: var(--brown-light);
+      max-width: 300px;
+      animation: fadeUp 0.7s 0.22s ease both;
     }
 
-    .pw-btn {
-      background: var(--brown-warm);
-      color: var(--white);
-      font-family: var(--font-hand);
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
+    .gate-input {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      color: var(--t-1);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-align: center;
       padding: 14px;
-      border: 1px solid var(--brown-warm);
-      cursor: pointer;
-      transition: background 0.2s;
-      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.15s;
       text-transform: uppercase;
     }
-    .pw-btn:hover {
-      background: var(--brown-light);
-      border-color: var(--brown-light);
+    .gate-input::placeholder {
+      color: var(--t-3);
+      letter-spacing: 0.15em;
     }
+    .gate-input:focus { border-color: var(--t-2); }
 
-    .pw-error {
-      font-family: var(--font-hand);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--brown-light);
-      text-align: center;
-      height: 20px;
+    .gate-btn {
+      background: var(--t-1);
+      color: var(--bg);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 15px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .gate-btn:hover { background: var(--t-2); }
+
+    .gate-err {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--t-2);
+      height: 18px;
       transition: opacity 0.2s;
       opacity: 0;
     }
-    .pw-error.show { opacity: 1; }
+    .gate-err.show { opacity: 1; }
 
-    /* Subtle bottom text */
-    .pw-foot {
+    .gate-foot {
       position: absolute;
-      bottom: 28px;
-      font-family: var(--font-hand);
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      color: var(--brown-mid);
+      bottom: 24px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--t-3);
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
+<div class="gate">
+  <div class="gate-wordmark">VKTM</div>
+  <div class="gate-question">Are you one of us?</div>
 
-<div class="grain"></div>
-
-<div class="wrap">
-  <div class="pw-logo">VKTM</div>
-  <div class="pw-sub">LONDON · ENTER PASSWORD</div>
-
-  <form class="pw-form" id="pw-form" autocomplete="off">
+  <form class="gate-form" id="gate-form" autocomplete="off">
     <input
-      class="pw-input"
-      id="pw-input"
+      class="gate-input"
+      id="gate-input"
       type="password"
-      placeholder="password"
+      placeholder="Enter password"
       autocomplete="new-password"
       spellcheck="false"
-    />
-    <button class="pw-btn" type="submit">Enter</button>
-    <div class="pw-error" id="pw-error">wrong password</div>
+    >
+    <button class="gate-btn" type="submit">Enter</button>
+    <div class="gate-err" id="gate-err">Wrong password</div>
   </form>
 
-  <div class="pw-foot">@vktmofficial</div>
+  <div class="gate-foot">@vktmofficial — London</div>
 </div>
 
 <script>
-  // If already unlocked, skip straight to home
   if (localStorage.getItem('vktm_unlocked') === '1') {
     window.location.replace('home.html');
   }
 
-  document.getElementById('pw-form').addEventListener('submit', function(e) {
+  document.getElementById('gate-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    const val = document.getElementById('pw-input').value.trim();
-    const err = document.getElementById('pw-error');
-
+    const val = document.getElementById('gate-input').value.trim();
+    const err = document.getElementById('gate-err');
     if (val === 'VK1TMO') {
       localStorage.setItem('vktm_unlocked', '1');
       window.location.replace('home.html');
     } else {
       err.classList.add('show');
-      document.getElementById('pw-input').value = '';
-      document.getElementById('pw-input').focus();
-      setTimeout(() => err.classList.remove('show'), 2400);
+      document.getElementById('gate-input').value = '';
+      document.getElementById('gate-input').focus();
+      setTimeout(() => err.classList.remove('show'), 2500);
     }
   });
 </script>
-
 </body>
 </html>

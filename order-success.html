@@ -8,46 +8,54 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .success-wrap {
-      min-height: 80vh;
+    .success {
+      min-height: calc(100vh - var(--nav-h) - 30px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 80px 24px;
-      max-width: 580px;
-      margin: 0 auto;
+      padding: 80px var(--pad);
     }
-    .success-mark {
-      font-family: var(--font-mark);
-      font-size: 64px;
-      color: var(--brown-light);
-      line-height: 1;
-      margin-bottom: 24px;
-    }
-    .success-wrap h1 {
-      font-size: clamp(40px, 8vw, 72px);
+    .success-tick {
+      font-family: var(--display);
+      font-size: 80px;
+      color: var(--t-3);
       line-height: 1;
       margin-bottom: 16px;
     }
-    .success-wrap p {
-      font-size: 18px;
-      color: var(--cream);
-      line-height: 1.7;
-      margin-bottom: 12px;
+    .success h1 {
+      font-family: var(--display);
+      font-size: clamp(48px, 10vw, 100px);
+      color: var(--t-1);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+    }
+    .success p {
+      font-family: var(--body);
+      font-size: clamp(13px, 1.5vw, 16px);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--t-2);
+      margin-bottom: 8px;
+      max-width: 400px;
     }
     .success-note {
-      font-size: 14px;
-      color: var(--brown-warm);
-      letter-spacing: 0.08em;
+      font-family: var(--body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--t-3);
       margin-top: 8px;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
-    .success-actions {
+    .success-cta {
       display: flex;
       gap: 12px;
       justify-content: center;
@@ -56,24 +64,22 @@
   </style>
 </head>
 <body>
-
 <script src="nav.js"></script>
 <script>injectHeader('');</script>
 
-<div class="success-wrap">
-  <div class="success-mark reveal">✓</div>
-  <h1 class="reveal reveal-delay-1">Order confirmed.</h1>
-  <p class="reveal reveal-delay-2">You're in. Confirmation email is on its way.</p>
-  <p class="reveal reveal-delay-2">Your order will be fulfilled and tracked via the email you used at checkout.</p>
-  <p class="success-note reveal reveal-delay-3">No restock. You got there.</p>
-  <div class="success-actions reveal reveal-delay-4">
+<div class="success">
+  <div class="success-tick rev">✓</div>
+  <h1 class="rev d1">Order<br>confirmed.</h1>
+  <p class="rev d2">Confirmation email is on its way.</p>
+  <p class="rev d2">Your order will be fulfilled and tracked via the email you used at checkout.</p>
+  <div class="success-note rev d3">No restock. You got there.</div>
+  <div class="success-cta rev d4">
     <a href="track.html" class="btn btn-ghost">Track order</a>
-    <a href="home.html" class="btn btn-primary">Back to VKTM</a>
+    <a href="home.html" class="btn btn-white">Back to VKTM</a>
   </div>
 </div>
 
 <script src="main.js"></script>
 <script>injectFooter();</script>
-
 </body>
 </html>

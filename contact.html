@@ -4,99 +4,173 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM — Contact</title>
-  <meta name="description" content="Get in touch with VKTM.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     .contact-wrap {
-      max-width: 600px;
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 80px 24px 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - var(--nav-h) - 30px);
     }
-    .contact-wrap h1 {
-      font-size: clamp(48px, 10vw, 80px);
-      line-height: 1;
+    .contact-left {
+      padding: clamp(56px, 8vw, 100px) var(--pad);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .contact-left .label { display: block; margin-bottom: 16px; }
+    .contact-left h1 {
+      font-family: var(--display);
+      font-size: clamp(56px, 9vw, 100px);
+      color: var(--t-1);
+      line-height: 0.9;
+      margin-bottom: 28px;
+    }
+    .contact-left p {
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--t-2);
+      line-height: 1.65;
+      max-width: 320px;
+      margin-bottom: 32px;
+    }
+    .contact-detail {
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--t-3);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .contact-detail a {
+      color: var(--t-2);
+      transition: color 0.15s;
+    }
+    .contact-detail a:hover { color: var(--t-1); }
+
+    .contact-right {
+      padding: clamp(56px, 8vw, 100px) var(--pad);
+      background: var(--bg-1);
+    }
+    .contact-right .label { display: block; margin-bottom: 24px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .form-success {
+      display: none;
+      padding: 40px 0;
+      text-align: center;
+    }
+    .form-success h3 {
+      font-family: var(--display);
+      font-size: 48px;
+      letter-spacing: 0.04em;
+      color: var(--t-1);
       margin-bottom: 12px;
     }
-    .contact-intro {
-      font-size: 17px;
-      color: var(--beige);
-      margin-bottom: 48px;
+    .form-success p {
+      font-family: var(--body);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--t-3);
+    }
+
+    @media (max-width: 720px) {
+      .contact-wrap { grid-template-columns: 1fr; }
+      .contact-left { border-right: none; border-bottom: 1px solid var(--line); }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-
 <script>
-  if (localStorage.getItem('vktm_unlocked') !== '1') {
-    window.location.replace('index.html');
-  }
+  if (localStorage.getItem('vktm_unlocked') !== '1') window.location.replace('index.html');
 </script>
-
 <script src="nav.js"></script>
 <script>injectHeader('contact.html');</script>
 
 <div class="contact-wrap">
-  <span class="section-label reveal">Get in touch</span>
-  <h1 class="reveal reveal-delay-1">Contact</h1>
-  <p class="contact-intro reveal reveal-delay-2">Questions, wholesale, press. Use the form or email direct.</p>
-
-  <div id="contact-form-wrap">
-    <form id="contact-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="c-name">Name</label>
-          <input class="form-input" id="c-name" name="name" type="text" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="c-email">Email</label>
-          <input class="form-input" id="c-email" name="email" type="email" placeholder="your@email.com" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="c-subject">Subject</label>
-        <input class="form-input" id="c-subject" name="subject" type="text" placeholder="What's this about?">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="c-message">Message</label>
-        <textarea class="form-textarea" id="c-message" name="message" placeholder="Say it." required></textarea>
-      </div>
-      <button class="btn btn-primary" type="submit" style="width:100%">Send it</button>
-    </form>
+  <div class="contact-left">
+    <div>
+      <span class="label rev">Get in touch</span>
+      <h1 class="rev d1">Talk<br>to us.</h1>
+      <p class="rev d2">Questions, press, wholesale. We'll get back to you.</p>
+    </div>
+    <div class="rev d3">
+      <span class="contact-detail">Email — <a href="mailto:vktmofficial@gmail.com">vktmofficial@gmail.com</a></span>
+      <span class="contact-detail">Instagram — <a href="https://instagram.com/vktmofficial" target="_blank" rel="noopener">@vktmofficial</a></span>
+    </div>
   </div>
 
-  <div class="form-success" id="contact-success">
-    <h3>Sent.</h3>
-    <p>We'll get back to you. Usually within a couple of days.</p>
+  <div class="contact-right">
+    <span class="label rev">Send a message</span>
+    <div id="form-wrap">
+      <form id="contact-form" class="rev d1">
+        <div class="form-row">
+          <div class="field">
+            <label for="c-name">Name</label>
+            <input id="c-name" name="name" type="text" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="c-email">Email</label>
+            <input id="c-email" name="email" type="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="c-subj">Subject</label>
+          <input id="c-subj" name="subject" type="text" placeholder="What's this about?">
+        </div>
+        <div class="field">
+          <label for="c-msg">Message</label>
+          <textarea id="c-msg" name="message" placeholder="Say it." required></textarea>
+        </div>
+        <button class="btn btn-white" type="submit" style="width:100%">Send</button>
+      </form>
+    </div>
+    <div class="form-success" id="form-ok">
+      <h3>Sent.</h3>
+      <p>We'll get back to you.</p>
+    </div>
   </div>
 </div>
 
 <script src="main.js"></script>
 <script>
   injectFooter();
-
-  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  document.getElementById('contact-form').addEventListener('submit', async e => {
     e.preventDefault();
     const data = {
       name: document.getElementById('c-name').value,
       email: document.getElementById('c-email').value,
-      subject: document.getElementById('c-subject').value,
-      message: document.getElementById('c-message').value,
+      subject: document.getElementById('c-subj').value,
+      message: document.getElementById('c-msg').value,
     };
     try {
       await fetch('https://formspree.io/f/xqeopeve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
       });
     } catch (_) {}
-    document.getElementById('contact-form-wrap').style.display = 'none';
-    document.getElementById('contact-success').style.display = 'block';
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('form-ok').style.display = 'block';
   });
 </script>
-
 </body>
 </html>

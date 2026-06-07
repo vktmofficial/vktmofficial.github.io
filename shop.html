@@ -4,197 +4,198 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM — Shop</title>
-  <meta name="description" content="VKTM Drop 001 — ORIGIN. 6 pieces. No restock.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .shop-hero {
-      padding: 80px 24px 56px;
-      text-align: center;
-      border-bottom: 1px solid var(--brown-mid);
+    .shop-head {
+      padding: clamp(48px, 7vw, 88px) var(--pad) clamp(32px, 4vw, 48px);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      max-width: var(--max);
+      margin: 0 auto;
+      width: 100%;
     }
-    .shop-hero h1 {
-      font-size: clamp(48px, 10vw, 100px);
-      line-height: 1;
-      margin-bottom: 12px;
+    .shop-head-left .label { margin-bottom: 10px; display: block; }
+    .shop-head-left h1 {
+      font-family: var(--display);
+      font-size: clamp(52px, 10vw, 110px);
+      color: var(--t-1);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
     }
-    .shop-hero p {
-      font-size: 15px;
-      color: var(--beige);
-      letter-spacing: 0.1em;
+    .shop-head-right {
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--t-3);
+      text-align: right;
     }
 
-    /* Tab filters */
-    .shop-filters {
-      max-width: var(--max-w);
+    /* Filters */
+    .filters {
+      padding: 16px var(--pad);
+      border-bottom: 1px solid var(--line);
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 32px 24px 0;
+      width: 100%;
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
-    .filter-btn {
-      font-family: var(--font-hand);
-      font-size: 14px;
+    .filt {
+      font-family: var(--body);
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.15em;
-      padding: 8px 18px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--t-2);
+      padding: 7px 16px;
+      border: 1px solid var(--line);
       background: transparent;
-      border: 1px solid var(--brown-mid);
-      color: var(--beige);
       cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-      border-radius: 2px;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
     }
-    .filter-btn:hover { border-color: var(--brown-warm); color: var(--off-white); }
-    .filter-btn.active {
-      background: var(--brown-warm);
-      border-color: var(--brown-warm);
-      color: var(--white);
+    .filt:hover { color: var(--t-1); border-color: var(--t-2); }
+    .filt.active {
+      color: var(--bg);
+      background: var(--t-1);
+      border-color: var(--t-1);
     }
 
-    .shop-grid-wrap {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 32px 24px 80px;
-    }
+    /* Grid */
     .shop-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2px var(--pad) clamp(40px, 6vw, 80px);
+    }
+    .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
+      margin-top: 2px;
     }
-    @media (max-width: 900px) { .shop-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 540px) { .shop-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 1px; } }
 
-    .no-results {
+    .no-res {
       grid-column: 1 / -1;
+      padding: 80px 0;
       text-align: center;
-      padding: 80px 24px;
-      font-family: var(--font-hand);
-      font-size: 18px;
-      color: var(--brown-warm);
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--t-3);
       display: none;
     }
   </style>
 </head>
 <body>
-
 <script>
-  if (localStorage.getItem('vktm_unlocked') !== '1') {
-    window.location.replace('index.html');
-  }
+  if (localStorage.getItem('vktm_unlocked') !== '1') window.location.replace('index.html');
 </script>
-
 <script src="nav.js"></script>
 <script>injectHeader('shop.html');</script>
 
-<!-- Hero -->
-<div class="shop-hero">
-  <span class="section-label reveal">Drop 001 · Summer 2026</span>
-  <h1 class="reveal reveal-delay-1">ORIGIN</h1>
-  <p class="reveal reveal-delay-2">6 pieces. No restock. Ever.</p>
+<div style="max-width:var(--max);margin:0 auto;width:100%">
+  <div class="shop-head">
+    <div class="shop-head-left">
+      <span class="label rev">Drop 001 · Summer 2026</span>
+      <h1 class="rev d1">Origin</h1>
+    </div>
+    <div class="shop-head-right rev d2">
+      6 pieces<br>No restock. Ever.
+    </div>
+  </div>
+
+  <div class="filters rev">
+    <button class="filt active" data-f="all">All</button>
+    <button class="filt" data-f="tees">Tees</button>
+    <button class="filt" data-f="tops">Tops</button>
+    <button class="filt" data-f="hats">Hats</button>
+  </div>
 </div>
 
-<!-- Filters -->
-<div class="shop-filters reveal">
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="tees">Tees</button>
-  <button class="filter-btn" data-filter="tops">Tops</button>
-  <button class="filter-btn" data-filter="hats">Hats</button>
-</div>
+<div class="shop-grid">
+  <div class="grid" id="grid">
 
-<!-- Grid -->
-<div class="shop-grid-wrap">
-  <div class="shop-grid" id="shop-grid">
-
-    <!-- 001 BORN HERE -->
-    <div class="product-card coming reveal" data-category="tees" data-stripe="">
-      <div class="coming-badge">COMING SOON</div>
-      <div class="product-card-img">
-        <img src="vktm-mark.svg" alt="BORN HERE">
+    <div class="card coming rev" data-cat="tees" data-stripe="">
+      <div class="card-img"><span class="card-badge">Coming Soon</span></div>
+      <div class="card-body">
+        <div class="card-num">001</div>
+        <div class="card-name">Born Here</div>
+        <div class="card-meta">Oversized Tee · Black</div>
+        <div class="card-price">£40</div>
       </div>
-      <div class="product-card-body">
-        <span class="product-card-tag">001 · OVERSIZED TEE · BLACK</span>
-        <div class="product-card-name">BORN HERE</div>
-        <div class="product-card-price">£40</div>
-      </div>
-      <a class="product-card-buy" href="#" data-stripe-link="">BUY NOW</a>
+      <a class="card-buy" href="#" data-stripe-link="">Buy Now</a>
     </div>
 
-    <!-- 002 THE ENDZ -->
-    <div class="product-card coming reveal reveal-delay-1" data-category="tees" data-stripe="">
-      <div class="coming-badge">COMING SOON</div>
-      <div class="product-card-img">
-        <img src="vktm-mark.svg" alt="THE ENDZ">
+    <div class="card coming rev d1" data-cat="tees" data-stripe="">
+      <div class="card-img"><span class="card-badge">Coming Soon</span></div>
+      <div class="card-body">
+        <div class="card-num">002</div>
+        <div class="card-name">The Endz</div>
+        <div class="card-meta">Oversized Tee · White</div>
+        <div class="card-price">£35</div>
       </div>
-      <div class="product-card-body">
-        <span class="product-card-tag">002 · OVERSIZED TEE · WHITE</span>
-        <div class="product-card-name">THE ENDZ</div>
-        <div class="product-card-price">£35</div>
-      </div>
-      <a class="product-card-buy" href="#" data-stripe-link="">BUY NOW</a>
+      <a class="card-buy" href="#" data-stripe-link="">Buy Now</a>
     </div>
 
-    <!-- 003 COLD FRONT -->
-    <div class="product-card coming reveal reveal-delay-2" data-category="tees" data-stripe="">
-      <div class="coming-badge">COMING SOON</div>
-      <div class="product-card-img">
-        <img src="vktm-mark.svg" alt="COLD FRONT">
+    <div class="card coming rev d2" data-cat="tees" data-stripe="">
+      <div class="card-img"><span class="card-badge">Coming Soon</span></div>
+      <div class="card-body">
+        <div class="card-num">003</div>
+        <div class="card-name">Cold Front</div>
+        <div class="card-meta">Tee · Brown</div>
+        <div class="card-price">£35</div>
       </div>
-      <div class="product-card-body">
-        <span class="product-card-tag">003 · TEE · BROWN</span>
-        <div class="product-card-name">COLD FRONT</div>
-        <div class="product-card-price">£35</div>
-      </div>
-      <a class="product-card-buy" href="#" data-stripe-link="">BUY NOW</a>
+      <a class="card-buy" href="#" data-stripe-link="">Buy Now</a>
     </div>
 
-    <!-- 004 GREY DAYS -->
-    <div class="product-card coming reveal" data-category="tops" data-stripe="">
-      <div class="coming-badge">COMING SOON</div>
-      <div class="product-card-img">
-        <img src="vktm-mark.svg" alt="GREY DAYS">
+    <div class="card coming rev" data-cat="tops" data-stripe="">
+      <div class="card-img"><span class="card-badge">Coming Soon</span></div>
+      <div class="card-body">
+        <div class="card-num">004</div>
+        <div class="card-name">Grey Days</div>
+        <div class="card-meta">Long Sleeve · Washed Black</div>
+        <div class="card-price">£48</div>
       </div>
-      <div class="product-card-body">
-        <span class="product-card-tag">004 · LONG SLEEVE · WASHED BLACK</span>
-        <div class="product-card-name">GREY DAYS</div>
-        <div class="product-card-price">£48</div>
-      </div>
-      <a class="product-card-buy" href="#" data-stripe-link="">BUY NOW</a>
+      <a class="card-buy" href="#" data-stripe-link="">Buy Now</a>
     </div>
 
-    <!-- 005 MADE IT -->
-    <div class="product-card coming reveal reveal-delay-1" data-category="tops" data-stripe="">
-      <div class="coming-badge">COMING SOON</div>
-      <div class="product-card-img">
-        <img src="vktm-mark.svg" alt="MADE IT">
+    <div class="card coming rev d1" data-cat="tops" data-stripe="">
+      <div class="card-img"><span class="card-badge">Coming Soon</span></div>
+      <div class="card-body">
+        <div class="card-num">005</div>
+        <div class="card-name">Made It</div>
+        <div class="card-meta">Long Sleeve · Cream</div>
+        <div class="card-price">£48</div>
       </div>
-      <div class="product-card-body">
-        <span class="product-card-tag">005 · LONG SLEEVE · CREAM</span>
-        <div class="product-card-name">MADE IT</div>
-        <div class="product-card-price">£48</div>
-      </div>
-      <a class="product-card-buy" href="#" data-stripe-link="">BUY NOW</a>
+      <a class="card-buy" href="#" data-stripe-link="">Buy Now</a>
     </div>
 
-    <!-- 006 FIRSTBORN -->
-    <div class="product-card coming reveal reveal-delay-2" data-category="hats" data-stripe="">
-      <div class="coming-badge">COMING SOON</div>
-      <div class="product-card-img">
-        <img src="vktm-mark.svg" alt="FIRSTBORN">
+    <div class="card coming rev d2" data-cat="hats" data-stripe="">
+      <div class="card-img"><span class="card-badge">Coming Soon</span></div>
+      <div class="card-body">
+        <div class="card-num">006</div>
+        <div class="card-name">Firstborn</div>
+        <div class="card-meta">Snapback · Black/Brown</div>
+        <div class="card-price">£38</div>
       </div>
-      <div class="product-card-body">
-        <span class="product-card-tag">006 · SNAPBACK · BLACK/BROWN</span>
-        <div class="product-card-name">FIRSTBORN</div>
-        <div class="product-card-price">£38</div>
-      </div>
-      <a class="product-card-buy" href="#" data-stripe-link="">BUY NOW</a>
+      <a class="card-buy" href="#" data-stripe-link="">Buy Now</a>
     </div>
 
-    <div class="no-results" id="no-results">No pieces in this category yet.</div>
+    <div class="no-res" id="no-res">No pieces in this category yet.</div>
   </div>
 </div>
 
@@ -202,29 +203,20 @@
 <script>
   injectFooter();
 
-  // Category filter
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('#shop-grid .product-card');
-  const noResults = document.getElementById('no-results');
-
-  filterBtns.forEach(btn => {
+  document.querySelectorAll('.filt').forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filt').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      const filter = btn.dataset.filter;
-      let visible = 0;
-
-      cards.forEach(card => {
-        const match = filter === 'all' || card.dataset.category === filter;
-        card.style.display = match ? 'flex' : 'none';
-        if (match) visible++;
+      const f = btn.dataset.f;
+      let count = 0;
+      document.querySelectorAll('#grid .card').forEach(c => {
+        const show = f === 'all' || c.dataset.cat === f;
+        c.style.display = show ? 'flex' : 'none';
+        if (show) count++;
       });
-
-      noResults.style.display = visible === 0 ? 'block' : 'none';
+      document.getElementById('no-res').style.display = count ? 'none' : 'block';
     });
   });
 </script>
-
 </body>
 </html>

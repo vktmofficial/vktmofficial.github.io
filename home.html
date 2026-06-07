@@ -4,377 +4,382 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM — Home</title>
-  <meta name="description" content="VKTM — London streetwear. Limited drops. No restocks.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     /* ---- HERO ---- */
     .hero {
-      min-height: calc(100vh - var(--nav-h) - 34px);
+      width: 100%;
+      min-height: calc(100vh - var(--nav-h) - 30px);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 80px 24px;
+      justify-content: flex-end;
+      padding: 0 var(--pad) clamp(40px, 6vw, 80px);
+      background: var(--bg-1);
+      border-bottom: 1px solid var(--line);
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
 
-    /* subtle background cross mark */
-    .hero-bg-mark {
+    /* Subtle radial bg depth */
+    .hero::before {
+      content: '';
       position: absolute;
-      width: 600px;
-      height: 600px;
-      opacity: 0.04;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, var(--bg-3) 0%, transparent 70%);
       pointer-events: none;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
 
-    .hero-eyebrow {
-      font-family: var(--font-hand);
-      font-size: 13px;
+    .hero-drop {
+      font-family: var(--body);
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.3em;
-      color: var(--brown-warm);
-      margin-bottom: 20px;
+      text-transform: uppercase;
+      color: var(--t-3);
+      margin-bottom: 12px;
+      position: relative;
     }
 
     .hero-title {
-      font-family: var(--font-mark);
-      font-size: clamp(72px, 16vw, 160px);
-      color: var(--white);
-      line-height: 0.92;
-      letter-spacing: 0.02em;
-      margin-bottom: 28px;
+      font-family: var(--display);
+      font-size: clamp(100px, 22vw, 280px);
+      letter-spacing: -0.01em;
+      color: var(--t-1);
+      line-height: 0.85;
+      position: relative;
+      margin-bottom: 24px;
     }
 
-    .hero-line {
-      width: 40px;
-      height: 1px;
-      background: var(--brown-warm);
-      margin: 0 auto 28px;
+    .hero-rule {
+      width: 1px;
+      height: 48px;
+      background: var(--line-2);
+      margin: 0 auto 24px;
+      position: relative;
     }
 
-    .hero-tagline {
-      font-family: var(--font-hand);
-      font-size: 18px;
+    .hero-sub {
+      font-family: var(--body);
+      font-size: clamp(12px, 1.8vw, 15px);
       font-weight: 500;
-      letter-spacing: 0.06em;
-      color: var(--beige);
-      max-width: 380px;
-      line-height: 1.5;
-      margin-bottom: 44px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--t-2);
+      max-width: 480px;
+      line-height: 1.6;
+      position: relative;
+      margin-bottom: 32px;
     }
 
     .hero-cta {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
+      position: relative;
     }
 
-    /* ---- DROP BANNER ---- */
-    .drop-banner {
-      background: var(--brown);
-      border-top: 1px solid var(--brown-mid);
-      border-bottom: 1px solid var(--brown-mid);
-      padding: 56px 24px;
+    /* ---- DROP ANNOUNCE ---- */
+    .drop-announce {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--line);
+      padding: clamp(48px, 8vw, 100px) var(--pad);
       text-align: center;
     }
-    .drop-banner-inner {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .drop-banner-num {
-      font-family: var(--font-hand);
-      font-size: 12px;
+    .drop-announce-tag {
+      font-family: var(--body);
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.3em;
-      color: var(--brown-light);
-      margin-bottom: 12px;
-    }
-    .drop-banner-title {
-      font-family: var(--font-mark);
-      font-size: clamp(36px, 8vw, 72px);
-      color: var(--white);
-      line-height: 1;
+      text-transform: uppercase;
+      color: var(--t-3);
       margin-bottom: 16px;
     }
-    .drop-banner-sub {
-      font-family: var(--font-hand);
-      font-size: 16px;
-      color: var(--cream);
-      letter-spacing: 0.05em;
+    .drop-announce-name {
+      font-family: var(--display);
+      font-size: clamp(56px, 12vw, 140px);
+      letter-spacing: 0.04em;
+      color: var(--t-1);
+      line-height: 0.9;
+      margin-bottom: 20px;
+    }
+    .drop-announce-copy {
+      font-family: var(--body);
+      font-size: clamp(13px, 1.6vw, 16px);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--t-2);
       margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    /* ---- PIECES GRID ---- */
-    .pieces-section {
-      padding: 80px 24px;
+    /* ---- PREVIEW GRID ---- */
+    .preview {
+      padding: clamp(40px, 6vw, 72px) 0;
+      border-bottom: 1px solid var(--line);
     }
-    .pieces-header {
-      max-width: var(--max-w);
-      margin: 0 auto 48px;
+    .preview-head {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
+      margin-bottom: 24px;
       gap: 16px;
       flex-wrap: wrap;
     }
-    .pieces-header-left h2 {
-      font-size: clamp(28px, 5vw, 48px);
+    .preview-head h2 {
+      font-family: var(--display);
+      font-size: clamp(28px, 5vw, 52px);
+      letter-spacing: 0.04em;
+      color: var(--t-1);
       line-height: 1;
     }
-    .pieces-grid {
-      max-width: var(--max-w);
+    .preview-grid {
+      max-width: var(--max);
       margin: 0 auto;
+      padding: 0 var(--pad);
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
-    @media (max-width: 900px) {
-      .pieces-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 760px) {
+      .preview-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 540px) {
-      .pieces-grid { grid-template-columns: 1fr; }
+    @media (max-width: 420px) {
+      .preview-grid { grid-template-columns: 1fr; }
     }
 
-    /* ---- ABOUT STRIP ---- */
-    .about-strip {
-      padding: 100px 24px;
-      background: var(--brown-deep);
-      border-top: 1px solid var(--brown-mid);
-      border-bottom: 1px solid var(--brown-mid);
+    /* ---- SPLIT BAND ---- */
+    .band {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--line);
     }
-    .about-strip-inner {
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
+    .band-cell {
+      padding: clamp(48px, 7vw, 96px) var(--pad);
     }
-    .about-strip h2 {
-      font-size: clamp(32px, 6vw, 56px);
-      margin-bottom: 24px;
+    .band-cell + .band-cell {
+      border-left: 1px solid var(--line);
+      background: var(--bg-1);
     }
-    .about-strip p {
-      font-size: 19px;
-      line-height: 1.7;
-      color: var(--cream);
-      margin-bottom: 36px;
+    .band-cell .label { margin-bottom: 16px; }
+    .band-cell h2 {
+      font-family: var(--display);
+      font-size: clamp(36px, 5.5vw, 72px);
+      color: var(--t-1);
+      line-height: 0.95;
+      margin-bottom: 18px;
+    }
+    .band-cell p {
+      font-family: var(--body);
+      font-size: clamp(14px, 1.5vw, 17px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--t-2);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 400px;
+    }
+    @media (max-width: 680px) {
+      .band { grid-template-columns: 1fr; }
+      .band-cell + .band-cell { border-left: none; border-top: 1px solid var(--line); }
     }
 
     /* ---- NEWSLETTER ---- */
-    .newsletter-section {
-      padding: 100px 24px;
-    }
-    .newsletter-inner {
-      max-width: 480px;
-      margin: 0 auto;
+    .nl {
+      padding: clamp(56px, 8vw, 100px) var(--pad);
       text-align: center;
+      border-bottom: 1px solid var(--line);
     }
-    .newsletter-inner h2 {
-      font-size: clamp(28px, 5vw, 44px);
+    .nl-inner { max-width: 420px; margin: 0 auto; }
+    .nl .label { margin-bottom: 14px; display: block; }
+    .nl h2 {
+      font-family: var(--display);
+      font-size: clamp(32px, 5vw, 56px);
+      letter-spacing: 0.04em;
+      color: var(--t-1);
+      line-height: 1;
       margin-bottom: 12px;
     }
-    .newsletter-inner p {
-      font-size: 16px;
-      color: var(--beige);
-      margin-bottom: 28px;
-    }
-    .newsletter-form {
-      display: flex;
-      gap: 0;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    .newsletter-form input {
-      flex: 1;
-      background: var(--brown-deep);
-      border: 1px solid var(--brown-mid);
-      border-right: none;
-      color: var(--off-white);
-      font-family: var(--font-hand);
-      font-size: 16px;
-      padding: 13px 16px;
-      outline: none;
-      transition: border-color 0.2s;
-      border-radius: 2px 0 0 2px;
-    }
-    .newsletter-form input::placeholder { color: var(--brown-warm); opacity: 0.5; }
-    .newsletter-form input:focus { border-color: var(--brown-light); }
-    .newsletter-form button {
-      background: var(--brown-warm);
-      color: var(--white);
-      font-family: var(--font-hand);
-      font-size: 15px;
-      font-weight: 700;
+    .nl p {
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 400;
       letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--t-3);
+      margin-bottom: 24px;
+    }
+    .nl-row {
+      display: flex;
+    }
+    .nl-row input {
+      flex: 1;
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-right: none;
+      color: var(--t-1);
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 13px 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .nl-row input::placeholder { color: var(--t-3); }
+    .nl-row input:focus { border-color: var(--t-2); }
+    .nl-row button {
+      background: var(--t-1);
+      color: var(--bg);
+      font-family: var(--body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       padding: 13px 20px;
-      border: 1px solid var(--brown-warm);
+      border: none;
       cursor: pointer;
-      transition: background 0.2s;
-      border-radius: 0 2px 2px 0;
+      transition: background 0.15s;
       white-space: nowrap;
     }
-    .newsletter-form button:hover {
-      background: var(--brown-light);
-      border-color: var(--brown-light);
-    }
-    .newsletter-note {
-      font-family: var(--font-hand);
-      font-size: 12px;
-      color: var(--brown-warm);
-      letter-spacing: 0.06em;
-      margin-top: 12px;
-    }
-    .newsletter-ok {
+    .nl-row button:hover { background: var(--t-2); }
+    .nl-ok {
       display: none;
-      font-family: var(--font-hand);
-      font-size: 16px;
-      color: var(--cream);
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--t-2);
+      margin-top: 12px;
     }
   </style>
 </head>
 <body>
-
 <script>
-  if (localStorage.getItem('vktm_unlocked') !== '1') {
-    window.location.replace('index.html');
-  }
+  if (localStorage.getItem('vktm_unlocked') !== '1') window.location.replace('index.html');
 </script>
-
 <script src="nav.js"></script>
 <script>injectHeader('home.html');</script>
 
 <!-- HERO -->
 <section class="hero">
-  <!-- bg cross mark -->
-  <svg class="hero-bg-mark" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="108" y="0" width="24" height="240" fill="#c0966a"/>
-    <rect x="0" y="108" width="240" height="24" fill="#c0966a"/>
-  </svg>
-
-  <div class="hero-eyebrow reveal">VK1TMO · LONDON</div>
-  <h1 class="hero-title reveal reveal-delay-1">VKTM</h1>
-  <div class="hero-line reveal reveal-delay-2"></div>
-  <p class="hero-tagline reveal reveal-delay-3">Built from nothing. No restock. No second chances.</p>
-  <div class="hero-cta reveal reveal-delay-4">
-    <a href="shop.html" class="btn btn-primary">Shop Drop 001</a>
-    <a href="vault.html" class="btn btn-ghost">The Vault</a>
+  <div class="hero-drop rev">Drop 001 · Summer 2026</div>
+  <h1 class="hero-title rev d1">VKTM</h1>
+  <div class="hero-rule rev d2"></div>
+  <p class="hero-sub rev d3">London streetwear. No restock. No second chances.</p>
+  <div class="hero-cta rev d4">
+    <a href="shop.html" class="btn btn-white">Shop Drop 001</a>
+    <a href="vault.html" class="btn btn-outline">The Vault</a>
   </div>
 </section>
 
-<!-- DROP BANNER -->
-<div class="drop-banner">
-  <div class="drop-banner-inner">
-    <div class="drop-banner-num reveal">DROP 001 · SUMMER 2026</div>
-    <h2 class="drop-banner-title reveal reveal-delay-1">ORIGIN</h2>
-    <p class="drop-banner-sub reveal reveal-delay-2">6 pieces. One word hidden across all of them. Find it.</p>
-    <a href="vault.html" class="btn btn-outline reveal reveal-delay-3">Read the story</a>
+<!-- DROP ANNOUNCE -->
+<section class="drop-announce">
+  <div class="drop-announce-tag rev">Drop 001 · Summer 2026</div>
+  <div class="drop-announce-name rev d1">ORIGIN</div>
+  <div class="drop-announce-copy rev d2">6 pieces. One word hidden across all of them. Find it.</div>
+  <a href="vault.html" class="btn btn-outline rev d3">Read the story</a>
+</section>
+
+<!-- PREVIEW GRID -->
+<section class="preview">
+  <div class="preview-head">
+    <h2 class="rev">The Pieces</h2>
+    <a href="shop.html" class="btn btn-ghost rev">View all</a>
+  </div>
+  <div class="preview-grid">
+    <div class="card coming rev">
+      <div class="card-img"><span class="card-badge">Coming Soon</span></div>
+      <div class="card-body">
+        <div class="card-num">001</div>
+        <div class="card-name">Born Here</div>
+        <div class="card-meta">Oversized Tee · Black</div>
+        <div class="card-price">£40</div>
+      </div>
+    </div>
+    <div class="card coming rev d1">
+      <div class="card-img"><span class="card-badge">Coming Soon</span></div>
+      <div class="card-body">
+        <div class="card-num">002</div>
+        <div class="card-name">The Endz</div>
+        <div class="card-meta">Oversized Tee · White</div>
+        <div class="card-price">£35</div>
+      </div>
+    </div>
+    <div class="card coming rev d2">
+      <div class="card-img"><span class="card-badge">Coming Soon</span></div>
+      <div class="card-body">
+        <div class="card-num">003</div>
+        <div class="card-name">Cold Front</div>
+        <div class="card-meta">Tee · Brown</div>
+        <div class="card-price">£35</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT BAND -->
+<div class="band">
+  <div class="band-cell">
+    <span class="label rev">The Brand</span>
+    <h2 class="rev d1">Built<br>from<br>nothing.</h2>
+    <p class="rev d2">London born. Zero budget. Every piece a timestamp of where we started and what we made out of it.</p>
+    <a href="about.html" class="btn btn-outline rev d3">About VKTM</a>
+  </div>
+  <div class="band-cell">
+    <span class="label rev">Rules</span>
+    <h2 class="rev d1">No<br>restock.<br>Ever.</h2>
+    <p class="rev d2">Once a drop sells out it lives in the vault. No exceptions. No pressure tactics — just the reality that things run out.</p>
+    <a href="vault.html" class="btn btn-ghost rev d3">The Vault</a>
   </div>
 </div>
 
-<!-- PIECES PREVIEW -->
-<section class="pieces-section">
-  <div class="pieces-header">
-    <div class="pieces-header-left">
-      <span class="section-label">Drop 001</span>
-      <h2 class="reveal">The Pieces</h2>
-    </div>
-    <a href="shop.html" class="btn btn-ghost reveal">View all</a>
-  </div>
-
-  <div class="pieces-grid">
-    <!-- BORN HERE -->
-    <div class="product-card coming reveal">
-      <div class="coming-badge">COMING SOON</div>
-      <div class="product-card-img">
-        <img src="vktm-mark.svg" alt="">
-      </div>
-      <div class="product-card-body">
-        <span class="product-card-tag">001 · TEES</span>
-        <div class="product-card-name">BORN HERE</div>
-        <div class="product-card-price">£40</div>
-      </div>
-    </div>
-    <!-- THE ENDZ -->
-    <div class="product-card coming reveal reveal-delay-1">
-      <div class="coming-badge">COMING SOON</div>
-      <div class="product-card-img">
-        <img src="vktm-mark.svg" alt="">
-      </div>
-      <div class="product-card-body">
-        <span class="product-card-tag">002 · TEES</span>
-        <div class="product-card-name">THE ENDZ</div>
-        <div class="product-card-price">£35</div>
-      </div>
-    </div>
-    <!-- COLD FRONT -->
-    <div class="product-card coming reveal reveal-delay-2">
-      <div class="coming-badge">COMING SOON</div>
-      <div class="product-card-img">
-        <img src="vktm-mark.svg" alt="">
-      </div>
-      <div class="product-card-body">
-        <span class="product-card-tag">003 · TEES</span>
-        <div class="product-card-name">COLD FRONT</div>
-        <div class="product-card-price">£35</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT STRIP -->
-<section class="about-strip">
-  <div class="about-strip-inner">
-    <div class="section-label reveal">The Brand</div>
-    <h2 class="reveal reveal-delay-1">London born.<br>Built from nothing.</h2>
-    <p class="reveal reveal-delay-2">VKTM isn't a label. It's a record. Every piece is a timestamp — where we were, what we carried, what we made with nothing. No hype. No restock. Just the work.</p>
-    <a href="about.html" class="btn btn-outline reveal reveal-delay-3">About VKTM</a>
-  </div>
-</section>
-
 <!-- NEWSLETTER -->
-<section class="newsletter-section">
-  <div class="newsletter-inner">
-    <div class="section-label reveal">Stay in</div>
-    <h2 class="reveal reveal-delay-1">Don't miss the drop</h2>
-    <p class="reveal reveal-delay-2">No spam. Just drop notifications — when it's ready.</p>
-    <div id="nl-form-wrap" class="reveal reveal-delay-3">
-      <form class="newsletter-form" id="nl-form">
-        <input type="email" placeholder="your@email.com" id="nl-email" required>
-        <button type="submit">Notify me</button>
+<section class="nl">
+  <div class="nl-inner">
+    <span class="label rev">Stay ready</span>
+    <h2 class="rev d1">Don't<br>miss it</h2>
+    <p class="rev d2">One email when the drop goes live. Nothing else.</p>
+    <div id="nl-wrap" class="rev d3">
+      <form id="nl-form">
+        <div class="nl-row">
+          <input type="email" id="nl-email" placeholder="your@email.com" required>
+          <button type="submit">Notify</button>
+        </div>
       </form>
-      <p class="newsletter-note">One email when the drop goes live. That's it.</p>
     </div>
-    <p class="newsletter-ok" id="nl-ok">You're in. We'll hit you when it drops.</p>
+    <div class="nl-ok" id="nl-ok">You're in. We'll hit you when it drops.</div>
   </div>
 </section>
 
 <script src="main.js"></script>
 <script>
   injectFooter();
-
-  // Newsletter
-  document.getElementById('nl-form').addEventListener('submit', async function(e) {
+  document.getElementById('nl-form').addEventListener('submit', async e => {
     e.preventDefault();
-    const email = document.getElementById('nl-email').value.trim();
     try {
       await fetch('https://formspree.io/f/xqeopeve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email, _subject: 'VKTM Newsletter Signup' })
+        body: JSON.stringify({ email: document.getElementById('nl-email').value, _subject: 'VKTM Drop Notify' })
       });
     } catch (_) {}
-    document.getElementById('nl-form-wrap').style.display = 'none';
+    document.getElementById('nl-wrap').style.display = 'none';
     document.getElementById('nl-ok').style.display = 'block';
   });
 </script>
-
 </body>
 </html>

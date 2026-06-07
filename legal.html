@@ -4,122 +4,124 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM — Legal</title>
-  <meta name="description" content="VKTM legal information — privacy, returns, shipping, terms.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .legal-wrap {
-      max-width: 720px;
+    .legal-hero {
+      padding: clamp(56px, 7vw, 88px) var(--pad) 32px;
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 80px 24px 100px;
+      border-bottom: 1px solid var(--line);
     }
-    .legal-wrap h1 {
-      font-size: clamp(40px, 8vw, 72px);
-      margin-bottom: 48px;
+    .legal-hero h1 {
+      font-family: var(--display);
+      font-size: clamp(48px, 9vw, 96px);
+      color: var(--t-1);
+      line-height: 0.9;
     }
-    .legal-section {
-      margin-bottom: 56px;
-    }
-    .legal-section h2 {
-      font-size: 26px;
-      margin-bottom: 16px;
-      color: var(--white);
-      padding-top: 8px;
-    }
-    .legal-section p {
-      font-size: 17px;
-      color: var(--cream);
-      line-height: 1.75;
-      margin-bottom: 14px;
-    }
+
     .legal-nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px var(--pad);
+      border-bottom: 1px solid var(--line);
       display: flex;
-      gap: 12px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 56px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--brown-mid);
     }
     .legal-nav a {
-      font-family: var(--font-hand);
-      font-size: 14px;
+      font-family: var(--body);
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--beige);
-      border: 1px solid var(--brown-mid);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--t-2);
+      border: 1px solid var(--line);
       padding: 6px 14px;
-      border-radius: 2px;
-      transition: color 0.2s, border-color 0.2s;
+      transition: color 0.15s, border-color 0.15s;
     }
-    .legal-nav a:hover { color: var(--white); border-color: var(--brown-warm); }
-    hr.legal-divider {
-      border: none;
-      border-top: 1px solid var(--brown-mid);
-      margin: 40px 0;
+    .legal-nav a:hover { color: var(--t-1); border-color: var(--t-2); }
+
+    .legal-body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: clamp(48px, 6vw, 80px) var(--pad) clamp(64px, 8vw, 100px);
     }
+    .legal-sec { margin-bottom: 56px; }
+    .legal-sec h2 {
+      font-family: var(--display);
+      font-size: 32px;
+      letter-spacing: 0.04em;
+      color: var(--t-1);
+      margin-bottom: 18px;
+    }
+    .legal-sec p {
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--t-2);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .legal-sec a { color: var(--t-1); transition: color 0.15s; }
+    .legal-sec a:hover { color: var(--t-2); }
+    .legal-rule { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
   </style>
 </head>
 <body>
-
 <script>
-  if (localStorage.getItem('vktm_unlocked') !== '1') {
-    window.location.replace('index.html');
-  }
+  if (localStorage.getItem('vktm_unlocked') !== '1') window.location.replace('index.html');
 </script>
-
 <script src="nav.js"></script>
 <script>injectHeader('');</script>
 
-<div class="legal-wrap">
-  <h1 class="reveal">Legal</h1>
+<div class="legal-hero">
+  <span class="label rev" style="display:block;margin-bottom:12px">Policies</span>
+  <h1 class="rev d1">Legal</h1>
+</div>
 
-  <nav class="legal-nav reveal">
-    <a href="#privacy">Privacy</a>
-    <a href="#terms">Terms</a>
-    <a href="#returns">Returns</a>
-    <a href="#shipping">Shipping</a>
-  </nav>
+<div class="legal-nav rev">
+  <a href="#privacy">Privacy</a>
+  <a href="#terms">Terms</a>
+  <a href="#returns">Returns</a>
+  <a href="#shipping">Shipping</a>
+</div>
 
-  <div class="legal-section reveal" id="privacy">
+<div class="legal-body">
+  <div class="legal-sec rev" id="privacy">
     <h2>Privacy Policy</h2>
-    <p>VKTM collects your email address when you sign up for drop notifications or submit a contact form. We use Formspree to process form submissions. We do not sell or share your data with third parties for marketing.</p>
-    <p>We use Stripe to process payments. Your payment details are handled entirely by Stripe — we never see or store card information.</p>
-    <p>To request deletion of your data, email <a href="mailto:vktmofficial@gmail.com" style="color:var(--brown-light)">vktmofficial@gmail.com</a>.</p>
+    <p>VKTM collects your email address when you sign up for drop notifications or submit the contact form. We use Formspree to process form submissions. Your data is not sold or shared with third parties for marketing.</p>
+    <p>Payments are processed entirely by Stripe — we never see or store card information.</p>
+    <p>To request data deletion: <a href="mailto:vktmofficial@gmail.com">vktmofficial@gmail.com</a></p>
   </div>
-
-  <hr class="legal-divider">
-
-  <div class="legal-section reveal" id="terms">
+  <hr class="legal-rule">
+  <div class="legal-sec rev" id="terms">
     <h2>Terms of Service</h2>
-    <p>By using this site you agree to these terms. All prices are in GBP and include VAT where applicable. Products are subject to availability — once a drop sells out it will not be restocked.</p>
+    <p>By using this site you agree to these terms. All prices are in GBP. Products are subject to availability — once a drop sells out it will not be restocked, ever.</p>
     <p>We reserve the right to cancel orders at our discretion, in which case a full refund will be issued. We are not responsible for delays caused by third-party couriers or customs.</p>
-    <p>All content on this site — including designs, copy, and imagery — is the intellectual property of VKTM.</p>
+    <p>All content on this site is the intellectual property of VKTM.</p>
   </div>
-
-  <hr class="legal-divider">
-
-  <div class="legal-section reveal" id="returns">
-    <h2>Returns Policy</h2>
-    <p>We accept returns on unworn, unwashed items in original condition within 14 days of delivery. Sale items and limited edition pieces are final sale.</p>
-    <p>To initiate a return, email <a href="mailto:vktmofficial@gmail.com" style="color:var(--brown-light)">vktmofficial@gmail.com</a> with your order number and reason. Return postage is the responsibility of the customer unless the item is faulty.</p>
-    <p>Refunds are processed within 5–7 business days of receiving the returned item.</p>
+  <hr class="legal-rule">
+  <div class="legal-sec rev" id="returns">
+    <h2>Returns</h2>
+    <p>We accept returns on unworn, unwashed items in original condition within 14 days of delivery. Limited edition and sale items are final sale.</p>
+    <p>To start a return, email <a href="mailto:vktmofficial@gmail.com">vktmofficial@gmail.com</a> with your order number. Return postage is at the customer's cost unless the item is faulty.</p>
+    <p>Refunds are processed within 5–7 business days of receiving the return.</p>
   </div>
-
-  <hr class="legal-divider">
-
-  <div class="legal-section reveal" id="shipping">
+  <hr class="legal-rule">
+  <div class="legal-sec rev" id="shipping">
     <h2>Shipping</h2>
-    <p>We ship from the UK. Standard delivery takes 3–5 business days within the UK. International orders typically take 7–14 business days depending on destination and customs.</p>
-    <p>Tracking information is sent by email once your order ships. International orders may be subject to import duties and taxes payable by the customer.</p>
-    <p>For order issues, contact <a href="mailto:vktmofficial@gmail.com" style="color:var(--brown-light)">vktmofficial@gmail.com</a> or use the <a href="track.html" style="color:var(--brown-light)">order tracking page</a>.</p>
+    <p>We ship from the UK. Standard UK delivery: 3–5 business days. International: 7–14 business days depending on destination and customs.</p>
+    <p>Tracking information is emailed once your order ships. International orders may be subject to import duties payable by the customer.</p>
+    <p>Order issues: <a href="mailto:vktmofficial@gmail.com">vktmofficial@gmail.com</a> or use the <a href="track.html">order tracking page</a>.</p>
   </div>
 </div>
 
 <script src="main.js"></script>
 <script>injectFooter();</script>
-
 </body>
 </html>

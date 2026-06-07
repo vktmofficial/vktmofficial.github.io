@@ -4,109 +4,111 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM — Track Order</title>
-  <meta name="description" content="Track your VKTM order.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     .track-wrap {
-      max-width: 540px;
+      max-width: 560px;
       margin: 0 auto;
-      padding: 80px 24px 100px;
+      padding: clamp(64px, 9vw, 110px) var(--pad) clamp(64px, 9vw, 110px);
     }
+    .track-wrap .label { display: block; margin-bottom: 14px; }
     .track-wrap h1 {
-      font-size: clamp(40px, 9vw, 72px);
-      line-height: 1;
-      margin-bottom: 12px;
+      font-family: var(--display);
+      font-size: clamp(52px, 10vw, 96px);
+      color: var(--t-1);
+      line-height: 0.9;
+      margin-bottom: 16px;
     }
-    .track-intro {
-      font-size: 17px;
-      color: var(--beige);
-      margin-bottom: 48px;
+    .track-wrap > p {
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--t-3);
+      text-transform: uppercase;
+      margin-bottom: 36px;
+      line-height: 1.6;
     }
     .track-result {
       display: none;
-      margin-top: 32px;
+      margin-top: 24px;
       padding: 24px;
-      background: var(--brown-deep);
-      border: 1px solid var(--brown-mid);
-      border-radius: 2px;
+      background: var(--bg-2);
+      border: 1px solid var(--line);
     }
     .track-result h3 {
-      font-size: 20px;
+      font-family: var(--display);
+      font-size: 24px;
+      letter-spacing: 0.04em;
+      color: var(--t-1);
       margin-bottom: 8px;
     }
     .track-result p {
-      font-size: 16px;
-      color: var(--cream);
+      font-family: var(--body);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: var(--t-2);
+      line-height: 1.6;
     }
-    .track-result a {
-      color: var(--brown-light);
-    }
+    .track-result a { color: var(--t-1); }
   </style>
 </head>
 <body>
-
 <script>
-  if (localStorage.getItem('vktm_unlocked') !== '1') {
-    window.location.replace('index.html');
-  }
+  if (localStorage.getItem('vktm_unlocked') !== '1') window.location.replace('index.html');
 </script>
-
 <script src="nav.js"></script>
 <script>injectHeader('');</script>
 
 <div class="track-wrap">
-  <span class="section-label reveal">Orders</span>
-  <h1 class="reveal reveal-delay-1">Track Order</h1>
-  <p class="track-intro reveal reveal-delay-2">Enter your order number and email. You'll find your order number in your confirmation email from Stripe.</p>
+  <span class="label rev">Orders</span>
+  <h1 class="rev d1">Track<br>Order</h1>
+  <p class="rev d2">Enter your order number and email. Your order number is in your Stripe confirmation email.</p>
 
   <div id="track-form-wrap">
     <form id="track-form">
-      <div class="form-group reveal reveal-delay-2">
-        <label class="form-label" for="t-order">Order Number</label>
-        <input class="form-input" id="t-order" type="text" placeholder="e.g. VK-00123" required>
+      <div class="field rev d2">
+        <label for="t-order">Order Number</label>
+        <input id="t-order" type="text" placeholder="e.g. VK-00123" required>
       </div>
-      <div class="form-group reveal reveal-delay-3">
-        <label class="form-label" for="t-email">Email Address</label>
-        <input class="form-input" id="t-email" type="email" placeholder="your@email.com" required>
+      <div class="field rev d3">
+        <label for="t-email">Email Address</label>
+        <input id="t-email" type="email" placeholder="your@email.com" required>
       </div>
-      <button class="btn btn-primary reveal reveal-delay-4" type="submit" style="width:100%">Track it</button>
+      <button class="btn btn-white rev d4" type="submit" style="width:100%">Track it</button>
     </form>
   </div>
 
   <div class="track-result" id="track-result">
-    <h3>Your order</h3>
-    <p>We've sent your tracking details to your email address. Check your inbox — including spam.</p>
-    <p style="margin-top:12px">Issues? Email <a href="mailto:vktmofficial@gmail.com">vktmofficial@gmail.com</a> with your order number.</p>
+    <h3>Check your inbox.</h3>
+    <p>Tracking details have been sent to your email address. Check spam too.<br><br>
+    Still stuck? Email <a href="mailto:vktmofficial@gmail.com">vktmofficial@gmail.com</a> with your order number.</p>
   </div>
 </div>
 
 <script src="main.js"></script>
 <script>
   injectFooter();
-
-  document.getElementById('track-form').addEventListener('submit', async function(e) {
+  document.getElementById('track-form').addEventListener('submit', async e => {
     e.preventDefault();
-    const order = document.getElementById('t-order').value.trim();
-    const email = document.getElementById('t-email').value.trim();
     try {
       await fetch('https://formspree.io/f/xqeopeve', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject: 'VKTM Order Tracking Request',
-          order_number: order,
-          email
-        }),
+          _subject: 'VKTM Order Track Request',
+          order: document.getElementById('t-order').value,
+          email: document.getElementById('t-email').value
+        })
       });
     } catch (_) {}
     document.getElementById('track-form-wrap').style.display = 'none';
     document.getElementById('track-result').style.display = 'block';
   });
 </script>
-
 </body>
 </html>

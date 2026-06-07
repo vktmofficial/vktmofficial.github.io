@@ -4,218 +4,204 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VKTM — The Vault</title>
-  <meta name="description" content="VKTM Vault — the archive. Every drop, documented.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .vault-hero {
-      padding: 80px 24px 64px;
-      max-width: var(--max-w);
+    .vault-head {
+      padding: clamp(56px, 8vw, 100px) var(--pad) clamp(40px, 5vw, 60px);
+      max-width: var(--max);
       margin: 0 auto;
-      border-bottom: 1px solid var(--brown-mid);
+      border-bottom: 1px solid var(--line);
     }
-    .vault-hero h1 {
-      font-size: clamp(52px, 10vw, 100px);
-      line-height: 1;
+    .vault-head .label { margin-bottom: 12px; display: block; }
+    .vault-head h1 {
+      font-family: var(--display);
+      font-size: clamp(56px, 12vw, 120px);
+      color: var(--t-1);
+      line-height: 0.9;
       margin-bottom: 16px;
     }
-    .vault-hero p {
-      font-size: 18px;
-      color: var(--beige);
-      max-width: 520px;
+    .vault-head p {
+      font-family: var(--body);
+      font-size: clamp(13px, 1.6vw, 16px);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--t-3);
+      max-width: 480px;
     }
 
-    /* Vault list */
-    .vault-section {
-      max-width: var(--max-w);
+    .vault-list {
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 56px 24px 100px;
+      padding: 0 var(--pad) clamp(60px, 8vw, 100px);
     }
 
-    /* Drop 001 expanded content */
-    .drop-001-story {
-      padding: 28px 0 32px;
+    /* Drop body expanded content */
+    .drop-story { padding: 0 0 8px; }
+    .drop-story p {
+      font-family: var(--body);
+      font-size: clamp(14px, 1.6vw, 17px);
+      font-weight: 400;
+      color: var(--t-2);
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      max-width: 600px;
     }
-    .drop-001-story p {
-      font-size: 17px;
-      color: var(--cream);
-      line-height: 1.75;
-      margin-bottom: 20px;
-      max-width: 640px;
-    }
-    .origin-word {
-      display: inline-block;
-      font-family: var(--font-mark);
-      font-size: 22px;
-      color: var(--brown-light);
-      letter-spacing: 0.2em;
-      margin: 8px 0 24px;
+    .drop-word {
+      font-family: var(--display);
+      font-size: 28px;
+      letter-spacing: 0.25em;
+      color: var(--t-3);
+      margin-bottom: 32px;
     }
 
     /* Piece list */
-    .piece-list {
-      margin-top: 32px;
-    }
-    .piece-list-title {
-      font-family: var(--font-hand);
-      font-size: 12px;
+    .piece-table { width: 100%; max-width: 640px; }
+    .piece-table-head {
+      display: grid;
+      grid-template-columns: 40px 1fr auto auto;
+      gap: 16px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--body);
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: 0.25em;
-      color: var(--brown-light);
-      margin-bottom: 16px;
+      text-transform: uppercase;
+      color: var(--t-3);
+      margin-bottom: 4px;
     }
-    .piece-item {
-      display: flex;
+    .piece-row {
+      display: grid;
+      grid-template-columns: 40px 1fr auto auto;
+      gap: 16px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--line);
       align-items: center;
-      gap: 20px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--brown);
     }
-    .piece-item:last-child { border-bottom: none; }
     .piece-num {
-      font-family: var(--font-hand);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      color: var(--brown-warm);
-      width: 40px;
-      flex-shrink: 0;
+      font-family: var(--body);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--t-3);
     }
-    .piece-info { flex: 1; }
     .piece-name {
-      font-family: var(--font-mark);
+      font-family: var(--display);
       font-size: 18px;
-      color: var(--white);
-      margin-bottom: 3px;
+      letter-spacing: 0.04em;
+      color: var(--t-1);
+      line-height: 1;
     }
     .piece-desc {
-      font-family: var(--font-hand);
-      font-size: 14px;
-      color: var(--beige);
-      letter-spacing: 0.04em;
+      font-family: var(--body);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--t-3);
     }
     .piece-price {
-      font-family: var(--font-hand);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--cream);
-      flex-shrink: 0;
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--t-2);
+      text-align: right;
     }
     .piece-status {
-      font-family: var(--font-hand);
-      font-size: 11px;
+      font-family: var(--body);
+      font-size: 9px;
       font-weight: 700;
-      letter-spacing: 0.15em;
-      padding: 4px 10px;
-      background: var(--brown);
-      color: var(--cream);
-      border: 1px solid var(--brown-mid);
-      border-radius: 2px;
-      flex-shrink: 0;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--t-3);
+      border: 1px solid var(--line);
+      padding: 3px 7px;
+      white-space: nowrap;
+    }
+    @media (max-width: 480px) {
+      .piece-table-head,
+      .piece-row { grid-template-columns: 32px 1fr auto; }
+      .piece-table-head > *:last-child,
+      .piece-row > *:last-child { display: none; }
     }
   </style>
 </head>
 <body>
-
 <script>
-  if (localStorage.getItem('vktm_unlocked') !== '1') {
-    window.location.replace('index.html');
-  }
+  if (localStorage.getItem('vktm_unlocked') !== '1') window.location.replace('index.html');
 </script>
-
 <script src="nav.js"></script>
 <script>injectHeader('vault.html');</script>
 
-<!-- Hero -->
-<div class="vault-hero">
-  <span class="section-label reveal">The Archive</span>
-  <h1 class="reveal reveal-delay-1">The Vault</h1>
-  <p class="reveal reveal-delay-2">Every drop we've put out. Documented. No restock — once it's gone, it lives here.</p>
+<div class="vault-head">
+  <span class="label rev">The Archive</span>
+  <h1 class="rev d1">The Vault</h1>
+  <p class="rev d2">Every drop. Documented. Once it's gone it lives here.</p>
 </div>
 
-<!-- Vault list -->
-<div class="vault-section">
-  <div class="accordion-item reveal">
-    <div class="accordion-header">
-      <div class="accordion-header-left">
-        <span class="accordion-drop-num">DROP 001</span>
-        <span class="accordion-drop-name">ORIGIN</span>
-        <span class="accordion-status coming">COMING SOON</span>
+<div class="vault-list">
+  <div class="acc-item rev" id="drop-001">
+    <div class="acc-head">
+      <div class="acc-head-left">
+        <span class="acc-drop-id">Drop 001</span>
+        <span class="acc-drop-name">Origin</span>
+        <span class="acc-status">Coming Soon</span>
       </div>
-      <span class="accordion-arrow">↓</span>
+      <span class="acc-arrow">↓</span>
     </div>
-
-    <div class="accordion-body">
-      <div class="drop-001-story">
+    <div class="acc-body">
+      <div class="drop-story">
         <p>ORIGIN is where it starts. Six pieces. Each one carries a letter — one word hidden across the whole drop. Six pieces of clothing, six letters, one truth about where VKTM came from.</p>
-        <p>We didn't start with money. We didn't start with backing. We started with nothing but a feeling that we had something to say, and the stubbornness to say it. ORIGIN is that moment.</p>
+        <p>We didn't start with money. We didn't start with backing. We started with nothing but a feeling that we had something to say, and the stubbornness to say it.</p>
         <p>Find the word. Wear the proof.</p>
-        <span class="origin-word">O · R · I · G · I · N</span>
+        <div class="drop-word">O · R · I · G · I · N</div>
 
-        <div class="piece-list">
-          <div class="piece-list-title">The six pieces</div>
-
-          <div class="piece-item">
+        <div class="piece-table">
+          <div class="piece-table-head">
+            <span>#</span><span>Piece</span><span>Price</span><span>Status</span>
+          </div>
+          <div class="piece-row">
             <span class="piece-num">001</span>
-            <div class="piece-info">
-              <div class="piece-name">BORN HERE</div>
-              <div class="piece-desc">Oversized Tee · Black</div>
-            </div>
+            <div><div class="piece-name">Born Here</div><div class="piece-desc">Oversized Tee · Black</div></div>
             <span class="piece-price">£40</span>
-            <span class="piece-status">SOON</span>
+            <span class="piece-status">Soon</span>
           </div>
-
-          <div class="piece-item">
+          <div class="piece-row">
             <span class="piece-num">002</span>
-            <div class="piece-info">
-              <div class="piece-name">THE ENDZ</div>
-              <div class="piece-desc">Oversized Tee · White</div>
-            </div>
+            <div><div class="piece-name">The Endz</div><div class="piece-desc">Oversized Tee · White</div></div>
             <span class="piece-price">£35</span>
-            <span class="piece-status">SOON</span>
+            <span class="piece-status">Soon</span>
           </div>
-
-          <div class="piece-item">
+          <div class="piece-row">
             <span class="piece-num">003</span>
-            <div class="piece-info">
-              <div class="piece-name">COLD FRONT</div>
-              <div class="piece-desc">Tee · Brown</div>
-            </div>
+            <div><div class="piece-name">Cold Front</div><div class="piece-desc">Tee · Brown</div></div>
             <span class="piece-price">£35</span>
-            <span class="piece-status">SOON</span>
+            <span class="piece-status">Soon</span>
           </div>
-
-          <div class="piece-item">
+          <div class="piece-row">
             <span class="piece-num">004</span>
-            <div class="piece-info">
-              <div class="piece-name">GREY DAYS</div>
-              <div class="piece-desc">Light Long Sleeve · Washed Black</div>
-            </div>
+            <div><div class="piece-name">Grey Days</div><div class="piece-desc">Long Sleeve · Washed Black</div></div>
             <span class="piece-price">£48</span>
-            <span class="piece-status">SOON</span>
+            <span class="piece-status">Soon</span>
           </div>
-
-          <div class="piece-item">
+          <div class="piece-row">
             <span class="piece-num">005</span>
-            <div class="piece-info">
-              <div class="piece-name">MADE IT</div>
-              <div class="piece-desc">Light Long Sleeve · Cream</div>
-            </div>
+            <div><div class="piece-name">Made It</div><div class="piece-desc">Long Sleeve · Cream</div></div>
             <span class="piece-price">£48</span>
-            <span class="piece-status">SOON</span>
+            <span class="piece-status">Soon</span>
           </div>
-
-          <div class="piece-item">
+          <div class="piece-row">
             <span class="piece-num">006</span>
-            <div class="piece-info">
-              <div class="piece-name">FIRSTBORN</div>
-              <div class="piece-desc">Snapback Cap · Black/Brown</div>
-            </div>
+            <div><div class="piece-name">Firstborn</div><div class="piece-desc">Snapback · Black/Brown</div></div>
             <span class="piece-price">£38</span>
-            <span class="piece-status">SOON</span>
+            <span class="piece-status">Soon</span>
           </div>
         </div>
       </div>
@@ -226,18 +212,10 @@
 <script src="main.js"></script>
 <script>
   injectFooter();
-
-  // Accordion
-  document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.closest('.accordion-item');
-      item.classList.toggle('open');
-    });
+  document.querySelectorAll('.acc-head').forEach(h => {
+    h.addEventListener('click', () => h.closest('.acc-item').classList.toggle('open'));
   });
-
-  // Open drop 001 by default
-  document.querySelector('.accordion-item').classList.add('open');
+  document.getElementById('drop-001').classList.add('open');
 </script>
-
 </body>
 </html>

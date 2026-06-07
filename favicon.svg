@@ -1,8 +1,5 @@
 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <!-- VKTM Favicon v2 — raw hand-drawn V mark -->
-  <rect width="32" height="32" fill="#0e0905"/>
-  <!-- Hand-drawn V shape in warm brown/cream -->
-  <polyline points="6,7 13,24 16,18 19,24 26,7"
-    fill="none" stroke="#d9b88a" stroke-width="2.8"
-    stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="32" height="32" fill="#060402"/>
+  <text x="16" y="24" font-family="'Bebas Neue', sans-serif" font-size="22"
+        fill="#ede2ce" text-anchor="middle" letter-spacing="1">VK</text>
 </svg>
